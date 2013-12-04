@@ -1,0 +1,28 @@
+{
+    "name": "snide/travinizer-bundle",
+    "type": "symfony-bundle",
+    "description": "Travis CI & Scrutinizer CI overview bundle",
+    "keywords": ["bundle", "symfony", "travis", "scrutinizer"],
+    "homepage": "http://github.com/pdenis/TravinizerBundle",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Pascal Denis",
+            "email": "pascal.denis.75@gmail.com"
+        }
+    ],
+    "require-dev": {
+        "phpunit/phpunit": "3.7.*"
+    },
+    "require": {
+        "snide/monitoring": "dev-master",
+        "symfony/framework-bundle": "~2.3",
+        "php": ">=5.3.3"
+    },
+    "autoload": {
+        "psr-0": {
+            "Snide\\Bundle\\TravinizerBundle": ""
+        }
+    },
+    "target-dir": "Snide/Bundle/TravinizerBundle"
+}
