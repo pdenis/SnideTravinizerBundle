@@ -30,6 +30,18 @@ class TravisLoader implements TravisLoaderInterface
      */
     public function load(Repo $repo)
     {
+        $travisRepo = $this->client->fetchRepository($repo->getSlug());
 
+        if($travisRepo) {
+            // Inject travis data into repository
+            $repo->setBuilds($travisRepo->getBuilds());
+            $repo->setDescription($travisRepo->getDescription());
+            $repo->setLastBuildDuration($travisRepo->getLastBuildDuration());
+            $repo->setLastBuildFinishedAt($travisRepo->getLastBuildFinishedAt());
+            $repo->setLastBuildId($travisRepo->getLastBuildId());
+            $repo->setLastBuildNumber($travisRepo->getLastBuildNumber());
+            $repo->setLastBuildStartedAt($travisRepo->getLastBuildStartedAt());
+            $repo->setLastBuildStatus($travisRepo->getLastBuildStatus());
+        }
     }
 }

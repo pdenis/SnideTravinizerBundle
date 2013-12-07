@@ -33,6 +33,11 @@ class ScrutinizerLoader implements ScrutinizerLoaderInterface
      */
     public function load(Repo $repo)
     {
+        $scrutinizerRepo = $this->client->fetch($repo->getSlug());
 
+        if(scrutinizerRepo) {
+            // Inject scrutinizer data into repository
+            $repo->setMetrics($scrutinizerRepo->getMetrics());
+        }
     }
 }

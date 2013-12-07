@@ -52,10 +52,10 @@ class RepoRepository implements RepoRepositoryInterface
 
         foreach ($this->getRows() as $row) {
             $repo = $this->createNew();
-            $repo->setId($row['slug']);
-            $repo->setName($row['name']);
-            $repo->setUrl($row['url']);
-
+            $repo->setId($row['id']);
+            $repo->setSlug($row['slug']);
+            $repo->setHash($row['hash']);
+            $repo->setType($row['type']);
             $repos[] = $repo;
         }
 
@@ -63,15 +63,15 @@ class RepoRepository implements RepoRepositoryInterface
     }
 
     /**
-     * Find repo by Slug
+     * Find repo by ID
      *
-     * @param $slug App Slug
+     * @param $id Repo id
      * @return Repo|null
      */
-    public function find($slug)
+    public function find($id)
     {
         foreach ($this->findAll() as $repo) {
-            if ($slug == $repo->getSlug()) {
+            if ($id == $repo->getId()) {
                 return $repo;
             }
         }
@@ -88,10 +88,14 @@ class RepoRepository implements RepoRepositoryInterface
     public function create(Repo $repo)
     {
         $rows = $this->getRows();
-        $slug = sizeof($rows) + 1;
+        $id = sizeof($rows) + 1;
 
         $rows[] = array(
-            'slug' => $slug
+            'id'     => $id,
+            'branch' => $repo->getBranch(),
+            'slug'   => $repo->getSlug(),
+            'hash'   => $repo->getHash(),
+            'type'   => $repo->getType()
         );
 
         file_put_contents($this->filename, Yaml::dump($rows));
@@ -108,7 +112,7 @@ class RepoRepository implements RepoRepositoryInterface
         $rows = array();
 
         foreach ($this->getRows() as $row) {
-            if ($row['slug'] == $repo->getSlug()) {
+            if ($row['id'] == $repo->getId()) {
                 continue;
             }
             $rows[] = $row;
@@ -128,9 +132,12 @@ class RepoRepository implements RepoRepositoryInterface
         $rows = array();
 
         foreach ($this->getRows() as $row) {
-            if ($row['slug'] == $repo->getSlug()) {
+            if ($row['id'] == $repo->getId()) {
                 $row = array(
-                    'slug'   => $repo->getSlug()
+                    'branch' => $repo->getBranch(),
+                    'slug'   => $repo->getSlug(),
+                    'hash'   => $repo->getHash(),
+                    'type'   => $repo->getType()
                 );
             }
             $rows[] = $row;

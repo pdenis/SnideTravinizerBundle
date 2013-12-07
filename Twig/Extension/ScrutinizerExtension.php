@@ -2,6 +2,8 @@
 
 namespace Snide\Bundle\TravinizerBundle\Twig\Extension;
 
+use Snide\Bundle\TravinizerBundle\Model\Repo;
+
 /**
  * Class ScrutinizerExtension
  *
@@ -24,25 +26,37 @@ class ScrutinizerExtension extends \Twig_Extension
     }
 
     /**
-     * Get Repo link for a slug
+     * Get Repo link
      *
-     * @param $slug (user/repo)
+     * @param Repo $repo
      * @return string
      */
-    public function getLink($slug)
+    public function getLink(Repo $repo)
     {
-
+        return sprintf(
+            '%s/%s/%s',
+            'https://scrutinizer-ci.com',
+            $repo->getType(),
+            $repo->getSlug()
+        );
     }
 
     /**
-     * Get Repo badge for a slug
+     * Get Repo badge
      *
-     * @param $slug (user/repo)
+     * @param Repo $repo
      * @return string
      */
-    public function getBadge($slug)
+    public function getBadge(Repo $repo)
     {
-
+        return sprintf(
+            '%s/%s/%s?s=%s',
+            'https://scrutinizer-ci.com',
+            $repo->getType(),
+            $repo->getSlug(),
+            'badges/quality-score.png',
+            $repo->getHash()
+        );
     }
 
     /**
