@@ -37,7 +37,13 @@ class RepoType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $builder->add('id', 'hidden');
         $builder->add('slug', 'text');
+        $builder->add('branch', 'text');
+        $builder->add('hash', 'text', array('label' => 'Scrutinizer badge hash'));
+        $builder->add('type','choice', array(
+            'choices' => array('g' => 'Github', 'b' => 'Bitbucket')
+        ));
     }
 
     /**
