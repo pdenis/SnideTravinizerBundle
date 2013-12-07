@@ -1,0 +1,19 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="snide_travinizer.repo_manager.class">Snide\Bundle\TravinizerBundle\Manager\RepoManager</parameter>
+    </parameters>
+
+    <services>
+        <service id="snide_travinizer.repo_manager" class="%snide_travinizer.repo_manager.class%" public="true">
+            <argument type="service" id="snide_travinizer.repo_repository"/>
+            <argument>%snide_travinizer.model.repo.class%</argument>
+            <argument type="service" id="snide_travinizer.travis_loader"/>
+            <argument type="service" id="snide_travinizer.scrutinizer_loader"/>
+        </service>
+    </services>
+</container>

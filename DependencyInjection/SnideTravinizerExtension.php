@@ -24,7 +24,45 @@ class SnideTravinizerExtension extends Extension
      */
     public function load(array $configs, ContainerBuilder $container)
     {
+        $configuration = new Configuration();
+        $config = $this->processConfiguration($configuration, $configs);
 
+        $loader = new XmlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
+        $loader->load('model.xml');
+        $loader->load('form.xml');
+        $loader->load('loader.xml');
+        $loader->load('manager.xml');
+        $loader->load('twig_extension.xml');
+
+        $this->loadRepository($loader, $container, $config);
+     }
+
+    /**
+     * Load repository
+     *
+     * @param XmlFileLoader $loader
+     * @param ContainerBuilder $container
+     * @param array $config
+     * @throws \Exception
+     */
+    protected function loadRepository($loader, ContainerBuilder $container, array $config)
+    {
+
+        if (isset($config['repository']['type'])) {
+            if ($config['repository']['type'] == 'yaml') {
+                if (!isset($config['repository']['repo']['filename'])) {
+                    throw new InvalidConfigurationException('You must define filename parameter for repo yaml repository');
+                }
+                $container->setParameter(
+                    'snide_travinizer.repo_repository.filename',
+                    $config['repository']['repo']['filename']
+                );
+            }
+
+            $loader->load('repository/' . $config['repository']['type'] . '.xml');
+        } else {
+            throw new InvalidConfigurationException('You must define repository type parameter');
+        }
 
     }
 }

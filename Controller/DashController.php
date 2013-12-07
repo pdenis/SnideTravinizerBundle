@@ -33,6 +33,6 @@ class DashController extends Controller
      */
     protected function getTemplatePath()
     {
-        return 'SnideMonitorBundle:Dash:';
+        return 'SnideTravinizerBundle:Dash:';
     }
 }
