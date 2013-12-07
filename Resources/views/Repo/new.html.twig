@@ -1,0 +1,28 @@
+{% extends 'SnideTravinizerBundle::base.html.twig' %}
+
+{% block main %}
+
+    <h2>Update an application</h2>
+    <form action="{{ path('snide_travinizer_repo_create') }}" method="post" {{ form_enctype(form) }}>
+
+        {{ form_row(form.id) }}
+        {{ form_row(form._token) }}
+        <div class="field">
+            {{ form_errors(form.slug) }}
+            {{ form_label(form.slug) }}
+            {{ form_widget(form.slug) }}
+        </div>
+        <div class="field">
+            {{ form_errors(form.branch) }}
+            {{ form_label(form.branch) }}
+            {{ form_widget(form.branch) }}
+        </div>
+        <div class="field">
+            {{ form_errors(form.type) }}
+            {{ form_label(form.type) }}
+            {{ form_widget(form.type) }}
+        </div>
+        <input class="btn submit-btn" type="submit" value="Submit"/>
+    </form>
+
+{% endblock %}

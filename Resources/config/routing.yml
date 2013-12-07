@@ -1,3 +1,27 @@
 snide_travinizer_dashboard:
     pattern:   /dashboard
     defaults:  { _controller: SnideTravinizerBundle:Dash:index }
+    
+snide_travinizer_repo_new:
+    pattern:   /repo/new
+    defaults:  { _controller: SnideTravinizerBundle:Repo:new }
+
+snide_travinizer_repo_create:
+    pattern:   /repo/create
+    defaults:  { _controller: SnideTravinizerBundle:Repo:create }
+    requirements:
+        _method:  POST
+
+snide_travinizer_repo_edit:
+    pattern:   /repo/edit/{id}
+    defaults:  { _controller: SnideTravinizerBundle:Repo:edit }
+
+snide_travinizer_repo_update:
+    pattern:   /repo/update/{id}
+    defaults:  { _controller: SnideTravinizerBundle:Repo:update }
+    requirements:
+        _method:  POST
+
+snide_travinizer_repo_delete:
+    pattern:   /repo/delete/{id}
+    defaults:  { _controller: SnideTravinizerBundle:Repo:delete }
