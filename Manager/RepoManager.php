@@ -102,7 +102,6 @@ class RepoManager implements RepoManagerInterface
         $repos = array();
         foreach ($this->repository->findAll() as $repo) {
             // Load tests
-            $this->loadExtraInfos($repo);
             $repos[] = $repo;
         }
 

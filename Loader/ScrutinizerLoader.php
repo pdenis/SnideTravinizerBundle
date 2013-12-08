@@ -35,7 +35,7 @@ class ScrutinizerLoader implements ScrutinizerLoaderInterface
     {
         $scrutinizerRepo = $this->client->fetch($repo->getSlug());
 
-        if(scrutinizerRepo) {
+        if($scrutinizerRepo) {
             // Inject scrutinizer data into repository
             $repo->setMetrics($scrutinizerRepo->getMetrics());
         }

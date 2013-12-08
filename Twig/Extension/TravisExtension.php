@@ -20,18 +20,18 @@ class TravisExtension extends \Twig_Extension
     public function getFunctions()
     {
         return array(
-            'snide_travinizer_travis_link'  => new \Twig_Function_Method($this, 'getLink', array('is_safe'=> array('html'))),
+            'snide_travinizer_travis_url'  => new \Twig_Function_Method($this, 'getUrl', array('is_safe'=> array('html'))),
             'snide_travinizer_travis_badge' => new \Twig_Function_Method($this, 'getBadge', array('is_safe'=> array('html')))
         );
     }
 
     /**
-     * Get Repo link
+     * Get Repo url
      *
      * @param Repo $repo
      * @return string
      */
-    public function getLink(Repo $repo)
+    public function getUrl(Repo $repo)
     {
         return sprintf('%s/%s', 'https://travis-ci.org'. $repo->getSlug());
     }
@@ -44,7 +44,7 @@ class TravisExtension extends \Twig_Extension
      */
     public function getBadge(Repo $repo)
     {
-        return sprintf('%s/%s?%s', 'https://travis-ci.org', $repo->getSlug(), $repo->getBranch());
+        return sprintf('<img src="%s/%s.png?%s" />', 'https://travis-ci.org', $repo->getSlug(), 'master');
     }
 
     /**

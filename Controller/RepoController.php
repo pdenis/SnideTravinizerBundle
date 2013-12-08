@@ -4,6 +4,7 @@
 namespace Snide\Bundle\TravinizerBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 
 
 /**
@@ -65,6 +66,26 @@ class RepoController extends Controller
                 'form' => $form->createView(),
                 'id' => $id,
                 'errors' => array()
+            )
+        );
+    }
+
+    /**
+     * Show repository  action
+     *
+     * @param $id application ID
+     * @return RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     */
+    public function showAction($id)
+    {
+        $repository = $this->getManager()->find($id);
+        if (!$repository) {
+            return new RedirectResponse($this->generateUrl('snide_travinizer_dashboard'));
+        }
+        return $this->render(
+            $this->getTemplatePath() . 'show.html.twig',
+            array(
+                'repository' => $repository
             )
         );
     }

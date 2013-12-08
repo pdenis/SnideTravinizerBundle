@@ -19,9 +19,11 @@ class DashController extends Controller
      */
     public function indexAction()
     {
+        $repositories = $this->getManager()->findAll();
         return $this->render(
             $this->getTemplatePath() . 'index.html.twig',
             array(
+                'repositories' => $repositories
             )
         );
     }
@@ -34,5 +36,15 @@ class DashController extends Controller
     protected function getTemplatePath()
     {
         return 'SnideTravinizerBundle:Dash:';
+    }
+
+    /**
+     * Get Repo manager
+     *
+     * @return mixed
+     */
+    public function getManager()
+    {
+        return $this->get('snide_travinizer.repo_manager');
     }
 }

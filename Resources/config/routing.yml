@@ -16,6 +16,10 @@ snide_travinizer_repo_edit:
     pattern:   /repo/edit/{id}
     defaults:  { _controller: SnideTravinizerBundle:Repo:edit }
 
+snide_travinizer_repo_show:
+    pattern:   /repo/show/{id}
+    defaults:  { _controller: SnideTravinizerBundle:Repo:show }
+
 snide_travinizer_repo_update:
     pattern:   /repo/update/{id}
     defaults:  { _controller: SnideTravinizerBundle:Repo:update }

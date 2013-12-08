@@ -1,6 +1,6 @@
 <?php
 
-namespace Snide\Bundle\MonitorBundle\Form;
+namespace Snide\Bundle\TravinizerBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -39,8 +39,8 @@ class RepoType extends AbstractType
     {
         $builder->add('id', 'hidden');
         $builder->add('slug', 'text');
-        $builder->add('branch', 'text');
-        $builder->add('hash', 'text', array('label' => 'Scrutinizer badge hash'));
+        $builder->add('qualityBadgeHash', 'text', array('label' => 'Scrutinizer quality badge hash'));
+        $builder->add('coverageBadgeHash', 'text', array('label' => 'Scrutinizer coverage badge hash'));
         $builder->add('type','choice', array(
             'choices' => array('g' => 'Github', 'b' => 'Bitbucket')
         ));

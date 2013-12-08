@@ -20,18 +20,19 @@ class ScrutinizerExtension extends \Twig_Extension
     public function getFunctions()
     {
         return array(
-            'snide_travinizer_scrutinizer_link'  => new \Twig_Function_Method($this, 'getLink', array('is_safe'=> array('html'))),
-            'snide_travinizer_scrutinizer_badge' => new \Twig_Function_Method($this, 'getBadge', array('is_safe'=> array('html')))
+            'snide_travinizer_scrutinizer_url'  => new \Twig_Function_Method($this, 'getUrl', array('is_safe'=> array('html'))),
+            'snide_travinizer_scrutinizer_quality_badge' => new \Twig_Function_Method($this, 'getQualityBadge', array('is_safe'=> array('html'))),
+            'snide_travinizer_scrutinizer_coverage_badge' => new \Twig_Function_Method($this, 'getCoverageBadge', array('is_safe'=> array('html')))
         );
     }
 
     /**
-     * Get Repo link
+     * Get Repo url
      *
      * @param Repo $repo
      * @return string
      */
-    public function getLink(Repo $repo)
+    public function getUrl(Repo $repo)
     {
         return sprintf(
             '%s/%s/%s',
@@ -42,21 +43,45 @@ class ScrutinizerExtension extends \Twig_Extension
     }
 
     /**
-     * Get Repo badge
+     * Get Repo quality badge
      *
      * @param Repo $repo
      * @return string
      */
-    public function getBadge(Repo $repo)
+    public function getQualityBadge(Repo $repo)
     {
-        return sprintf(
-            '%s/%s/%s?s=%s',
-            'https://scrutinizer-ci.com',
-            $repo->getType(),
-            $repo->getSlug(),
-            'badges/quality-score.png',
-            $repo->getHash()
-        );
+        if($repo->getQualityBadgeHash()) {
+            return sprintf(
+                '<img src="%s/%s/%s/%s?s=%s" />',
+                'https://scrutinizer-ci.com',
+                $repo->getType(),
+                $repo->getSlug(),
+                'badges/quality-score.png',
+                $repo->getQualityBadgeHash()
+            );
+        }
+        return '';
+    }
+
+    /**
+     * Get Repo coverage badge
+     *
+     * @param Repo $repo
+     * @return string
+     */
+    public function getCoverageBadge(Repo $repo)
+    {
+        if($repo->getCoverageBadgeHash()) {
+            return sprintf(
+                '<img src="%s/%s/%s/%s?s=%s" />',
+                'https://scrutinizer-ci.com',
+                $repo->getType(),
+                $repo->getSlug(),
+                'badges/coverage.png',
+                $repo->getCoverageBadgeHash()
+            );
+        }
+        return '';
     }
 
     /**

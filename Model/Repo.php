@@ -19,42 +19,22 @@ class Repo extends Repository
      */
     protected $metrics;
     /**
-     * Scrutinizer badge hash
+     * Scrutinizer quality badge hash
      *
      * @var string
      */
-    protected $hash;
+    protected $qualityBadgeHash;
+
+    /**
+     * Scrutinizer coverage badge hash
+     * @var string
+     */
+    protected $coverageBadgeHash;
     /**
      * "g" for github or "b" for bitbucket
      * @var string
      */
     protected $type;
-    /**
-     * Branch
-     *
-     * @var string
-     */
-    protected $branch;
-
-    /**
-     * Getter branch
-     *
-     * @return string
-     */
-    public function getBranch()
-    {
-        return $this->branch;
-    }
-
-    /**
-     * Setter branch
-     *
-     * @param $branch repo branch
-     */
-    public function setBranch($branch)
-    {
-        $this->branch = $branch;
-    }
 
     /**
      * Getter metrics
@@ -71,31 +51,55 @@ class Repo extends Repository
      *
      * @param Metrics $metrics
      */
-    public function setMetrics(Metrics $metrics)
+    public function setMetrics(Metrics $metrics = null)
     {
         $this->metrics = $metrics;
     }
 
     /**
-     * Getter hash
+     * Getter qualityBadgeHash
      *
      * @return string
      */
-    public function getHash()
+    public function getQualityBadgeHash()
     {
-        return $this->hash;
+        return $this->qualityBadgeHash;
     }
 
     /**
-     * Setter hash
+     * Setter qualityBadgeHash
      *
-     * @param $hash Scrutinizer Badge hash
+     * @param $hash Scrutinizer Quality Badge hash
      */
-    public function setHash($hash)
+    public function setQualityBadgeHash($hash)
     {
-        $this->hash = $hash;
+        $this->qualityBadgeHash = $hash;
     }
 
+    /**
+     * Getter coverageBadgeHash
+     *
+     * @return string
+     */
+    public function getCoverageBadgeHash()
+    {
+        return $this->coverageBadgeHash;
+    }
+
+    /**
+     * Setter coverageBadgeHash
+     *
+     * @param $hash Scrutinizer Coverage Badge hash
+     */
+    public function setCoverageBadgeHash($hash)
+    {
+        $this->coverageBadgeHash = $hash;
+    }
+
+    public function getFullType()
+    {
+        return ($this->type == 'g')? 'Github' : 'Bitbucket';
+    }
     /**
      * Getter type
      *

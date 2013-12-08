@@ -13,14 +13,19 @@
             {{ form_widget(form.slug) }}
         </div>
         <div class="field">
-            {{ form_errors(form.branch) }}
-            {{ form_label(form.branch) }}
-            {{ form_widget(form.branch) }}
-        </div>
-        <div class="field">
             {{ form_errors(form.type) }}
             {{ form_label(form.type) }}
             {{ form_widget(form.type) }}
+        </div>
+        <div class="field">
+            {{ form_errors(form.qualityBadgeHash) }}
+            {{ form_label(form.qualityBadgeHash) }}
+            {{ form_widget(form.qualityBadgeHash) }}
+        </div>
+        <div class="field">
+            {{ form_errors(form.coverageBadgeHash) }}
+            {{ form_label(form.coverageBadgeHash) }}
+            {{ form_widget(form.coverageBadgeHash) }}
         </div>
         <input class="btn submit-btn" type="submit" value="Submit"/>
     </form>

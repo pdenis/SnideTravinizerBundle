@@ -1,9 +1,12 @@
 <?php
 
 
-namespace Snide\Bundle\TravinizerBundle\Repo;
+namespace Snide\Bundle\TravinizerBundle\Repository\Yaml;
 
 use Snide\Bundle\TravinizerBundle\Model\Repo;
+use Snide\Bundle\TravinizerBundle\Repository\RepoRepositoryInterface;
+use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\Yaml\Yaml;
 
 
 /**
@@ -54,8 +57,9 @@ class RepoRepository implements RepoRepositoryInterface
             $repo = $this->createNew();
             $repo->setId($row['id']);
             $repo->setSlug($row['slug']);
-            $repo->setHash($row['hash']);
             $repo->setType($row['type']);
+            $repo->setQualityBadgeHash($row['qualityBadgeHash']);
+            $repo->setCoverageBadgeHash($row['coverageBadgeHash']);
             $repos[] = $repo;
         }
 
@@ -92,10 +96,10 @@ class RepoRepository implements RepoRepositoryInterface
 
         $rows[] = array(
             'id'     => $id,
-            'branch' => $repo->getBranch(),
             'slug'   => $repo->getSlug(),
-            'hash'   => $repo->getHash(),
-            'type'   => $repo->getType()
+            'type'   => $repo->getType(),
+            'qualityBadgeHash'   => $repo->getQualityBadgeHash(),
+            'coverageBadgeHash'  => $repo->getCoverageBadgeHash(),
         );
 
         file_put_contents($this->filename, Yaml::dump($rows));
@@ -134,10 +138,11 @@ class RepoRepository implements RepoRepositoryInterface
         foreach ($this->getRows() as $row) {
             if ($row['id'] == $repo->getId()) {
                 $row = array(
-                    'branch' => $repo->getBranch(),
                     'slug'   => $repo->getSlug(),
-                    'hash'   => $repo->getHash(),
-                    'type'   => $repo->getType()
+                    'qualityBadgeHash'   => $repo->getQualityBadgeHash(),
+                    'coverageBadgeHash'  => $repo->getCoverageBadgeHash(),
+                    'type'   => $repo->getType(),
+                    'id'     => $repo->getId()
                 );
             }
             $rows[] = $row;
