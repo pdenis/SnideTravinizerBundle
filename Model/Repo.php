@@ -4,6 +4,7 @@ namespace Snide\Bundle\TravinizerBundle\Model;
 
 use Snide\Scrutinizer\Model\Metrics;
 use Travis\Client\Entity\Repository;
+use Snide\Scrutinizer\Model\Pdepend\Metrics as PdependMetrics;
 
 /**
  * Class Repository
@@ -18,6 +19,12 @@ class Repo extends Repository
      * @var Metrics
      */
     protected $metrics;
+    /**
+     * Pdepend metrics
+     *
+     * @var PdependMetrics
+     */
+    protected $pdependMetrics;
     /**
      * Scrutinizer quality badge hash
      *
@@ -46,6 +53,7 @@ class Repo extends Repository
         return $this->metrics;
     }
 
+
     /**
      * Setter metrics
      *
@@ -54,6 +62,26 @@ class Repo extends Repository
     public function setMetrics(Metrics $metrics = null)
     {
         $this->metrics = $metrics;
+    }
+
+    /**
+     * Getter pdependMetrics
+     *
+     * @return PdependMetrics
+     */
+    public function getPdependMetrics()
+    {
+        return $this->pdependMetrics;
+    }
+
+    /**
+     * Setter pdependMetrics
+     *
+     * @param PdependMetrics $pdependMetrics
+     */
+    public function setPdependMetrics(PdependMetrics $pdependMetrics = null)
+    {
+        $this->pdependMetrics = $pdependMetrics;
     }
 
     /**

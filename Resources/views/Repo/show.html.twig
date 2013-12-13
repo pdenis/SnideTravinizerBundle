@@ -1,1 +1,74 @@
 {% extends 'SnideTravinizerBundle::base.html.twig' %}
+
+{% block javascript %}
+    {{ parent() }}
+    <script src="{{ asset('/bundles/snidetravinizer/js/highcharts.js') }}"></script>
+    <script src="{{ asset('/bundles/snidetravinizer/js/theme.js') }}"></script>
+    {% include 'SnideTravinizerBundle:Repo:partial.metrics.html.twig' with {'metrics': repository.metrics} %}
+{% endblock %}
+
+{% block main %}
+
+    <h2>
+        {{ repository.slug }}
+        <p class="pull-right">{{ repository.metrics.quality|number_format(2) }} / 10</p>
+    </h2>
+
+    <p>{{ repository.description }}</p>
+    <div class="row">
+        <div class="span12">
+            <h3>Code Metrics</h3>
+        </div>
+
+        <div class="span4">
+            <div id="class_metrics"></div>
+        </div>
+
+        <div class="span4">
+            <div id="operation_metrics"></div>
+        </div>
+        <div class="span4">
+            <div id="operation_weight"></div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="span12">
+            <h3>Last builds</h3>
+            {% if repository.builds is empty %}
+                <p>No builds found...</p>
+            {% else %}
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>Number</th>
+                        <th>Date</th>
+                        <th>Message</th>
+                        <th>Commit</th>
+                        <th>Status</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for build in repository.builds|slice(0, 10) %}
+                        <tr>
+                            <td>{{ build.number }}</td>
+                            <td>{{ build.finishedAt.format('l, d M Y H:i:s') }}</td>
+                            <td>{{ build.message }}</td>
+                            <td><a target="_blank" href="{{ snide_travinizer_github_commit_url(repository, build.commit) }}">{{ build.commit }}</a></td>
+                            <td>
+                                {% if build.result == 0%}
+                                    <img width="30" src="{{ asset('/bundles/snidetravinizer/images/green.png') }}" />
+                                {% else %}
+                                    <img  width="30"  src="{{ asset('/bundles/snidetravinizer/images/red.png') }}" />
+                                {% endif %}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            {% endif %}
+        </div>
+    </div>
+    {% if repository.pdependMetrics %}
+        <h3>Pdepend statistics</h3>
+    {% endif %}
+{% endblock %}

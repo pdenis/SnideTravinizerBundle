@@ -9,7 +9,7 @@ use Snide\Bundle\TravinizerBundle\Model\Repo;
  *
  * @author Pascal DENIS <pascal.denis@businessdecision.com>
  */
-class TravisExtension extends \Twig_Extension
+class GithubExtension extends \Twig_Extension
 {
 
     /**
@@ -20,8 +20,8 @@ class TravisExtension extends \Twig_Extension
     public function getFunctions()
     {
         return array(
-            'snide_travinizer_travis_url'   => new \Twig_Function_Method($this, 'getUrl', array('is_safe'=> array('html'))),
-            'snide_travinizer_travis_badge' => new \Twig_Function_Method($this, 'getBadge', array('is_safe'=> array('html')))
+            'snide_travinizer_github_url'  => new \Twig_Function_Method($this, 'getUrl', array('is_safe'=> array('html'))),
+            'snide_travinizer_github_commit_url' => new \Twig_Function_Method($this, 'getCommitUrl', array('is_safe'=> array('html')))
         );
     }
 
@@ -33,18 +33,19 @@ class TravisExtension extends \Twig_Extension
      */
     public function getUrl(Repo $repo)
     {
-        return sprintf('%s/%s', 'https://travis-ci.org'. $repo->getSlug());
+        return sprintf('%s/%s', 'https://github.com'. $repo->getSlug());
     }
 
     /**
-     * Get Repo badge for a slug
+     * Get Repo commit url
      *
      * @param Repo $repo
+     * @param string $commitSHA
      * @return string
      */
-    public function getBadge(Repo $repo)
+    public function getCommitUrl(Repo $repo, $commitSHA)
     {
-        return sprintf('<img src="%s/%s.png?%s" />', 'https://travis-ci.org', $repo->getSlug(), 'master');
+        return sprintf('%s/%s/commit/%s', 'https://github.com', $repo->getSlug(), $commitSHA);
     }
 
     /**
@@ -54,6 +55,6 @@ class TravisExtension extends \Twig_Extension
      */
     public function getName()
     {
-        return 'snide_travinizer_travis';
+        return 'snide_travinizer_github';
     }
 }

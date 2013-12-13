@@ -38,6 +38,7 @@ class ScrutinizerLoader implements ScrutinizerLoaderInterface
         if($scrutinizerRepo) {
             // Inject scrutinizer data into repository
             $repo->setMetrics($scrutinizerRepo->getMetrics());
+            $repo->setPdependMetrics($scrutinizerRepo->getPdependMetrics());
         }
     }
 }

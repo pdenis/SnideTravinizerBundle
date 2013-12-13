@@ -1,0 +1,138 @@
+<script type="text/javascript">
+    $(function () {
+        var chart;
+
+        $(document).ready(function () {
+
+            // Build the chart
+            $('#class_metrics').highcharts({
+                chart: {
+                    plotBackgroundColor: null,
+                    plotBorderWidth: null,
+                    plotShadow: false
+                },
+                title: {
+                    text: 'Classes quality rating ({{ metrics.nbClasses }} classes)'
+                },
+                tooltip: {
+                    pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                },
+                plotOptions: {
+                    pie: {
+                        allowPointSelect: true,
+                        cursor: 'pointer',
+                        dataLabels: {
+                            enabled: false
+                        },
+                        showInLegend: true
+                    }
+                },
+                series: [{
+                    type: 'pie',
+                    name: 'Classes Quality Rating',
+                    data: [
+                        ['Very Good',  {{ metrics.nbVeryGoodClasses }}],
+                        ['Good',       {{ metrics.nbGoodClasses }}],
+                        ['Pass',    {{ metrics.nbPassClasses }}],
+                        ['Satisfactory',     {{ metrics.nbSatisfactoryClasses }}],
+                        ['Critical',   {{ metrics.nbCriticalClasses }}]
+                    ]
+                }]
+            });
+        });
+
+    });
+</script>
+
+<script type="text/javascript">
+    $(function () {
+        var chart;
+
+        $(document).ready(function () {
+
+            // Build the chart
+            $('#operation_metrics').highcharts({
+                chart: {
+                    plotBackgroundColor: null,
+                    plotBorderWidth: null,
+                    plotShadow: false
+                },
+                title: {
+                    text: 'Operations quality rating ({{ metrics.nbOperations }} operations)'
+                },
+                tooltip: {
+                    pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                },
+                plotOptions: {
+                    pie: {
+                        allowPointSelect: true,
+                        cursor: 'pointer',
+                        dataLabels: {
+                            enabled: false
+                        },
+                        showInLegend: true
+                    }
+                },
+                series: [{
+                    type: 'pie',
+                    name: 'Operations Quality Rating',
+                    data: [
+                        ['Very Good',    {{ metrics.nbVeryGoodOperations }}],
+                        ['Good',         {{ metrics.nbGoodOperations }}],
+                        ['Pass',         {{ metrics.nbPassOperations }}],
+                        ['Satisfactory', {{ metrics.nbSatisfactoryOperations }}],
+                        ['Critical',     {{ metrics.nbCriticalOperations }}]
+                    ]
+                }]
+            });
+        });
+
+    });
+</script>
+
+
+<script type="text/javascript">
+    $(function () {
+        var chart;
+
+        $(document).ready(function () {
+
+            // Build the chart
+            $('#operation_weight').highcharts({
+                chart: {
+                    plotBackgroundColor: null,
+                    plotBorderWidth: null,
+                    plotShadow: false
+                },
+                title: {
+                    text: 'Operations weight rating ({{ metrics.nbOperations }} operations)'
+                },
+                tooltip: {
+                    pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                },
+                plotOptions: {
+                    pie: {
+                        allowPointSelect: true,
+                        cursor: 'pointer',
+                        dataLabels: {
+                            enabled: false
+                        },
+                        showInLegend: true
+                    }
+                },
+                series: [{
+                    type: 'pie',
+                    name: 'Operations Quality Rating',
+                    data: [
+                        ['Very Good',    {{ metrics.veryGoodOperationsWeight }}],
+                        ['Good',         {{ metrics.goodOperationsWeight }}],
+                        ['Pass',         {{ metrics.passOperationsWeight }}],
+                        ['Satisfactory', {{ metrics.satisfactoryOperationsWeight }}],
+                        ['Critical',     {{ metrics.criticalOperationsWeight }}]
+                    ]
+                }]
+            });
+        });
+
+    });
+</script>

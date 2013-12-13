@@ -7,6 +7,7 @@
     <parameters>
         <parameter key="snide_travinizer.twig.travis_extension.class">Snide\Bundle\TravinizerBundle\Twig\Extension\TravisExtension</parameter>
         <parameter key="snide_travinizer.twig.scrutinizer_extension.class">Snide\Bundle\TravinizerBundle\Twig\Extension\ScrutinizerExtension</parameter>
+        <parameter key="snide_travinizer.twig.github_extension.class">Snide\Bundle\TravinizerBundle\Twig\Extension\GithubExtension</parameter>
     </parameters>
 
     <services>
@@ -14,6 +15,9 @@
             <tag name="twig.extension" />
         </service>
         <service id="snide_travinizer.twig.scrutinizer_extension" class="%snide_travinizer.twig.scrutinizer_extension.class%">
+            <tag name="twig.extension" />
+        </service>
+        <service id="snide_travinizer.twig.github_extension" class="%snide_travinizer.twig.github_extension.class%">
             <tag name="twig.extension" />
         </service>
     </services>
