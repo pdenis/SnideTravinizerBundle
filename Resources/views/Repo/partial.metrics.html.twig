@@ -12,7 +12,7 @@
                     plotShadow: false
                 },
                 title: {
-                    text: 'Classes quality ({{ metrics.nbClasses }} classes)'
+                    text: 'Classes quality ({{ metrics.classesCount }} classes)'
                 },
                 tooltip: {
                     pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
@@ -29,13 +29,13 @@
                 },
                 series: [{
                     type: 'pie',
-                    name: 'Classes Quality Rating',
+                    name: 'Classes Quality',
                     data: [
-                        ['Very Good',  {{ metrics.nbVeryGoodClasses }}],
-                        ['Good',       {{ metrics.nbGoodClasses }}],
-                        ['Pass',    {{ metrics.nbPassClasses }}],
-                        ['Satisfactory',     {{ metrics.nbSatisfactoryClasses }}],
-                        ['Critical',   {{ metrics.nbCriticalClasses }}]
+                        ['Very Good',  {{ metrics.veryGoodClassesCount }}],
+                        ['Good',       {{ metrics.goodClassesCount }}],
+                        ['Pass',    {{ metrics.passClassesCount }}],
+                        ['Satisfactory',     {{ metrics.satisfactoryClassesCount }}],
+                        ['Critical',   {{ metrics.criticalClassesCount }}]
                     ]
                 }]
             });
@@ -58,7 +58,7 @@
                     plotShadow: false
                 },
                 title: {
-                    text: 'Operations quality ({{ metrics.nbOperations }} operations)'
+                    text: 'Operations quality ({{ metrics.operationsCount }} operations)'
                 },
                 tooltip: {
                     pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
@@ -75,13 +75,13 @@
                 },
                 series: [{
                     type: 'pie',
-                    name: 'Operations Quality Rating',
+                    name: 'Operations Quality',
                     data: [
-                        ['Very Good',    {{ metrics.nbVeryGoodOperations }}],
-                        ['Good',         {{ metrics.nbGoodOperations }}],
-                        ['Pass',         {{ metrics.nbPassOperations }}],
-                        ['Satisfactory', {{ metrics.nbSatisfactoryOperations }}],
-                        ['Critical',     {{ metrics.nbCriticalOperations }}]
+                        ['Very Good',    {{ metrics.veryGoodOperationsCount }}],
+                        ['Good',         {{ metrics.goodOperationsCount }}],
+                        ['Pass',         {{ metrics.passOperationsCount }}],
+                        ['Satisfactory', {{ metrics.satisfactoryOperationsCount }}],
+                        ['Critical',     {{ metrics.criticalOperationsCount }}]
                     ]
                 }]
             });
@@ -105,7 +105,7 @@
                     plotShadow: false
                 },
                 title: {
-                    text: 'Operations weight ({{ metrics.nbOperations }} operations)'
+                    text: 'Operations weight ({{ metrics.operationsCount }} operations)'
                 },
                 tooltip: {
                     pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
