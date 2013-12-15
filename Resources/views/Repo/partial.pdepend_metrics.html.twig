@@ -1,0 +1,110 @@
+<script type="text/javascript">
+    $(function () {
+
+        var colors = Highcharts.getOptions().colors,
+                categories = ['Lines of code', 'Lines of comments', 'Lines of logical', 'Lines of executable', 'Cyclomatic complexity'],
+                name = 'Pdepend report',
+                data = [{
+                    y: {{ metrics.codeLines }},
+                    color: colors[0],
+                    drilldown: {
+                        name: 'Code',
+                        color: colors[0]
+                    }
+                }, {
+                    y: {{ metrics.commentCodeLines }},
+                    color: colors[1],
+                    drilldown: {
+                        name: 'Comments',
+                        color: colors[1]
+                    }
+                }, {
+                    y: {{ metrics.logicalCodeLines }},
+                    color: colors[2],
+                    drilldown: {
+                        name: 'Logical code',
+                        color: colors[2]
+                    }
+                }, {
+                    y: {{ metrics.executableCodeLines }},
+                    color: colors[3],
+                    drilldown: {
+                        name: 'Executable code',
+                        color: colors[3]
+                    }
+                }
+                ];
+
+        function setChart(name, categories, data, color) {
+            chart.xAxis[0].setCategories(categories, false);
+            chart.series[0].remove(false);
+            chart.addSeries({
+                name: name,
+                data: data,
+                color: color || 'white'
+            }, false);
+            chart.redraw();
+        }
+
+        var chart = $('#pdepend_metrics').highcharts({
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: 'Pdepend report'
+            },
+
+            xAxis: {
+                categories: categories
+            },
+            yAxis: {
+                title: {
+                    text: 'Number of lines'
+                }
+            },
+            legend: {
+                align: 'right',
+                x: -70,
+                verticalAlign: 'top',
+                y: 20,
+                floating: true,
+                backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColorSolid) || 'white',
+                borderColor: '#CCC',
+                borderWidth: 1,
+                shadow: false
+            },
+            plotOptions: {
+                column: {
+                    cursor: 'pointer',
+                    point: {
+                        events: {
+
+                        }
+                    },
+                    dataLabels: {
+                        enabled: true,
+                        color: colors[0],
+                        style: {
+                            fontWeight: 'bold'
+                        },
+                        formatter: function() {
+                            return this.y;
+                        }
+                    }
+                }
+            },
+
+            series: [{
+                name: name,
+                data: data,
+                color: 'white'
+            }],
+            exporting: {
+                enabled: false
+            }
+        })
+                .highcharts(); // return chart
+    });
+
+
+</script>

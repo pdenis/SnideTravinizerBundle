@@ -33,7 +33,7 @@ class GithubExtension extends \Twig_Extension
      */
     public function getUrl(Repo $repo)
     {
-        return sprintf('%s/%s', 'https://github.com'. $repo->getSlug());
+        return sprintf('%s/%s', 'https://github.com', $repo->getSlug());
     }
 
     /**

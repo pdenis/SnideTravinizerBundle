@@ -10,13 +10,14 @@
             <th>Type</th>
             <th>Badges</th>
             <th>Action(s)</th>
+            <th>Links</th>
         </tr>
         </thead>
         <tbody>
 
         {% for repository in repositories %}
             <tr>
-                <td><b>{{ repository.slug }}</b></td>
+                <td><b><a class="none" href="{{ path('snide_travinizer_repo_show', {'id': repository.id}) }}">{{ repository.slug }}</a></b></td>
                 <td>{{ repository.fullType }}</td>
                 <td>
                     {{  snide_travinizer_travis_badge(repository) }}
@@ -24,9 +25,13 @@
                     {{  snide_travinizer_scrutinizer_coverage_badge(repository) }}
                 </td>
                 <td><a href="{{ path('snide_travinizer_repo_edit', {'id': repository.id}) }}">Edit</a>
-                    | <a href="{{ path('snide_travinizer_repo_show', {'id': repository.id}) }}">Show</a>
                     | <a href="{{ path('snide_travinizer_repo_delete', {'id': repository.id}) }}">Delete</a>
 
+                </td>
+                <td>
+                    <a href="{{ snide_travinizer_github_url(repository) }}">Github</a>
+                    | <a href="{{ snide_travinizer_travis_url(repository) }}">Travis</a>
+                    | <a href="{{ snide_travinizer_scrutinizer_url(repository) }}">Scrutinizer</a>
                 </td>
             </tr>
         {% endfor %}

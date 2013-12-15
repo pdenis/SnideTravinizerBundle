@@ -5,19 +5,32 @@
     <script src="{{ asset('/bundles/snidetravinizer/js/highcharts.js') }}"></script>
     <script src="{{ asset('/bundles/snidetravinizer/js/theme.js') }}"></script>
     {% include 'SnideTravinizerBundle:Repo:partial.metrics.html.twig' with {'metrics': repository.metrics} %}
+    {% if repository.pdependMetrics %}
+        {% include 'SnideTravinizerBundle:Repo:partial.pdepend_metrics.html.twig' with {'metrics': repository.pdependMetrics} %}
+    {% endif %}
 {% endblock %}
 
 {% block main %}
 
     <h2>
-        {{ repository.slug }}
-        <p class="pull-right">{{ repository.metrics.quality|number_format(2) }} / 10</p>
+        <a target="_blank" href="{{ snide_travinizer_github_url(repository) }}">{{ repository.slug }}</a>
+        <p class="pull-right">
+            {{ repository.metrics.quality|number_format(2) }} / 10
+            <br />
+            <span class="pull-right more">Issues : {{ repository.metrics.nbIssues }}</span>
+        </p>
     </h2>
 
-    <p>{{ repository.description }}</p>
+    <p class="desc">{{ repository.description }}</p>
     <div class="row">
         <div class="span12">
-            <h3>Code Metrics</h3>
+            <h3>
+                Code Metrics
+                <p class="pull-right more">
+                    <a target="_blank" class="more" href="{{ snide_travinizer_scrutinizer_url(repository) }}">See more</a>
+
+                </p>
+            </h3>
         </div>
 
         <div class="span4">
@@ -33,7 +46,10 @@
     </div>
     <div class="row">
         <div class="span12">
-            <h3>Last builds</h3>
+            <h3>
+                Last builds
+                <p class="pull-right"><a target="_blank" class="more" href="{{ snide_travinizer_travis_url(repository) }}">See more</a></p>
+            </h3>
             {% if repository.builds is empty %}
                 <p>No builds found...</p>
             {% else %}
@@ -70,5 +86,11 @@
     </div>
     {% if repository.pdependMetrics %}
         <h3>Pdepend statistics</h3>
+        <span class="row">
+            <div class="span12">
+                <div id="pdepend_metrics"></div>
+            </div>
+
+        </span>
     {% endif %}
 {% endblock %}

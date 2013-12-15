@@ -33,7 +33,7 @@ class TravisExtension extends \Twig_Extension
      */
     public function getUrl(Repo $repo)
     {
-        return sprintf('%s/%s', 'https://travis-ci.org'. $repo->getSlug());
+        return sprintf('%s/%s', 'https://travis-ci.org', $repo->getSlug());
     }
 
     /**

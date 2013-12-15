@@ -1,3 +1,165 @@
 body {
     padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
 }
+
+.accordion-inner ul li.list_db {
+    clear: both;
+    line-height: 20px;
+    padding-bottom: 15px;
+}
+
+a.underline {
+    text-decoration: underline;
+}
+
+a.accordion-toggle, .black {
+    color: black !important;
+}
+
+.add_link a strong {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.accordion-heading .accordion-toggle {
+    display: block;
+    padding: 0;
+}
+
+.accordion-heading .accordion-toggle .caret {
+    margin-top: 5px;
+}
+
+.green {
+    background-image: url('../images/green.gif');
+
+}
+
+.red {
+    background-image: url('../images/red.jpg');
+
+}
+
+.field {
+    margin-top: 10px;
+    clear: both;
+}
+
+.field ul {
+    background-color: #F2DEDE;
+    border-color: #EED3D7;
+    border-radius: 4px 4px 4px 4px;
+    color: #B94A48;
+    margin-left: 0;
+    padding: 8px 5px 8px 14px;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+    width: 200px;
+}
+
+.databases {
+    background-color: #FAFAFA !important;
+    width: 300px !important;
+    color: black !important;
+}
+
+.databases label {
+    float: left;
+    line-height: 30px;
+    width: 50px;
+}
+
+.databases div .del {
+    margin-right: 10px;
+    margin-top: 4px;
+}
+
+.field ul li {
+    list-style: none outside none;
+}
+
+.add_database_link {
+    line-height: 10px;
+}
+
+.clear {
+    clear: both;
+}
+
+body {
+    background-color: black;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    color: #777777;
+}
+
+h1, h2, h2 a, a.none {
+    color: #7D7D7D;
+}
+
+.table-striped tbody > tr:nth-child(2n+1) > td, .table-striped tbody > tr:nth-child(2n+1) > th {
+    background-color: #272726;
+}
+
+body {
+    background-color: #1E1D1C;
+}
+
+.date {
+    margin-bottom: 20px;
+}
+
+#category {
+    margin-left: 20px;
+}
+.row {
+
+    margin-bottom:40px;
+}
+a.more, span.more {
+    font-size:14px;
+    font-weight: normal;
+    color:white !important;
+}
+.desc {
+    font-style:italic;
+    color:white;
+}
+.blackground {
+    color: #777777;
+    background-color: #2E2D2C;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#2E2D2C), to(#0C0C0C));
+    background-image: -webkit-linear-gradient(top, #2E2D2C, #0C0C0C);
+    background-image: -moz-linear-gradient(top, #2E2D2C, #0C0C0C);
+    background-image: -o-linear-gradient(top, #2E2D2C, #0C0C0C);
+    background-image: linear-gradient(to bottom, #2E2D2C, #0C0C0C);
+    background: linear-gradient(to bottom, #2E2D2C 0px, #0C0C0C 100%) repeat scroll 0 0 transparent !important;
+
+}
+
+th.title {
+    border: 1px solid #151515 !important;
+    text-align: center;
+    font-size: 20px;
+}
+
+input, select {
+    background-color: #9D9D9D !important;
+    color: black !important;
+}
+
+span.failed {
+    color: #F1DA36;
+}
+
+span.success {
+    color: #25A01E;
+}
+
+span.critic {
+    color: #cf0404;
+}
