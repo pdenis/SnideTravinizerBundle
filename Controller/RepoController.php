@@ -25,7 +25,7 @@ class RepoController extends Controller
 
         $request = $this->get('request');
         if ('POST' == $request->getMethod()) {
-            $form->bind($request);
+            $form->submit($request);
             if ($form->isValid()) {
 
                 $this->getManager()->create($form->getData());
@@ -118,7 +118,7 @@ class RepoController extends Controller
         // Get request
         $request = $this->get('request');
         if ('POST' == $request->getMethod()) {
-            $form->bind($request);
+            $form->submit($request);
 
             if ($form->isValid()) {
                 // Save instance
@@ -170,7 +170,7 @@ class RepoController extends Controller
     }
 
     /**
-     * Create repo Form and bind it with repo instance
+     * Create repo Form and submit it with repo instance
      *
      * @param Repo $repo
      * @return \Symfony\Component\Form\Form
