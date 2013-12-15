@@ -3,6 +3,8 @@ TravinizerBundle
 
 Symfony 2 bundle - Travis CI &amp; Scrutinizer CI overview for your OS projects
 
+[![Scrutinizer Quality Score](https://scrutinizer-ci.com/g/pdenis/TravinizerBundle/badges/quality-score.png?s=6e2c048bdf5fe15a16fb9af8c36c71398c6772d0)](https://scrutinizer-ci.com/g/pdenis/TravinizerBundle/)
+
 ## features
 - Scrutinizer overview
 - Travis overview
