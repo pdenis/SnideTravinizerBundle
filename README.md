@@ -51,13 +51,13 @@ The bundle needs to copy the resources necessary to the web folder. You can use 
 <img src="https://raw.github.com/pdenis/TravinizerBundle/master/docs/screenshots/travinizer_dashboard.png" alt="Dashboard">
 
 ### Scrutinizer metrics
-<img src="https://raw.github.com/pdenis/MonitorBundle/master/docs/screenshots/travinizer_metrics.png" alt="Scrutinizer metrics">
+<img src="https://raw.github.com/pdenis/TravinizerBundle/master/docs/screenshots/travinizer_metrics.png" alt="Scrutinizer metrics">
 
 ### Pdepend metrics
-<img src="https://raw.github.com/pdenis/MonitorBundle/master/docs/screenshots/travinizer_pdepend_metrics.png" alt="Pdepend metrics">
+<img src="https://raw.github.com/pdenis/TravinizerBundle/master/docs/screenshots/travinizer_pdepend_metrics.png" alt="Pdepend metrics">
 
 ### Travis builds
-<img src="https://raw.github.com/pdenis/MonitorBundle/master/docs/screenshots/travinizer_builds.png" alt="Travis builds">
+<img src="https://raw.github.com/pdenis/TravinizerBundle/master/docs/screenshots/travinizer_builds.png" alt="Travis builds">
 
 ## Full configuration
 
