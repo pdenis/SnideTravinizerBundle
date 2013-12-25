@@ -2,31 +2,31 @@
     $(function () {
 
         var colors = Highcharts.getOptions().colors,
-                categories = ['Lines of code', 'Lines of comments', 'Lines of logical', 'Lines of executable', 'Cyclomatic complexity'],
+                categories = ['LinesCount of code', 'LinesCount of comments', 'LinesCount of logical', 'LinesCount of executable', 'Cyclomatic complexity'],
                 name = 'Pdepend report',
                 data = [{
-                    y: {{ metrics.codeLines }},
+                    y: {{ metrics.codeLinesCount }},
                     color: colors[0],
                     drilldown: {
                         name: 'Code',
                         color: colors[0]
                     }
                 }, {
-                    y: {{ metrics.commentCodeLines }},
+                    y: {{ metrics.commentCodeLinesCount }},
                     color: colors[1],
                     drilldown: {
                         name: 'Comments',
                         color: colors[1]
                     }
                 }, {
-                    y: {{ metrics.logicalCodeLines }},
+                    y: {{ metrics.logicalCodeLinesCount }},
                     color: colors[2],
                     drilldown: {
                         name: 'Logical code',
                         color: colors[2]
                     }
                 }, {
-                    y: {{ metrics.executableCodeLines }},
+                    y: {{ metrics.executableCodeLinesCount }},
                     color: colors[3],
                     drilldown: {
                         name: 'Executable code',
