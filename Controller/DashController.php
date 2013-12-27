@@ -3,6 +3,7 @@
 namespace Snide\Bundle\TravinizerBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
 /**
  * Class DashController
@@ -15,27 +16,16 @@ class DashController extends Controller
     /**
      * Dashboard Action
      *
+     * @Template
+     *
      * @return Response
      */
     public function indexAction()
     {
         $repositories = $this->getManager()->findAll();
-        return $this->render(
-            $this->getTemplatePath() . 'index.html.twig',
-            array(
-                'repositories' => $repositories
-            )
+        return array(
+            'repositories' => $repositories
         );
-    }
-
-    /**
-     * Get the template path for this controller
-     *
-     * @return string
-     */
-    protected function getTemplatePath()
-    {
-        return 'SnideTravinizerBundle:Dash:';
     }
 
     /**

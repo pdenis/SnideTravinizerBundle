@@ -5,7 +5,8 @@ namespace Snide\Bundle\TravinizerBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\RedirectResponse;
-
+use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
 /**
  * Class RepoController
@@ -17,15 +18,17 @@ class RepoController extends Controller
     /**
      * Create repository action
      *
-     * @return RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     * @param \Symfony\Component\HttpFoundation\Request $request
+     * @return array|RedirectResponse
+     *
+     * @Template("SnideTravinizerBundle:Repo:new")
      */
-    public function createAction()
+    public function createAction(Request $request)
     {
         $form = $this->getForm();
 
-        $request = $this->get('request');
         if ('POST' == $request->getMethod()) {
-            $form->submit($request);
+            $form->handleRequest($request);
             if ($form->isValid()) {
 
                 $this->getManager()->create($form->getData());
@@ -38,12 +41,9 @@ class RepoController extends Controller
             }
         }
 
-        return $this->render(
-            $this->getTemplatePath() . 'new.html.twig',
-            array(
-                'form' => $form->createView(),
-                'errors' => $form->getErrors()
-            )
+        return array(
+            'form' => $form->createView(),
+            'errors' => $form->getErrors()
         );
     }
 
@@ -51,7 +51,9 @@ class RepoController extends Controller
      * Edit repository  action
      *
      * @param $id application ID
-     * @return RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     * @return array|RedirectResponse
+     *
+     * @Template
      */
     public function editAction($id)
     {
@@ -60,13 +62,10 @@ class RepoController extends Controller
             return new RedirectResponse($this->generateUrl('snide_travinizer_dashboard'));
         }
         $form = $this->getForm($repository);
-        return $this->render(
-            $this->getTemplatePath() . 'edit.html.twig',
-            array(
-                'form' => $form->createView(),
-                'id' => $id,
-                'errors' => array()
-            )
+        return array(
+            'form' => $form->createView(),
+            'id' => $id,
+            'errors' => array()
         );
     }
 
@@ -74,7 +73,9 @@ class RepoController extends Controller
      * Show repository  action
      *
      * @param $id application ID
-     * @return RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     * @return array|RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     *
+     * @Template
      */
     public function showAction($id)
     {
@@ -82,43 +83,40 @@ class RepoController extends Controller
         if (!$repository) {
             return new RedirectResponse($this->generateUrl('snide_travinizer_dashboard'));
         }
-        return $this->render(
-            $this->getTemplatePath() . 'show.html.twig',
-            array(
-                'repository' => $repository
-            )
+        return array(
+            'repository' => $repository
         );
     }
 
     /**
      * New repository action
      *
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return array
+     *
+     * @Template
      */
     public function newAction()
     {
-        return $this->render(
-            $this->getTemplatePath() . 'new.html.twig',
-            array(
-                'form' => $this->getForm()->createView(),
-                'errors' => array()
-            )
+        return  array(
+            'form' => $this->getForm()->createView(),
+            'errors' => array()
         );
     }
 
     /**
      * Update application action
      *
-     * @param $id
-     * @return RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     * @param Request $request
+     * @return array|RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     *
+     * @Template("SnideTravinizerBundle:Repo:edit")
      */
-    public function updateAction($id)
+    public function updateAction(Request $request)
     {
         $form = $this->getForm();
-        // Get request
-        $request = $this->get('request');
+
         if ('POST' == $request->getMethod()) {
-            $form->submit($request);
+            $form->handleRequest($request);
 
             if ($form->isValid()) {
                 // Save instance
@@ -131,12 +129,9 @@ class RepoController extends Controller
             }
         }
 
-        return $this->render(
-            $this->getTemplatePath() . 'edit.html.twig',
-            array(
-                'form' => $form->createView(),
-                'errors' => $form->getErrors()
-            )
+        return array(
+            'form' => $form->createView(),
+            'errors' => $form->getErrors()
         );
     }
 
@@ -157,16 +152,6 @@ class RepoController extends Controller
         }
 
         return new RedirectResponse($this->generateUrl('snide_travinizer_dashboard'));
-    }
-
-    /**
-     * Get template path for this controller
-     *
-     * @return string
-     */
-    protected function getTemplatePath()
-    {
-        return 'SnideTravinizerBundle:Repo:';
     }
 
     /**

@@ -21,7 +21,7 @@ snide_travinizer_repo_show:
     defaults:  { _controller: SnideTravinizerBundle:Repo:show }
 
 snide_travinizer_repo_update:
-    pattern:   /repo/update/{id}
+    pattern:   /repo/update
     defaults:  { _controller: SnideTravinizerBundle:Repo:update }
     requirements:
         _method:  POST
