@@ -44,7 +44,7 @@ class TravisExtension extends \Twig_Extension
      */
     public function getBadge(Repo $repo)
     {
-        return sprintf('<img src="%s/%s.png?%s" />', 'https://travis-ci.org', $repo->getSlug(), 'master');
+        return sprintf('<img src="%s/%s.png?branch=%s" />', 'https://travis-ci.org', $repo->getSlug(), 'master');
     }
 
     /**

@@ -1,0 +1,171 @@
+<?php
+
+namespace Snide\Bundle\TravinizerBundle\Tests\Repository\Yaml;
+
+use Snide\Bundle\TravinizerBundle\Repository\Yaml\RepoRepository;
+
+/**
+ * Class RepoRepositoryTest
+ *
+ * @author Pascal DENIS <pascal.denis@businessdecision.com>
+ */
+class RepoRepositoryTest extends \PHPUnit_Framework_TestCase
+{
+    /**
+     * @var ApplicationRepository
+     */
+    protected $object;
+    /**
+     * Filename
+     *
+     * @var string
+     */
+    protected $filename;
+
+    /**
+     * Class
+     *
+     * @var string
+     */
+    protected $class;
+
+    /**
+     * Sets up the fixture, for example, opens a network connection.
+     * This method is called before a test is executed.
+     */
+    protected function setUp()
+    {
+        $this->filename = '/tmp/filename.yml';
+        $this->class = 'Snide\\Bundle\\TravinizerBundle\\Model\\Repo';
+
+        if(file_exists($this->filename)) {
+            unlink($this->filename);
+        }
+        $this->object = new RepoRepository($this->class, $this->filename);
+    }
+
+    /**
+     * Tears down the fixture, for example, closes a network connection.
+     * This method is called after a test is executed.
+     */
+    protected function tearDown()
+    {
+        if(file_exists($this->filename)) {
+            unlink($this->filename);
+        }
+    }
+
+
+    /**
+     * @covers Snide\Bundle\TravinizerBundle\Repository\Yaml\RepoRepository::__construct
+     * @covers Snide\Bundle\TravinizerBundle\Repository\Yaml\RepoRepository::createNew
+     */
+    public function testConstruct()
+    {
+        $this->assertTrue(file_exists($this->filename));
+        $this->assertInstanceOf($this->class, $this->object->createNew());
+
+    }
+
+    /**
+     * @covers Snide\Bundle\TravinizerBundle\Repository\Yaml\RepoRepository::findAll
+     * @covers Snide\Bundle\TravinizerBundle\Repository\Yaml\RepoRepository::getRows
+     */
+    public function testFindAll()
+    {
+        $this->assertEquals(array(), $this->object->findAll());
+        $repo = $this->object->createNew();
+        $repo->setSlug('pdenis/monitoring');
+        $repo->setType('g');
+        $this->object->create($repo);
+        $repo->setId(1);
+        $repoTwo = $this->object->createNew();
+        $repoTwo->setSlug('pdenis/scrutinizer-client');
+        $repoTwo->setType('g');
+        $this->object->create($repoTwo);
+        $repoTwo->setId(2);
+        $this->assertEquals(array($repo, $repoTwo), $this->object->findAll());
+    }
+
+    /**
+     * @covers Snide\Bundle\TravinizerBundle\Repository\Yaml\RepoRepository::find
+     */
+    public function testFind()
+    {
+        $repo = $this->object->createNew();
+        $repo->setSlug('pdenis/monitoring');
+        $repo->setType('g');
+        $this->object->create($repo);
+        $repo->setId(1);
+        $repoTwo = $this->object->createNew();
+        $repoTwo->setSlug('pdenis/scrutinizer-client');
+        $repoTwo->setType('g');
+        $this->object->create($repoTwo);
+        $repoTwo->setId(2);
+
+        $this->assertNull($this->object->find(-1));
+        $repos = $this->object->findAll();
+
+        $this->assertEquals($repos[1], $this->object->find($repos[1]->getId()));
+    }
+
+    /**
+     * @covers Snide\Bundle\TravinizerBundle\Repository\Yaml\RepoRepository::create
+     */
+    public function testCreate()
+    {
+        $repo = $this->object->createNew();
+        $repo->setSlug('pdenis/TravinizerBundle');
+        $repo->setType('g');
+
+        $repos = $this->object->findAll();
+        $repo->setId(sizeof($repos) + 1);
+        $repos[] = $repo;
+        $this->object->create($repo);
+
+        $this->assertEquals($repos, $this->object->findAll());
+
+    }
+
+    /**
+     * @covers Snide\Bundle\TravinizerBundle\Repository\Yaml\RepoRepository::delete
+     */
+    public function testDelete()
+    {
+        $repo = $this->object->createNew();
+        $repo->setSlug('pdenis/monitoring');
+        $repo->setType('g');
+        $this->object->create($repo);
+        $repo->setId(1);
+        $repoTwo = $this->object->createNew();
+        $repoTwo->setSlug('pdenis/scrutinizer-client');
+        $repoTwo->setType('g');
+        $this->object->create($repoTwo);
+        $repoTwo->setId(2);
+
+        $repos = $this->object->findAll();
+
+        $this->object->delete($repos[0]);
+        unset($repos[0]);
+        $this->assertEquals(array_values($repos), $this->object->findAll());
+    }
+
+    /**
+     * @covers Snide\Bundle\TravinizerBundle\Repository\Yaml\RepoRepository::update
+     */
+    public function testUpdate()
+    {
+        $repo = $this->object->createNew();
+        $repo->setSlug('pdenis/monitoring');
+        $repo->setType('g');
+        $this->object->create($repo);
+        $repo = $this->object->find(1);
+        $this->assertEquals('pdenis/monitoring', $repo->getSlug());
+        $repo->setSlug('pdenis/zibase-lib');
+        $this->object->update($repo);
+        $repo = $this->object->find(1);
+        $this->assertEquals('pdenis/zibase-lib', $repo->getSlug());
+
+    }
+
+}

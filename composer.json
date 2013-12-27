@@ -17,6 +17,7 @@
     "require": {
         "snide/monitoring": "dev-master",
         "symfony/framework-bundle": "~2.3",
+        "twig/twig": "1.*",
         "l3l0/php-travis-client": "dev-master",
         "snide/php-scrutinizer-client": "dev-master",
         "php": ">=5.3.3"
