@@ -51,7 +51,9 @@ class SnideTravinizerExtension extends Extension
         if (isset($config['repository']['type'])) {
             if ($config['repository']['type'] == 'yaml') {
                 if (!isset($config['repository']['repo']['filename'])) {
-                    throw new InvalidConfigurationException('You must define filename parameter for repo yaml repository');
+                    throw new InvalidConfigurationException(
+                        'You must define filename parameter for repo yaml repository'
+                    );
                 }
                 $container->setParameter(
                     'snide_travinizer.repo_repository.filename',
@@ -63,6 +65,5 @@ class SnideTravinizerExtension extends Extension
         } else {
             throw new InvalidConfigurationException('You must define repository type parameter');
         }
-
     }
 }

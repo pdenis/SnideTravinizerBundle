@@ -11,17 +11,20 @@
 {% endblock %}
 
 {% block main %}
+    <div class="row">
+        <div id="content" class="span12">
+            <h2>
+                <a target="_blank" href="{{ snide_travinizer_github_url(repository) }}">{{ repository.slug }}</a>
+                <p class="pull-right">
+                    {{ repository.metrics.quality|number_format(2) }} / 10
+                    <br />
+                    <span class="pull-right more issues">Issues : {{ repository.metrics.issuesCount }}</span>
+                </p>
+            </h2>
+            <p class="desc">{{ repository.description }}</p>
+        </div>
+    </div>
 
-    <h2>
-        <a target="_blank" href="{{ snide_travinizer_github_url(repository) }}">{{ repository.slug }}</a>
-        <p class="pull-right">
-            {{ repository.metrics.quality|number_format(2) }} / 10
-            <br />
-            <span class="pull-right more">Issues : {{ repository.metrics.issuesCount }}</span>
-        </p>
-    </h2>
-
-    <p class="desc">{{ repository.description }}</p>
     <div class="row">
         <div class="span12">
             <h3>
@@ -31,17 +34,16 @@
 
                 </p>
             </h3>
-        </div>
+           <div class="span4">
+                <div id="class_metrics"></div>
+            </div>
 
-        <div class="span4">
-            <div id="class_metrics"></div>
-        </div>
-
-        <div class="span4">
-            <div id="operation_metrics"></div>
-        </div>
-        <div class="span4">
-            <div id="operation_weight"></div>
+            <div class="span4">
+                <div id="operation_metrics"></div>
+            </div>
+            <div class="span4">
+                <div id="operation_weight"></div>
+            </div>
         </div>
     </div>
     <div class="row">
@@ -85,12 +87,13 @@
         </div>
     </div>
     {% if repository.pdependMetrics %}
-        <h3>Pdepend statistics</h3>
-        <span class="row">
+        <div class="row">
             <div class="span12">
+                <h3>Pdepend statistics</h3>
+
                 <div id="pdepend_metrics"></div>
             </div>
+        </div>
 
-        </span>
     {% endif %}
 {% endblock %}

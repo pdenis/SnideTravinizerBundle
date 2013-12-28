@@ -7,15 +7,7 @@ Highcharts.theme = {
     colors: ["#55BF3B", "#DDDF0D",  "#7798BF", "#DF5353","#ff0066", "#eeaaee",
         "#55BF3B", "#DF5353", "#7798BF", "#aaeeee"],
     chart: {
-        backgroundColor: {
-            linearGradient: { x1: 0, y1: 0, x2: 1, y2: 1 },
-            stops: [
-                [0, 'rgb(48, 48, 96)'],
-                [1, 'rgb(0, 0, 0)']
-            ]
-        },
-        borderColor: '#000000',
-        borderWidth: 2,
+        backgroundColor:'rgba(255, 255, 255, 0.1)',
         className: 'dark-container',
         plotBackgroundColor: 'rgba(255, 255, 255, .1)',
         plotBorderColor: '#CCCCCC',

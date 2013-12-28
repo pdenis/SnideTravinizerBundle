@@ -1,41 +1,45 @@
 {% extends 'SnideTravinizerBundle::base.html.twig' %}
 
 {% block main %}
-    <h1>Repositories</h1>
+    <div class="row">
+        <div id="content" class="span12">
+            <h1>Repositories</h1>
 
-    <table class="table table-striped">
-        <thead>
-        <tr>
-            <th>Slug</th>
-            <th>Type</th>
-            <th>Badges</th>
-            <th>Action(s)</th>
-            <th>Links</th>
-        </tr>
-        </thead>
-        <tbody>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Slug</th>
+                    <th>Type</th>
+                    <th>Badges</th>
+                    <th>Action(s)</th>
+                    <th>Links</th>
+                </tr>
+                </thead>
+                <tbody>
 
-        {% for repository in repositories %}
-            <tr>
-                <td><b><a class="none" href="{{ path('snide_travinizer_repo_show', {'id': repository.id}) }}">{{ repository.slug }}</a></b></td>
-                <td>{{ repository.fullType }}</td>
-                <td>
-                    {{  snide_travinizer_travis_badge(repository) }}
-                    {{  snide_travinizer_scrutinizer_quality_badge(repository) }}
-                    {{  snide_travinizer_scrutinizer_coverage_badge(repository) }}
-                </td>
-                <td><a href="{{ path('snide_travinizer_repo_edit', {'id': repository.id}) }}">Edit</a>
-                    | <a href="{{ path('snide_travinizer_repo_delete', {'id': repository.id}) }}">Delete</a>
+                {% for repository in repositories %}
+                    <tr>
+                        <td><a class="none" href="{{ path('snide_travinizer_repo_show', {'id': repository.id}) }}">{{ repository.slug }}</a></td>
+                        <td>{{ repository.fullType }}</td>
+                        <td>
+                            {{  snide_travinizer_travis_badge(repository) }}
+                            {{  snide_travinizer_scrutinizer_quality_badge(repository) }}
+                            {{  snide_travinizer_scrutinizer_coverage_badge(repository) }}
+                        </td>
+                        <td><a href="{{ path('snide_travinizer_repo_edit', {'id': repository.id}) }}">Edit</a>
+                            | <a href="{{ path('snide_travinizer_repo_delete', {'id': repository.id}) }}">Delete</a>
 
-                </td>
-                <td>
-                    <a href="{{ snide_travinizer_github_url(repository) }}">Github</a>
-                    | <a href="{{ snide_travinizer_travis_url(repository) }}">Travis</a>
-                    | <a href="{{ snide_travinizer_scrutinizer_url(repository) }}">Scrutinizer</a>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-    <p>To add a repository, <a href="{{ path('snide_travinizer_repo_new') }}">click here</a></p>
+                        </td>
+                        <td>
+                            <a href="{{ snide_travinizer_github_url(repository) }}">Github</a>
+                            | <a href="{{ snide_travinizer_travis_url(repository) }}">Travis</a>
+                            | <a href="{{ snide_travinizer_scrutinizer_url(repository) }}">Scrutinizer</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            <p>To add a repository, <a href="{{ path('snide_travinizer_repo_new') }}">click here</a></p>
+        </div>
+    </div>
 {% endblock %}
