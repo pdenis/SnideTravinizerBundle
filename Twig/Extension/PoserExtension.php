@@ -149,6 +149,6 @@ class PoserExtension extends \Twig_Extension
      */
     public function getName()
     {
-        return 'snide_scrutinizer_poser';
+        return 'snide_travinizer_poser';
     }
 }

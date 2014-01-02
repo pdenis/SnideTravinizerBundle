@@ -11,6 +11,7 @@
 
 namespace Snide\Bundle\TravinizerBundle\Tests\Twig\Extension;
 
+use Snide\Bundle\TravinizerBundle\Helper\PackagistHelper;
 use Snide\Bundle\TravinizerBundle\Helper\TravisHelper;
 use Snide\Bundle\TravinizerBundle\Model\Repo;
 
@@ -19,10 +20,10 @@ use Snide\Bundle\TravinizerBundle\Model\Repo;
  *
  * @author Pascal DENIS <pascal.denis.75@gmail.com>
  */
-class TravisExtensionTest extends \PHPUnit_Framework_TestCase
+class PackagistExtensionTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @var \Snide\Bundle\TravinizerBundle\Twig\Extension\TravisExtension
+     * @var \Snide\Bundle\TravinizerBundle\Twig\Extension\PackagistExtension
      */
     protected $object;
 
@@ -32,7 +33,7 @@ class TravisExtensionTest extends \PHPUnit_Framework_TestCase
     protected $repo;
 
     /**
-     * @var TravisHelper
+     * @var PackagistHelper
      */
     protected $helper;
     /**
@@ -41,42 +42,30 @@ class TravisExtensionTest extends \PHPUnit_Framework_TestCase
      */
     protected function setUp()
     {
-        $this->helper = new TravisHelper();
-        $this->object = new \Snide\Bundle\TravinizerBundle\Twig\Extension\TravisExtension($this->helper);
+        $this->helper = new PackagistHelper();
+        $this->object = new \Snide\Bundle\TravinizerBundle\Twig\Extension\PackagistExtension($this->helper);
         $this->repo = new Repo();
+        $this->repo->setPackagistSlug('snide/monitoring');
         $this->repo->setSlug('pdenis/monitoring');
     }
 
-    /**
-     * @cover Snide\Bundle\TravinizerBundle\Twig\Extension\TravisExtension::getUrl
-     */
     public function testUrl()
     {
-        $this->assertEquals('https://travis-ci.org/pdenis/monitoring', $this->object->getUrl($this->repo));
+        $this->assertEquals('https://packagist.org/packages/snide/monitoring', $this->object->getUrl($this->repo));
     }
-
-    /**
-     * @cover Snide\Bundle\TravinizerBundle\Twig\Extension\TravisExtension::getBadge
-     */
-    public function testBadge()
-    {
-
-        $this->assertEquals('<img src="https://travis-ci.org/pdenis/monitoring.png?branch=master" />', $this->object->getBadge($this->repo));
-    }
-
 
     /**
      * @cover Snide\Bundle\TravinizerBundle\Twig\Extension\TravisExtension::getName
      */
     public function testName()
     {
-        $this->assertEquals('snide_travinizer_travis', $this->object->getName());
+        $this->assertEquals('snide_travinizer_packagist', $this->object->getName());
     }
 
 
     public function testFunctions()
     {
-        $this->assertEquals(array('snide_travinizer_travis_url', 'snide_travinizer_travis_badge'), array_keys($this->object->getFunctions()));
+        $this->assertEquals(array('snide_travinizer_packagist_url'), array_keys($this->object->getFunctions()));
     }
 
     /**
@@ -85,7 +74,7 @@ class TravisExtensionTest extends \PHPUnit_Framework_TestCase
     public function testHelper()
     {
         $this->assertEquals($this->helper, $this->object->getHelper());
-        $helper = new TravisHelper();
+        $helper = new PackagistHelper();
         $this->object->setHelper($helper);
         $this->assertEquals($helper, $this->object->getHelper());
     }

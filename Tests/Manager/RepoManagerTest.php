@@ -9,12 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Snide\Bundle\TravinizerBundle\Tests\Manager\RepoManagerTest;
+namespace Snide\Bundle\TravinizerBundle\Tests\Manager;
 
+use Buzz\Browser;
+use Snide\Bundle\TravinizerBundle\Helper\GithubHelper;
 use Snide\Bundle\TravinizerBundle\Loader\ScrutinizerLoader;
 use Snide\Bundle\TravinizerBundle\Loader\TravisLoader;
 use Snide\Bundle\TravinizerBundle\Manager\RepoManager;
 use Snide\Bundle\TravinizerBundle\Model\Repo;
+use Snide\Bundle\TravinizerBundle\Reader\ComposerReader;
 use Snide\Bundle\TravinizerBundle\Repository\Yaml\RepoRepository;
 use Travis\Client as TravisClient;
 use Snide\Scrutinizer\Client as ScClient;
@@ -36,6 +39,7 @@ class RepoManagerTest extends \PHPUnit_Framework_TestCase
     protected $travisLoader;
     protected $filename;
     protected $scrutinizerLoader;
+    protected $composerReader;
 
     /**
      * Sets up the fixture, for example, opens a network connection.
@@ -48,7 +52,8 @@ class RepoManagerTest extends \PHPUnit_Framework_TestCase
         $this->repository = new RepoRepository($this->class, $this->filename);
         $this->travisLoader = new TravisLoader(new TravisClient());
         $this->scrutinizerLoader = new ScrutinizerLoader(new ScClient());
-        $this->object = new RepoManager($this->repository, $this->class, $this->travisLoader, $this->scrutinizerLoader);
+        $this->composerReader = new ComposerReader(new Browser(), new GithubHelper());
+        $this->object = new RepoManager($this->repository, $this->class, $this->travisLoader, $this->scrutinizerLoader, $this->composerReader);
     }
 
     /**
@@ -70,7 +75,7 @@ class RepoManagerTest extends \PHPUnit_Framework_TestCase
      */
     public function testConstruct()
     {
-        $this->object = new RepoManager($this->repository, $this->class, $this->travisLoader, $this->scrutinizerLoader);
+        $this->object = new RepoManager($this->repository, $this->class, $this->travisLoader, $this->scrutinizerLoader, $this->composerReader);
         $this->assertEquals($this->repository, $this->object->getRepository());
         $this->assertInstanceOf($this->class, $this->object->createNew());
 
@@ -114,6 +119,15 @@ class RepoManagerTest extends \PHPUnit_Framework_TestCase
         $this->object->delete($repos[0]);
         unset($repos[0]);
         $this->assertEquals(sizeof($repos), sizeof($this->object->findAll()));
+    }
+
+    public function testLoadPackagistInfos()
+    {
+        $repo = new Repo();
+        $repo->setSlug('pdenis/monitoring');
+        $this->object->loadPackagistInfos($repo);
+        $this->assertEquals('snide/monitoring', $repo->getPackagistSlug());
+        $this->assertEquals(array(array('name' => 'Pascal DENIS', 'email' => 'pascal.denis.75@gmail.com')), $repo->getAuthors());
     }
 
     /**

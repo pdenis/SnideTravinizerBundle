@@ -57,6 +57,18 @@ class RepoTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @cover Snide\Bundle\TravinizerBundle\Model\Repo::getAuthors
+     * @cover Snide\Bundle\TravinizerBundle\Model\Repo::setAuthors
+     */
+    public function testAuthors()
+    {
+        $this->assertNull($this->object->getAuthors());
+        $authors = array('name' => 'Pascal DENIS', 'email' => 'pascal.denis.75@gmail.com');
+        $this->object->setAuthors($authors);
+        $this->assertEquals($authors, $this->object->getAuthors());
+    }
+
+    /**
      * @cover Snide\Bundle\TravinizerBundle\Model\Repo::getQualityBadgeHash
      * @cover Snide\Bundle\TravinizerBundle\Model\Repo::setQualityBadgeHash
      */
@@ -130,5 +142,17 @@ class RepoTest extends \PHPUnit_Framework_TestCase
         $metrics = new \Snide\Scrutinizer\Model\Pdepend\Metrics();
         $this->object->setPdependMetrics($metrics);
         $this->assertEquals($metrics, $this->object->getPdependMetrics());
+    }
+
+    /**
+     * @cover Snide\Bundle\TravinizerBundle\Model\Repo::getCoverageMetrics
+     * @cover Snide\Bundle\TravinizerBundle\Model\Repo::setCoverageMetrics
+     */
+    public function testCoverageMetrics()
+    {
+        $this->assertNull($this->object->getCoverageMetrics());
+        $metrics = new \Snide\Scrutinizer\Model\Coverage\Metrics();
+        $this->object->setCoverageMetrics($metrics);
+        $this->assertEquals($metrics, $this->object->getCoverageMetrics());
     }
 }

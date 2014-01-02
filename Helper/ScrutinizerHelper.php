@@ -30,8 +30,8 @@ class ScrutinizerHelper
         return sprintf(
             '%s/%s/%s',
             $this->host,
-            $slug,
-            $type
+            $type,
+            $slug
         );
     }
 

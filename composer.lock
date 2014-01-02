@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "485e083772ad4719ffaf7cb39eae1565",
+    "hash": "9c896cfd929da3621138b7522eb2676f",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -416,12 +416,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/pdenis/monitoring.git",
-                "reference": "174fb253f2a885b0a8ebe7e2664781cc846a3cbf"
+                "reference": "d455c252aff92a30b314f1b906bf0f9277928f46"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pdenis/monitoring/zipball/174fb253f2a885b0a8ebe7e2664781cc846a3cbf",
-                "reference": "174fb253f2a885b0a8ebe7e2664781cc846a3cbf",
+                "url": "https://api.github.com/repos/pdenis/monitoring/zipball/d455c252aff92a30b314f1b906bf0f9277928f46",
+                "reference": "d455c252aff92a30b314f1b906bf0f9277928f46",
                 "shasum": ""
             },
             "require": {
@@ -455,20 +455,20 @@
                 "monitoring",
                 "snide"
             ],
-            "time": "2013-12-26 00:09:37"
+            "time": "2013-12-30 20:55:00"
         },
         {
             "name": "snide/php-scrutinizer-client",
-            "version": "dev-master",
+            "version": "1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/pdenis/scrutinizer-client.git",
-                "reference": "292ea5367d296f3d373898c1b76943ca50c3e020"
+                "reference": "99fe297a44535dabd69954bf35f32cf92e321323"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pdenis/scrutinizer-client/zipball/292ea5367d296f3d373898c1b76943ca50c3e020",
-                "reference": "292ea5367d296f3d373898c1b76943ca50c3e020",
+                "url": "https://api.github.com/repos/pdenis/scrutinizer-client/zipball/99fe297a44535dabd69954bf35f32cf92e321323",
+                "reference": "99fe297a44535dabd69954bf35f32cf92e321323",
                 "shasum": ""
             },
             "require": {
@@ -501,7 +501,7 @@
                 "scrutinizer",
                 "snide"
             ],
-            "time": "2013-12-26 00:18:04"
+            "time": "2014-01-02 15:56:56"
         },
         {
             "name": "symfony/config",
@@ -1767,8 +1767,7 @@
     "minimum-stability": "stable",
     "stability-flags": {
         "snide/monitoring": 20,
-        "l3l0/php-travis-client": 20,
-        "snide/php-scrutinizer-client": 20
+        "l3l0/php-travis-client": 20
     },
     "platform": {
         "php": ">=5.3.3"

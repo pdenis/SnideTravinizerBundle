@@ -11,6 +11,7 @@
 
 namespace Snide\Bundle\TravinizerBundle\Tests\Twig\Extension;
 
+use Snide\Bundle\TravinizerBundle\Helper\ScrutinizerHelper;
 use Snide\Bundle\TravinizerBundle\Model\Repo;
 
 /**
@@ -30,12 +31,17 @@ class ScrutinizerExtensionTest extends \PHPUnit_Framework_TestCase
      */
     protected $repo;
     /**
+     * @var ScrutinizerHelper
+     */
+    protected $helper;
+    /**
      * Sets up the fixture, for example, opens a network connection.
      * This method is called before a test is executed.
      */
     protected function setUp()
     {
-        $this->object = new \Snide\Bundle\TravinizerBundle\Twig\Extension\ScrutinizerExtension();
+        $this->helper = new ScrutinizerHelper();
+        $this->object = new \Snide\Bundle\TravinizerBundle\Twig\Extension\ScrutinizerExtension($this->helper);
         $this->repo = new Repo();
         $this->repo->setSlug('pdenis/monitoring');
         $this->repo->setType('g');
@@ -91,4 +97,14 @@ class ScrutinizerExtensionTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(array('snide_travinizer_scrutinizer_url', 'snide_travinizer_scrutinizer_quality_badge', 'snide_travinizer_scrutinizer_coverage_badge'), array_keys($this->object->getFunctions()));
     }
 
+    /**
+     * Test helper
+     */
+    public function testHelper()
+    {
+        $this->assertEquals($this->helper, $this->object->getHelper());
+        $helper = new ScrutinizerHelper();
+        $this->object->setHelper($helper);
+        $this->assertEquals($helper, $this->object->getHelper());
+    }
 }

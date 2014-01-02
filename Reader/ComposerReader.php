@@ -54,7 +54,8 @@ class ComposerReader implements ComposerReaderInterface
     {
         $url = $this->helper->getRawFileUrl($slug, $branch, 'composer.json');
         $this->data = json_decode($this->browser->get($url)->getContent(), true);
-        if (isset($this->data['error'])) {
+
+        if (!isset($this->data['name'])) {
             throw new \UnexpectedValueException(sprintf('Response is empty for url %s', $url));
         }
     }
