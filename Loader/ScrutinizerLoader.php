@@ -41,7 +41,7 @@ class ScrutinizerLoader implements ScrutinizerLoaderInterface
      */
     public function load(Repo $repo)
     {
-        $scrutinizerRepo = $this->client->fetch($repo->getSlug());
+        $scrutinizerRepo = $this->client->fetchRepository($repo->getSlug());
 
         if($scrutinizerRepo) {
             // Inject scrutinizer data into repository

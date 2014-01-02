@@ -39,6 +39,8 @@ class SnideTravinizerExtension extends Extension
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
         $loader->load('model.xml');
         $loader->load('form.xml');
+        $loader->load('helper.xml');
+        $loader->load('reader.xml');
         $loader->load('loader.xml');
         $loader->load('manager.xml');
         $loader->load('twig_extension.xml');

@@ -25,15 +25,19 @@
                             {{  snide_travinizer_travis_badge(repository) }}
                             {{  snide_travinizer_scrutinizer_quality_badge(repository) }}
                             {{  snide_travinizer_scrutinizer_coverage_badge(repository) }}
+                            {{  snide_travinizer_poser_stable_badge(repository) }}
                         </td>
                         <td><a href="{{ path('snide_travinizer_repo_edit', {'id': repository.id}) }}">Edit</a>
                             | <a href="{{ path('snide_travinizer_repo_delete', {'id': repository.id}) }}">Delete</a>
 
                         </td>
                         <td>
-                            <a href="{{ snide_travinizer_github_url(repository) }}">Github</a>
-                            | <a href="{{ snide_travinizer_travis_url(repository) }}">Travis</a>
-                            | <a href="{{ snide_travinizer_scrutinizer_url(repository) }}">Scrutinizer</a>
+                            <a target="_blank" href="{{ snide_travinizer_github_url(repository) }}">Github</a>
+                            | <a target="_blank" href="{{ snide_travinizer_travis_url(repository) }}">Travis</a>
+                            | <a target="_blank" href="{{ snide_travinizer_scrutinizer_url(repository) }}">Scrutinizer</a>
+                            {% if repository.packagistSlug %}
+                                | <a target="_blank" href="{{ snide_travinizer_packagist_url(repository) }}">Packagist</a>
+                            {% endif %}
                         </td>
                     </tr>
                 {% endfor %}

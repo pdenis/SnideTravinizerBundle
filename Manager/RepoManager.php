@@ -14,6 +14,7 @@ namespace Snide\Bundle\TravinizerBundle\Manager;
 use Snide\Bundle\TravinizerBundle\Loader\ScrutinizerLoaderInterface;
 use Snide\Bundle\TravinizerBundle\Loader\TravisLoaderInterface;
 use Snide\Bundle\TravinizerBundle\Model\Repo;
+use Snide\Bundle\TravinizerBundle\Reader\ComposerReaderInterface;
 use Snide\Bundle\TravinizerBundle\Repository\RepoRepositoryInterface;
 
 /**
@@ -47,6 +48,12 @@ class RepoManager implements RepoManagerInterface
      * @var ScrutinizerLoaderInterface
      */
     protected $scrutinizerLoader;
+    /**
+     * Composer json file reader
+     *
+     * @var ComposerReaderInterface
+     */
+    protected $composerReader;
 
     /**
      * Constructor
@@ -55,14 +62,17 @@ class RepoManager implements RepoManagerInterface
      * @param $class
      * @param \Snide\Bundle\TravinizerBundle\Loader\TravisLoaderInterface $travisLoader
      * @param \Snide\Bundle\TravinizerBundle\Loader\ScrutinizerLoaderInterface $scrutinizerLoader
+     * @param ComposerReaderInterface $composerReader
      */
     public function __construct(RepoRepositoryInterface $repository, $class,
-        TravisLoaderInterface $travisLoader, ScrutinizerLoaderInterface $scrutinizerLoader)
+        TravisLoaderInterface $travisLoader, ScrutinizerLoaderInterface $scrutinizerLoader,
+        ComposerReaderInterface $composerReader)
     {
-        $this->repository = $repository;
-        $this->travisLoader = $travisLoader;
+        $this->repository        = $repository;
+        $this->travisLoader      = $travisLoader;
         $this->scrutinizerLoader = $scrutinizerLoader;
-        $this->class = $class;
+        $this->composerReader    = $composerReader;
+        $this->class             = $class;
     }
 
     /**
@@ -94,10 +104,12 @@ class RepoManager implements RepoManagerInterface
     public function find($slug)
     {
         $repo = $this->repository->find($slug);
-        if(null == $repo) {
+        if (null == $repo) {
             return null;
         }
         $this->loadExtraInfos($repo);
+        $this->loadPackagistInfos($repo);
+
         return $repo;
     }
 
@@ -109,8 +121,8 @@ class RepoManager implements RepoManagerInterface
     public function findAll()
     {
         $repos = array();
-        foreach ($this->repository->findAll() as $repo) {
-            // Load tests
+        foreach($this->repository->findAll() as $repo) {
+            $this->loadPackagistInfos($repo);
             $repos[] = $repo;
         }
 
@@ -126,6 +138,23 @@ class RepoManager implements RepoManagerInterface
     {
         $this->scrutinizerLoader->load($repo);
         $this->travisLoader->load($repo);
+    }
+
+    /**
+     * Load packagist infos by reading composer json file
+     *
+     * @param Repo $repo
+     */
+    public function loadPackagistInfos(Repo $repo)
+    {
+        $this->composerReader->load($repo->getSlug());
+        if($this->composerReader->has('name')) {
+            $repo->setPackagistSlug($this->composerReader->get('name'));
+        }
+
+        if($this->composerReader->has('authors')) {
+           $repo->setAuthors($this->composerReader->get('authors'));
+        }
     }
 
     /**

@@ -14,7 +14,7 @@ namespace Snide\Bundle\TravinizerBundle\Model;
 use Snide\Scrutinizer\Model\Metrics;
 use Travis\Client\Entity\Repository;
 use Snide\Scrutinizer\Model\Pdepend\Metrics as PdependMetrics;
-
+use Snide\Scrutinizer\Model\Coverage\Metrics as CoverageMetrics;
 /**
  * Class Repository
  *
@@ -35,12 +35,17 @@ class Repo extends Repository
      */
     protected $pdependMetrics;
     /**
+     * Code coverage metrics
+     *
+     * @var CoverageMetrics
+     */
+    protected $coverageMetrics;
+    /**
      * Scrutinizer quality badge hash
      *
      * @var string
      */
     protected $qualityBadgeHash;
-
     /**
      * Scrutinizer coverage badge hash
      * @var string
@@ -51,6 +56,18 @@ class Repo extends Repository
      * @var string
      */
     protected $type;
+    /**
+     * Packagist slug
+     *
+     * @var string
+     */
+    protected $packagistSlug;
+    /**
+     * Authors
+     *
+     * @var array
+     */
+    protected $authors;
 
     /**
      * Getter metrics
@@ -71,6 +88,26 @@ class Repo extends Repository
     public function setMetrics(Metrics $metrics = null)
     {
         $this->metrics = $metrics;
+    }
+
+    /**
+     * Getter authors
+     *
+     * @return array
+     */
+    public function getAuthors()
+    {
+        return $this->authors;
+    }
+
+    /**
+     * Setter authors
+     *
+     * @param array $authors
+     */
+    public function setAuthors($authors = array())
+    {
+        $this->authors = $authors;
     }
 
     /**
@@ -155,5 +192,45 @@ class Repo extends Repository
     public function setType($type)
     {
         $this->type = $type;
+    }
+
+    /**
+     * Getter packagist slug
+     *
+     * @return string
+     */
+    public function getPackagistSlug()
+    {
+        return $this->packagistSlug;
+    }
+
+    /**
+     * Setter packagist slug
+     *
+     * @param string $slug Packagist slug
+     */
+    public function setPackagistSlug($slug)
+    {
+        $this->packagistSlug = $slug;
+    }
+
+    /**
+     * Getter coverage metrics
+     *
+     * @return CoverageMetrics
+     */
+    public function getCoverageMetrics()
+    {
+        return $this->coverageMetrics;
+    }
+
+    /**
+     * Setter coverage metrics
+     *
+     * @param CoverageMetrics $coverageMetrics
+     */
+    public function setCoverageMetrics(CoverageMetrics $coverageMetrics)
+    {
+        $this->coverageMetrics = $coverageMetrics;
     }
 }
