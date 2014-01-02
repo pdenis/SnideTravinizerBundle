@@ -40,7 +40,7 @@ class TravisLoader implements TravisLoaderInterface
     {
         $travisRepo = $this->client->fetchRepository($repo->getSlug());
 
-        if($travisRepo) {
+        if ($travisRepo) {
             // Inject travis data into repository
             $repo->setBuilds($travisRepo->getBuilds());
             $repo->setDescription($travisRepo->getDescription());

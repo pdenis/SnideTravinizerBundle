@@ -21,7 +21,21 @@
                     <span class="pull-right more issues">Issues : {{ repository.metrics.issuesCount }}</span>
                 </p>
             </h2>
-            <p class="desc">{{ repository.description }}</p>
+            <p class="desc">
+                {{ repository.description }}
+                {% if repository.authors|length > 0 %} by
+                    {% for author in repository.authors %}
+                        {% if loop.index > 1 %}
+                            &
+                        {% endif %}
+                        {{ author.name }}
+                    {% endfor %}
+                {% endif %}
+                <br /><br />
+                {{ snide_travinizer_poser_stable_badge(repository) }}
+                {{ snide_travinizer_poser_unstable_badge(repository) }}
+                {{ snide_travinizer_poser_download_badge(repository) }}
+            </p>
         </div>
     </div>
 

@@ -14,6 +14,7 @@
             <argument>%snide_travinizer.model.repo.class%</argument>
             <argument type="service" id="snide_travinizer.travis_loader"/>
             <argument type="service" id="snide_travinizer.scrutinizer_loader"/>
+            <argument type="service" id="snide_travinizer.composer_reader"/>
         </service>
     </services>
 </container>

@@ -8,18 +8,32 @@
         <parameter key="snide_travinizer.twig.travis_extension.class">Snide\Bundle\TravinizerBundle\Twig\Extension\TravisExtension</parameter>
         <parameter key="snide_travinizer.twig.scrutinizer_extension.class">Snide\Bundle\TravinizerBundle\Twig\Extension\ScrutinizerExtension</parameter>
         <parameter key="snide_travinizer.twig.github_extension.class">Snide\Bundle\TravinizerBundle\Twig\Extension\GithubExtension</parameter>
+        <parameter key="snide_travinizer.twig.packagist_extension.class">Snide\Bundle\TravinizerBundle\Twig\Extension\PackagistExtension</parameter>
+        <parameter key="snide_travinizer.twig.poser_extension.class">Snide\Bundle\TravinizerBundle\Twig\Extension\PoserExtension</parameter>
     </parameters>
 
     <services>
         <service id="snide_travinizer.twig.travis_extension" class="%snide_travinizer.twig.travis_extension.class%">
+            <argument type="service" id="snide_travinizer.travis_helper"/>
             <tag name="twig.extension" />
         </service>
         <service id="snide_travinizer.twig.scrutinizer_extension" class="%snide_travinizer.twig.scrutinizer_extension.class%">
+            <argument type="service" id="snide_travinizer.scrutinizer_helper"/>
             <tag name="twig.extension" />
         </service>
         <service id="snide_travinizer.twig.github_extension" class="%snide_travinizer.twig.github_extension.class%">
+            <argument type="service" id="snide_travinizer.github_helper"/>
             <tag name="twig.extension" />
         </service>
+        <service id="snide_travinizer.twig.packagist_extension" class="%snide_travinizer.twig.packagist_extension.class%">
+            <argument type="service" id="snide_travinizer.packagist_helper"/>
+            <tag name="twig.extension" />
+        </service>
+        <service id="snide_travinizer.twig.poser_extension" class="%snide_travinizer.twig.poser_extension.class%">
+            <argument type="service" id="snide_travinizer.poser_helper"/>
+            <tag name="twig.extension" />
+        </service>
+
     </services>
 </container>
 

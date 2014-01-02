@@ -52,8 +52,11 @@ class ScrutinizerLoaderTest extends \PHPUnit_Framework_TestCase
 
         $repo = new Repo();
         $repo->setSlug('pdenis/unknown');
-        $this->object->load($repo);
-
+        try {
+            $this->object->load($repo);
+        }catch(\Exception $e) {
+            $this->assertInstanceOf('\UnexpectedValueException', $e);
+        }
         $this->assertNull($repo->getMetrics());
         $this->assertNull($repo->getPdependMetrics());
     }

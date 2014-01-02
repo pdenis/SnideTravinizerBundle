@@ -11,6 +11,7 @@
 
 namespace Snide\Bundle\TravinizerBundle\Twig\Extension;
 
+use Snide\Bundle\TravinizerBundle\Helper\TravisHelper;
 use Snide\Bundle\TravinizerBundle\Model\Repo;
 
 /**
@@ -20,6 +21,22 @@ use Snide\Bundle\TravinizerBundle\Model\Repo;
  */
 class TravisExtension extends \Twig_Extension
 {
+    /**
+     * Travis helper
+     *
+     * @var \Snide\Bundle\TravinizerBundle\Helper\TravisHelper
+     */
+    protected $helper;
+
+    /**
+     * Constructor
+     *
+     * @param TravisHelper $helper
+     */
+    public function __construct(TravisHelper $helper)
+    {
+        $this->helper = $helper;
+    }
 
     /**
      * Returns a list of functions to add to the existing list.
@@ -29,8 +46,16 @@ class TravisExtension extends \Twig_Extension
     public function getFunctions()
     {
         return array(
-            'snide_travinizer_travis_url'   => new \Twig_Function_Method($this, 'getUrl', array('is_safe'=> array('html'))),
-            'snide_travinizer_travis_badge' => new \Twig_Function_Method($this, 'getBadge', array('is_safe'=> array('html')))
+            'snide_travinizer_travis_url'   => new \Twig_Function_Method(
+                $this,
+                'getUrl',
+                array('is_safe'=> array('html'))
+            ),
+            'snide_travinizer_travis_badge' => new \Twig_Function_Method(
+                $this,
+                'getBadge',
+                array('is_safe'=> array('html'))
+            )
         );
     }
 
@@ -42,7 +67,7 @@ class TravisExtension extends \Twig_Extension
      */
     public function getUrl(Repo $repo)
     {
-        return sprintf('%s/%s', 'https://travis-ci.org', $repo->getSlug());
+        return $this->helper->getUrl($repo->getSlug());
     }
 
     /**
@@ -53,7 +78,30 @@ class TravisExtension extends \Twig_Extension
      */
     public function getBadge(Repo $repo)
     {
-        return sprintf('<img src="%s/%s.png?branch=%s" />', 'https://travis-ci.org', $repo->getSlug(), 'master');
+        return sprintf(
+            '<img src="%s" />',
+            $this->helper->getBadgeUrl($repo->getSlug())
+        );
+    }
+
+    /**
+     * Setter helper
+     *
+     * @param \Snide\Bundle\TravinizerBundle\Helper\TravisHelper $helper
+     */
+    public function setHelper(TravisHelper $helper)
+    {
+        $this->helper = $helper;
+    }
+
+    /**
+     * Getter helper
+     *
+     * @return \Snide\Bundle\TravinizerBundle\Helper\TravisHelper
+     */
+    public function getHelper()
+    {
+        return $this->helper;
     }
 
     /**

@@ -11,6 +11,7 @@
 
 namespace Snide\Bundle\TravinizerBundle\Tests\Twig\Extension;
 
+use Snide\Bundle\TravinizerBundle\Helper\GithubHelper;
 use Snide\Bundle\TravinizerBundle\Model\Repo;
 
 /**
@@ -30,12 +31,17 @@ class GithubExtensionTest extends \PHPUnit_Framework_TestCase
      */
     protected $repo;
     /**
+     * @var GithubHelper
+     */
+    protected $helper;
+    /**
      * Sets up the fixture, for example, opens a network connection.
      * This method is called before a test is executed.
      */
     protected function setUp()
     {
-        $this->object = new \Snide\Bundle\TravinizerBundle\Twig\Extension\GithubExtension();
+        $this->helper = new GithubHelper();
+        $this->object = new \Snide\Bundle\TravinizerBundle\Twig\Extension\GithubExtension($this->helper);
         $this->repo = new Repo();
         $this->repo->setSlug('pdenis/monitoring');
     }
@@ -71,5 +77,16 @@ class GithubExtensionTest extends \PHPUnit_Framework_TestCase
     public function testFunctions()
     {
         $this->assertEquals(array('snide_travinizer_github_url', 'snide_travinizer_github_commit_url'), array_keys($this->object->getFunctions()));
+    }
+
+    /**
+     * Test helper
+     */
+    public function testHelper()
+    {
+        $this->assertEquals($this->helper, $this->object->getHelper());
+        $helper = new GithubHelper();
+        $this->object->setHelper($helper);
+        $this->assertEquals($helper, $this->object->getHelper());
     }
 }

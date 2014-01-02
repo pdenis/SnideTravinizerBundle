@@ -47,7 +47,7 @@ class RepoRepositoryTest extends \PHPUnit_Framework_TestCase
         $this->filename = '/tmp/filename.yml';
         $this->class = 'Snide\\Bundle\\TravinizerBundle\\Model\\Repo';
 
-        if(file_exists($this->filename)) {
+        if (file_exists($this->filename)) {
             unlink($this->filename);
         }
         $this->object = new RepoRepository($this->class, $this->filename);
@@ -59,7 +59,7 @@ class RepoRepositoryTest extends \PHPUnit_Framework_TestCase
      */
     protected function tearDown()
     {
-        if(file_exists($this->filename)) {
+        if (file_exists($this->filename)) {
             unlink($this->filename);
         }
     }
