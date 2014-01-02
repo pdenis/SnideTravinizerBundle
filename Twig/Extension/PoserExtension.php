@@ -39,11 +39,31 @@ class PoserExtension extends \Twig_Extension
     public function getFunctions()
     {
         return array(
-            'snide_travinizer_poser_stable_badge'           => new \Twig_Function_Method($this, 'getStableBadge', array('is_safe'=> array('html'))),
-            'snide_travinizer_poser_unstable_badge'         => new \Twig_Function_Method($this, 'getUnstableBadge', array('is_safe'=> array('html'))),
-            'snide_travinizer_poser_download_badge'         => new \Twig_Function_Method($this, 'getDownloadBadge', array('is_safe'=> array('html'))),
-            'snide_travinizer_poser_monthly_download_badge' => new \Twig_Function_Method($this, 'getMonthlyDownloadBadge', array('is_safe'=> array('html'))),
-            'snide_travinizer_poser_daily_download_badge'   => new \Twig_Function_Method($this, 'getDailyDownloadBadge', array('is_safe'=> array('html')))
+            'snide_travinizer_poser_stable_badge'           => new \Twig_Function_Method(
+                $this,
+                'getStableBadge',
+                array('is_safe'=> array('html'))
+            ),
+            'snide_travinizer_poser_unstable_badge'         => new \Twig_Function_Method(
+                $this,
+                'getUnstableBadge',
+                array('is_safe'=> array('html'))
+            ),
+            'snide_travinizer_poser_download_badge'         => new \Twig_Function_Method(
+                $this,
+                'getDownloadBadge',
+                array('is_safe'=> array('html'))
+            ),
+            'snide_travinizer_poser_monthly_download_badge' => new \Twig_Function_Method(
+                $this,
+                'getMonthlyDownloadBadge',
+                array('is_safe'=> array('html'))
+            ),
+            'snide_travinizer_poser_daily_download_badge'   => new \Twig_Function_Method(
+                $this,
+                'getDailyDownloadBadge',
+                array('is_safe'=> array('html'))
+            )
         );
     }
 
@@ -55,7 +75,7 @@ class PoserExtension extends \Twig_Extension
      */
     public function getStableBadge(Repo $repo)
     {
-        if($repo->getPackagistSlug()) {
+        if ($repo->getPackagistSlug()) {
             return sprintf('<img src="%s" />', $this->helper->getStableVersionBadgeUrl($repo->getPackagistSlug()));
         }
 
@@ -70,7 +90,7 @@ class PoserExtension extends \Twig_Extension
      */
     public function getUnstableBadge(Repo $repo)
     {
-        if($repo->getPackagistSlug()) {
+        if ($repo->getPackagistSlug()) {
             return sprintf('<img src="%s" />', $this->helper->getUnstableVersionBadgeUrl($repo->getPackagistSlug()));
         }
 
@@ -85,7 +105,7 @@ class PoserExtension extends \Twig_Extension
      */
     public function getDownloadBadge(Repo $repo)
     {
-        if($repo->getPackagistSlug()) {
+        if ($repo->getPackagistSlug()) {
             return sprintf('<img src="%s" />', $this->helper->getTotalDownloadBadgeUrl($repo->getPackagistSlug()));
         }
 
@@ -100,7 +120,7 @@ class PoserExtension extends \Twig_Extension
      */
     public function getMonthlyDownloadBadge(Repo $repo)
     {
-        if($repo->getPackagistSlug()) {
+        if ($repo->getPackagistSlug()) {
             return sprintf('<img src="%s" />', $this->helper->getMonthlyDownloadBadgeUrl($repo->getPackagistSlug()));
         }
 
@@ -115,7 +135,7 @@ class PoserExtension extends \Twig_Extension
      */
     public function getDailyDownloadBadge(Repo $repo)
     {
-        if($repo->getPackagistSlug()) {
+        if ($repo->getPackagistSlug()) {
             return sprintf('<img src="%s" />', $this->helper->getDailyDownloadBadgeUrl($repo->getPackagistSlug()));
         }
 

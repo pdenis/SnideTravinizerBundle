@@ -39,7 +39,11 @@ class PackagistExtension  extends \Twig_Extension
     public function getFunctions()
     {
         return array(
-            'snide_travinizer_packagist_url'  => new \Twig_Function_Method($this, 'getUrl', array('is_safe'=> array('html'))),
+            'snide_travinizer_packagist_url'  => new \Twig_Function_Method(
+                $this,
+                'getUrl',
+                array('is_safe'=> array('html'))
+            ),
         );
     }
 

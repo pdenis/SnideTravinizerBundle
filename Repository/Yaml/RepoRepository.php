@@ -16,7 +16,6 @@ use Snide\Bundle\TravinizerBundle\Repository\RepoRepositoryInterface;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Yaml\Yaml;
 
-
 /**
  * Class Repo
  *

@@ -46,8 +46,16 @@ class TravisExtension extends \Twig_Extension
     public function getFunctions()
     {
         return array(
-            'snide_travinizer_travis_url'   => new \Twig_Function_Method($this, 'getUrl', array('is_safe'=> array('html'))),
-            'snide_travinizer_travis_badge' => new \Twig_Function_Method($this, 'getBadge', array('is_safe'=> array('html')))
+            'snide_travinizer_travis_url'   => new \Twig_Function_Method(
+                $this,
+                'getUrl',
+                array('is_safe'=> array('html'))
+            ),
+            'snide_travinizer_travis_badge' => new \Twig_Function_Method(
+                $this,
+                'getBadge',
+                array('is_safe'=> array('html'))
+            )
         );
     }
 

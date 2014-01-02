@@ -46,8 +46,16 @@ class GithubExtension extends \Twig_Extension
     public function getFunctions()
     {
         return array(
-            'snide_travinizer_github_url'  => new \Twig_Function_Method($this, 'getUrl', array('is_safe'=> array('html'))),
-            'snide_travinizer_github_commit_url' => new \Twig_Function_Method($this, 'getCommitUrl', array('is_safe'=> array('html')))
+            'snide_travinizer_github_url'  => new \Twig_Function_Method(
+                $this,
+                'getUrl',
+                array('is_safe'=> array('html'))
+            ),
+            'snide_travinizer_github_commit_url' => new \Twig_Function_Method(
+                $this,
+                'getCommitUrl',
+                array('is_safe'=> array('html'))
+            )
         );
     }
 

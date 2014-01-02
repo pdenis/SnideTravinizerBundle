@@ -50,7 +50,7 @@ class RepoType extends AbstractType
         $builder->add('slug', 'text');
         $builder->add('qualityBadgeHash', 'text', array('label' => 'Scrutinizer quality badge hash'));
         $builder->add('coverageBadgeHash', 'text', array('label' => 'Scrutinizer coverage badge hash'));
-        $builder->add('type','choice', array(
+        $builder->add('type', 'choice', array(
             'choices' => array('g' => 'Github', 'b' => 'Bitbucket')
         ));
     }

@@ -14,7 +14,6 @@ namespace Snide\Bundle\TravinizerBundle\Loader;
 use Snide\Bundle\TravinizerBundle\Model\Repo;
 use Snide\Scrutinizer\Client;
 
-
 /**
  * Class ScrutinizerLoader
  *
@@ -43,7 +42,7 @@ class ScrutinizerLoader implements ScrutinizerLoaderInterface
     {
         $scrutinizerRepo = $this->client->fetchRepository($repo->getSlug());
 
-        if($scrutinizerRepo) {
+        if ($scrutinizerRepo) {
             // Inject scrutinizer data into repository
             $repo->setMetrics($scrutinizerRepo->getMetrics());
             $repo->setPdependMetrics($scrutinizerRepo->getPdependMetrics());

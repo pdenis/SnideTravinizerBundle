@@ -64,10 +64,13 @@ class RepoManager implements RepoManagerInterface
      * @param \Snide\Bundle\TravinizerBundle\Loader\ScrutinizerLoaderInterface $scrutinizerLoader
      * @param ComposerReaderInterface $composerReader
      */
-    public function __construct(RepoRepositoryInterface $repository, $class,
-        TravisLoaderInterface $travisLoader, ScrutinizerLoaderInterface $scrutinizerLoader,
-        ComposerReaderInterface $composerReader)
-    {
+    public function __construct(
+        RepoRepositoryInterface $repository,
+        $class,
+        TravisLoaderInterface $travisLoader,
+        ScrutinizerLoaderInterface $scrutinizerLoader,
+        ComposerReaderInterface $composerReader
+    ) {
         $this->repository        = $repository;
         $this->travisLoader      = $travisLoader;
         $this->scrutinizerLoader = $scrutinizerLoader;
@@ -148,11 +151,11 @@ class RepoManager implements RepoManagerInterface
     public function loadPackagistInfos(Repo $repo)
     {
         $this->composerReader->load($repo->getSlug());
-        if($this->composerReader->has('name')) {
+        if ($this->composerReader->has('name')) {
             $repo->setPackagistSlug($this->composerReader->get('name'));
         }
 
-        if($this->composerReader->has('authors')) {
+        if ($this->composerReader->has('authors')) {
            $repo->setAuthors($this->composerReader->get('authors'));
         }
     }

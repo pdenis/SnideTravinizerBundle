@@ -46,9 +46,21 @@ class ScrutinizerExtension extends \Twig_Extension
     public function getFunctions()
     {
         return array(
-            'snide_travinizer_scrutinizer_url'  => new \Twig_Function_Method($this, 'getUrl', array('is_safe'=> array('html'))),
-            'snide_travinizer_scrutinizer_quality_badge' => new \Twig_Function_Method($this, 'getQualityBadge', array('is_safe'=> array('html'))),
-            'snide_travinizer_scrutinizer_coverage_badge' => new \Twig_Function_Method($this, 'getCoverageBadge', array('is_safe'=> array('html')))
+            'snide_travinizer_scrutinizer_url'  => new \Twig_Function_Method(
+                $this,
+                'getUrl',
+                array('is_safe'=> array('html'))
+            ),
+            'snide_travinizer_scrutinizer_quality_badge' => new \Twig_Function_Method(
+                $this,
+                'getQualityBadge',
+                array('is_safe'=> array('html'))
+            ),
+            'snide_travinizer_scrutinizer_coverage_badge' => new \Twig_Function_Method(
+                $this,
+                'getCoverageBadge',
+                array('is_safe'=> array('html'))
+            )
         );
     }
 
@@ -74,7 +86,7 @@ class ScrutinizerExtension extends \Twig_Extension
      */
     public function getQualityBadge(Repo $repo)
     {
-        if($repo->getQualityBadgeHash()) {
+        if ($repo->getQualityBadgeHash()) {
             return sprintf(
                 '<img src="%s" />',
                 $this->helper->getQualityBadgeUrl(
@@ -96,7 +108,7 @@ class ScrutinizerExtension extends \Twig_Extension
      */
     public function getCoverageBadge(Repo $repo)
     {
-        if($repo->getCoverageBadgeHash()) {
+        if ($repo->getCoverageBadgeHash()) {
             return sprintf(
                 '<img src="%s" />',
                 $this->helper->getCoverageBadgeUrl(

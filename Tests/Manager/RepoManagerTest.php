@@ -62,7 +62,7 @@ class RepoManagerTest extends \PHPUnit_Framework_TestCase
      */
     protected function tearDown()
     {
-        if(file_exists($this->filename)) {
+        if (file_exists($this->filename)) {
             unlink($this->filename);
         }
     }
