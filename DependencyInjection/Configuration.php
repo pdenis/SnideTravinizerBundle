@@ -33,7 +33,7 @@ class Configuration implements ConfigurationInterface
                 ->scalarNode('type')->isRequired()->end()
                 ->arrayNode('repo')
                     ->children()
-                        ->scalarNode('filename')->isRequired()->end()
+                        ->scalarNode('filename')->end()
                     ->end()
                 ->end()
             ->end()

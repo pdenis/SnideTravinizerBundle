@@ -106,7 +106,7 @@ class RepoController extends Controller
     public function newAction()
     {
         return  array(
-            'form' => $this->getForm()->createView(),
+            'form'   => $this->getForm()->createView(),
             'errors' => array()
         );
     }
@@ -122,7 +122,6 @@ class RepoController extends Controller
     public function updateAction(Request $request)
     {
         $form = $this->getForm();
-
         if ('POST' == $request->getMethod()) {
             $form->handleRequest($request);
 
@@ -138,7 +137,7 @@ class RepoController extends Controller
         }
 
         return array(
-            'form' => $form->createView(),
+            'form'   => $form->createView(),
             'errors' => $form->getErrors()
         );
     }
