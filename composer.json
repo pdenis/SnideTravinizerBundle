@@ -15,7 +15,6 @@
         "phpunit/phpunit": "3.7.*"
     },
     "require": {
-        "snide/monitoring": "dev-master",
         "symfony/framework-bundle": "~2.3",
         "twig/twig": "1.*",
         "l3l0/php-travis-client": "dev-master",
