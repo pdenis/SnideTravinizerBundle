@@ -1,45 +1,47 @@
 {% extends 'SnideTravinizerBundle::base.html.twig' %}
 
 {% block main %}
+    <div class="row">
+        <div id="content" class="span12">
+            <h2>Create a repo</h2>
+            <form action="{{ path('snide_travinizer_repo_create') }}" method="post" {{ form_enctype(form) }}>
 
-    <h2>Update an application</h2>
-    <form action="{{ path('snide_travinizer_repo_create') }}" method="post" {{ form_enctype(form) }}>
+                {{ form_row(form.id) }}
+                {{ form_row(form._token) }}
+                <div class="control-group">
+                    {{ form_errors(form.slug) }}
+                    {{ form_label(form.slug) }}
+                    <div class="controls form-group">
+                        {{ form_widget(form.slug) }}
+                    </div>
+                </div>
+                <div class="control-group">
+                    {{ form_errors(form.type) }}
+                    {{ form_label(form.type) }}
+                    <div class="controls form-group">
+                        {{ form_widget(form.type) }}
+                    </div>
+                </div>
 
-        {{ form_row(form.id) }}
-        {{ form_row(form._token) }}
-        <div class="control-group">
-            {{ form_errors(form.slug) }}
-            {{ form_label(form.slug) }}
-            <div class="controls form-group">
-                {{ form_widget(form.slug) }}
-            </div>
-        </div>
-        <div class="control-group">
-            {{ form_errors(form.type) }}
-            {{ form_label(form.type) }}
-            <div class="controls form-group">
-                {{ form_widget(form.type) }}
-            </div>
-        </div>
+                <div class="control-group">
+                    {{ form_errors(form.qualityBadgeHash) }}
+                    {{ form_label(form.qualityBadgeHash) }}
+                    <div class="controls form-group">
+                        {{ form_widget(form.qualityBadgeHash) }}
+                    </div>
+                </div>
 
-        <div class="control-group">
-            {{ form_errors(form.qualityBadgeHash) }}
-            {{ form_label(form.qualityBadgeHash) }}
-            <div class="controls form-group">
-                {{ form_widget(form.qualityBadgeHash) }}
-            </div>
+                <div class="control-group">
+                    {{ form_errors(form.coverageBadgeHash) }}
+                    {{ form_label(form.coverageBadgeHash) }}
+                    <div class="controls form-group">
+                        {{ form_widget(form.coverageBadgeHash) }}
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <button class="btn-sub" type="submit" value="Submit">Submit</button>
+                </div>
+            </form>
         </div>
-
-        <div class="control-group">
-            {{ form_errors(form.coverageBadgeHash) }}
-            {{ form_label(form.coverageBadgeHash) }}
-            <div class="controls form-group">
-                {{ form_widget(form.coverageBadgeHash) }}
-            </div>
-        </div>
-        <div class="form-actions">
-            <button class="btn-sub" type="submit" value="Submit">Submit</button>
-        </div>
-    </form>
-
+    </div>
 {% endblock %}
