@@ -167,7 +167,7 @@ class RepoController extends Controller
      * @param Repo $repo
      * @return \Symfony\Component\Form\Form
      */
-    public function getForm($repo = null)
+    protected function getForm($repo = null)
     {
         if ($repo == null) {
             $repo = $this->getManager()->createNew();
@@ -184,7 +184,7 @@ class RepoController extends Controller
      *
      * @return mixed
      */
-    public function getManager()
+    protected function getManager()
     {
         return $this->get('snide_travinizer.repo_manager');
     }
