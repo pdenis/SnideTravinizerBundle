@@ -42,7 +42,7 @@ class DashController extends Controller
      *
      * @return mixed
      */
-    public function getManager()
+    protected function getManager()
     {
         return $this->get('snide_travinizer.repo_manager');
     }

@@ -51,7 +51,7 @@ interface RepoManagerInterface
     /**
      * Find an repo
      *
-     * @param string $id App ID
+     * @param string $id repo ID
      * @return Repo
      */
     public function find($id);

@@ -150,14 +150,16 @@ class RepoManager implements RepoManagerInterface
      */
     public function loadPackagistInfos(Repo $repo)
     {
-        $this->composerReader->load($repo->getSlug());
-        if ($this->composerReader->has('name')) {
-            $repo->setPackagistSlug($this->composerReader->get('name'));
-        }
+        try {
+            $this->composerReader->load($repo->getSlug());
+            if ($this->composerReader->has('name')) {
+                $repo->setPackagistSlug($this->composerReader->get('name'));
+            }
 
-        if ($this->composerReader->has('authors')) {
-           $repo->setAuthors($this->composerReader->get('authors'));
-        }
+            if ($this->composerReader->has('authors')) {
+               $repo->setAuthors($this->composerReader->get('authors'));
+            }
+        }catch(\Exception $e) {}
     }
 
     /**
