@@ -113,6 +113,7 @@ class RepoManager implements RepoManagerInterface
         $this->loadExtraInfos($repo);
         $this->loadPackagistInfos($repo);
 
+
         return $repo;
     }
 
@@ -150,16 +151,22 @@ class RepoManager implements RepoManagerInterface
      */
     public function loadPackagistInfos(Repo $repo)
     {
-        try {
-            $this->composerReader->load($repo->getSlug());
-            if ($this->composerReader->has('name')) {
-                $repo->setPackagistSlug($this->composerReader->get('name'));
-            }
+        $this->composerReader->load($repo->getSlug());
 
-            if ($this->composerReader->has('authors')) {
-               $repo->setAuthors($this->composerReader->get('authors'));
-            }
-        }catch(\Exception $e) {}
+        // Load package name
+        if ($this->composerReader->has('name')) {
+            $repo->setPackagistSlug($this->composerReader->get('name'));
+        }
+
+        // Load authors
+        if ($this->composerReader->has('authors')) {
+           $repo->setAuthors($this->composerReader->get('authors'));
+        }
+
+        // Load dependencies
+        if($this->composerReader->has('require')) {
+            $repo->setDependencies($this->composerReader->get('require'));
+        }
     }
 
     /**

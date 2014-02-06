@@ -70,6 +70,36 @@ class Repo extends Repository
     protected $authors;
 
     /**
+     * Dependencies
+     *
+     * @var array
+     */
+    protected $dependencies;
+
+    /**
+     * Get dependencies
+     *
+     * @return mixed
+     */
+    public function getDependencies()
+    {
+        if(!is_array($this->dependencies)) {
+            $this->dependencies = array();
+        }
+        return $this->dependencies;
+    }
+
+    /**
+     * Set dependencies
+     *
+     * @param array $dependencies
+     */
+    public function setDependencies($dependencies = array())
+    {
+        $this->dependencies = $dependencies;
+    }
+
+    /**
      * Getter metrics
      *
      * @return Metrics

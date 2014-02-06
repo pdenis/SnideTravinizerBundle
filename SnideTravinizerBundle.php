@@ -11,6 +11,8 @@
 
 namespace Snide\Bundle\TravinizerBundle;
 
+use Snide\Bundle\MonitorBundle\DependencyInjection\Compiler\TestPass;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 /**

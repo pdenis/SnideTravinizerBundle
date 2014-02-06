@@ -70,7 +70,7 @@ class ComposerReader implements ComposerReaderInterface
     public function get($key)
     {
         if (!isset($this->data[$key])) {
-            throw new \Exception('%s key does not exist');
+            throw new \Exception(sprintf('%s key does not exist', $key));
         }
 
         return $this->data[$key];

@@ -70,7 +70,7 @@ The bundle needs to copy the resources necessary to the web folder. You can use 
 ```yaml
     snide_monitor:
         repository:
-            type: #yaml, doctrine_orm
-            repo: # only if yaml is used
+            type: yaml # only Yaml type is defined
+            repo:
                 filename: /path/to/your/yaml/save/file.yml
 ```
