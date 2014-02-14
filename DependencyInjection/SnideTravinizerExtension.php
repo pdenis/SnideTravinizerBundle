@@ -72,7 +72,7 @@ class SnideTravinizerExtension extends Extension
                 );
             }
 
-            $loader->load('repository/' . $config['repository']['type'] . '.xml');
+            $loader->load('repository/' . strtr($config['repository']['type'], '_', '/') . '.xml');
         } else {
             throw new InvalidConfigurationException('You must define repository type parameter');
         }
