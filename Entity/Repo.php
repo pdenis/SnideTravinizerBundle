@@ -19,7 +19,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @author Pascal DENIS <pascal.denis.75@gmail.com>
  *
- * @ORM\Entity(repositoryClass="Snide\Bundle\TravinizerBundle\Repository\Doctrine\Orm\RepoRepository")
+ * @ORM\MappedSuperclass
  */
 class Repo extends BaseRepo
 {
