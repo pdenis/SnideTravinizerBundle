@@ -27,17 +27,24 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $treeBuilder->root('snide_travinizer')->children()
-            ->arrayNode('repository')
+        $treeBuilder->root('snide_travinizer')
             ->children()
-                ->scalarNode('type')->isRequired()->end()
-                ->arrayNode('repo')
+                ->arrayNode('manager')
                     ->children()
-                        ->scalarNode('filename')->isRequired()->end()
+                        ->scalarNode('class')->isRequired()->end()
                     ->end()
                 ->end()
-            ->end()
-        ->end();
+                ->arrayNode('repository')
+                    ->children()
+                        ->scalarNode('type')->isRequired()->end()
+                        ->arrayNode('repo')
+                            ->children()
+                                ->scalarNode('filename')->end()
+                                ->scalarNode('class')->end()
+                            ->end()
+                    ->end()
+                ->end()
+            ->end();
 
         return $treeBuilder;
     }

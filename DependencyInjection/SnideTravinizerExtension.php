@@ -46,7 +46,9 @@ class SnideTravinizerExtension extends Extension
         $loader->load('twig_extension.xml');
 
         $this->loadRepository($loader, $container, $config);
-        }
+        $this->loadManager($loader, $container, $config);
+        $this->loadRepoClass($loader, $container, $config);
+    }
 
     /**
      * Load repository
@@ -58,7 +60,6 @@ class SnideTravinizerExtension extends Extension
      */
     protected function loadRepository($loader, ContainerBuilder $container, array $config)
     {
-
         if (isset($config['repository']['type'])) {
             if ($config['repository']['type'] == 'yaml') {
                 if (!isset($config['repository']['repo']['filename'])) {
@@ -75,6 +76,37 @@ class SnideTravinizerExtension extends Extension
             $loader->load('repository/' . strtr($config['repository']['type'], '_', '/') . '.xml');
         } else {
             throw new InvalidConfigurationException('You must define repository type parameter');
+        }
+    }
+
+    /**
+     * Load repoClass entity
+     *
+     * @param XmlFileLoader $loader
+     * @param ContainerBuilder $container
+     * @param array $config
+     * @throws \Exception
+     */
+    protected function loadRepoClass($loader, ContainerBuilder $container, array $config)
+    {
+
+        if (isset($config['repository']['repo']['class'])) {
+            $container->setParameter('snide_travinizer.model.repo.class', $config['repository']['repo']['class']);
+        }
+    }
+
+    /**
+     * Load manager
+     *
+     * @param XmlFileLoader $loader
+     * @param ContainerBuilder $container
+     * @param array $config
+     * @throws \Exception
+     */
+    protected function loadManager($loader, ContainerBuilder $container, array $config)
+    {
+        if (isset($config['manager']['class'])) {
+            $container->setParameter('snide_travinizer.repo_manager.class', $config['manager']['class']);
         }
     }
 }
