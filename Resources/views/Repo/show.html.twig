@@ -35,9 +35,15 @@
                 {{ snide_travinizer_poser_stable_badge(repository) }}
                 {{ snide_travinizer_poser_unstable_badge(repository) }}
                 {{ snide_travinizer_poser_download_badge(repository) }}
-            </p>
-            <br />
-            <p class="desc"><span class="more">Dependencies :</span>
+
+                {% if repository.insightHash %}
+                    <span class="pull-right">
+                        {{ snide_travinizer_insight_badge(repository, 'big') }}
+                    </span>
+                {% endif %}
+
+            <br /><br />
+            <span class="more">Dependencies :</span>
                 {% if repository.dependencies|length > 0 %}
                     {% for dependency, version in repository.dependencies %}
                         {% if loop.index > 1 %}
@@ -48,7 +54,9 @@
                 {% else %}
                     No dependencies found
                 {% endif %}
+
             </p>
+
         </div>
     </div>
 

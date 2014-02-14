@@ -26,6 +26,7 @@
                             {{  snide_travinizer_scrutinizer_quality_badge(repository) }}
                             {{  snide_travinizer_scrutinizer_coverage_badge(repository) }}
                             {{  snide_travinizer_poser_stable_badge(repository) }}
+                            {{  snide_travinizer_insight_badge(repository) }}
                         </td>
                         <td><a href="{{ path('snide_travinizer_repo_edit', {'id': repository.id}) }}">Edit</a>
                             | <a href="{{ path('snide_travinizer_repo_delete', {'id': repository.id}) }}">Delete</a>
@@ -37,6 +38,9 @@
                             | <a target="_blank" href="{{ snide_travinizer_scrutinizer_url(repository) }}">Scrutinizer</a>
                             {% if repository.packagistSlug %}
                                 | <a target="_blank" href="{{ snide_travinizer_packagist_url(repository) }}">Packagist</a>
+                            {% endif %}
+                            {% if repository.insightHash %}
+                                | <a target="_blank" href="{{ snide_travinizer_insight_url(repository) }}">Insight</a>
                             {% endif %}
                         </td>
                     </tr>

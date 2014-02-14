@@ -52,6 +52,11 @@ class Repo extends Repository
      */
     protected $coverageBadgeHash;
     /**
+     * Scrutinizer coverage badge hash
+     * @var string
+     */
+    protected $insightHash;
+    /**
      * "g" for github or "b" for bitbucket
      * @var string
      */
@@ -262,5 +267,25 @@ class Repo extends Repository
     public function setCoverageMetrics(CoverageMetrics $coverageMetrics)
     {
         $this->coverageMetrics = $coverageMetrics;
+    }
+
+    /**
+     * Getter insight badge hash
+     *
+     * @return string
+     */
+    public function getInsightHash()
+    {
+        return $this->insightHash;
+    }
+
+    /**
+     * Setter insight badge hash
+     * 
+     * @param $insightHash
+     */
+    public function setInsightHash($insightHash)
+    {
+        $this->insightHash = $insightHash;
     }
 }

@@ -38,6 +38,13 @@
                         {{ form_widget(form.coverageBadgeHash) }}
                     </div>
                 </div>
+                <div class="control-group">
+                    {{ form_errors(form.insightHash) }}
+                    {{ form_label(form.insightHash) }}
+                    <div class="controls form-group">
+                        {{ form_widget(form.insightHash) }}
+                    </div>
+                </div>
                 <div class="form-actions">
                     <button class="btn-sub" type="submit" value="Submit">Submit</button>
                 </div>

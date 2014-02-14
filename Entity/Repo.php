@@ -57,6 +57,13 @@ class Repo extends BaseRepo
      */
     protected $coverageBadgeHash;
     /**
+     * Sensiolabs Insight project hash
+     * @var string
+     *
+     * @ORM\Column(type="string", length=255)
+     */
+    protected $insightHash;
+    /**
      * "g" for github or "b" for bitbucket
      * @var string
      *

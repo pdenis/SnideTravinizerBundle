@@ -10,6 +10,7 @@
         <parameter key="snide_travinizer.twig.github_extension.class">Snide\Bundle\TravinizerBundle\Twig\Extension\GithubExtension</parameter>
         <parameter key="snide_travinizer.twig.packagist_extension.class">Snide\Bundle\TravinizerBundle\Twig\Extension\PackagistExtension</parameter>
         <parameter key="snide_travinizer.twig.poser_extension.class">Snide\Bundle\TravinizerBundle\Twig\Extension\PoserExtension</parameter>
+        <parameter key="snide_travinizer.twig.insight_extension.class">Snide\Bundle\TravinizerBundle\Twig\Extension\InsightExtension</parameter>
     </parameters>
 
     <services>
@@ -33,7 +34,10 @@
             <argument type="service" id="snide_travinizer.poser_helper"/>
             <tag name="twig.extension" />
         </service>
-
+        <service id="snide_travinizer.twig.insight_extension" class="%snide_travinizer.twig.insight_extension.class%">
+            <argument type="service" id="snide_travinizer.insight_helper"/>
+            <tag name="twig.extension" />
+        </service>
     </services>
 </container>
 

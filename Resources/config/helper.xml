@@ -10,6 +10,7 @@
         <parameter key="snide_travinizer.poser_helper.class">Snide\Bundle\TravinizerBundle\Helper\PoserHelper</parameter>
         <parameter key="snide_travinizer.scrutinizer_helper.class">Snide\Bundle\TravinizerBundle\Helper\ScrutinizerHelper</parameter>
         <parameter key="snide_travinizer.travis_helper.class">Snide\Bundle\TravinizerBundle\Helper\TravisHelper</parameter>
+        <parameter key="snide_travinizer.insight_helper.class">Snide\Bundle\TravinizerBundle\Helper\InsightHelper</parameter>
     </parameters>
 
     <services>
@@ -18,5 +19,6 @@
         <service id="snide_travinizer.poser_helper" class="%snide_travinizer.poser_helper.class%" public="true"/>
         <service id="snide_travinizer.scrutinizer_helper" class="%snide_travinizer.scrutinizer_helper.class%" public="true"/>
         <service id="snide_travinizer.travis_helper" class="%snide_travinizer.travis_helper.class%" public="true"/>
+        <service id="snide_travinizer.insight_helper" class="%snide_travinizer.insight_helper.class%" public="true"/>
     </services>
 </container>
