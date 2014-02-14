@@ -45,6 +45,20 @@ class RepoRepository extends EntityRepository implements RepoRepositoryInterface
     }
 
     /**
+     * Find repos by criteria
+     *
+     * @param array $criteria
+     * @param array $orderBy
+     * @param int $limit
+     * @param int $offset
+     * @return array
+     */
+    public function findBy(array $criteria = array(), array $orderBy = null, $limit = null, $offset = null)
+    {
+        return parent::findBy($criteria, $orderBy, $limit, $offset);
+    }
+
+    /**
      * Create an repo
      *
      * @param Repo $repo

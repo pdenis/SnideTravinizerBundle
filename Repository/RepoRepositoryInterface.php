@@ -36,6 +36,17 @@ interface RepoRepositoryInterface
     public function find($slug);
 
     /**
+     * Find repos by criteria
+     *
+     * @param array $criteria
+     * @param array $orderBy
+     * @param int $limit
+     * @param int $offset
+     * @return array
+     */
+    public function findBy(array $criteria = array(), array $orderBy = null, $limit = null, $offset = null);
+
+    /**
      * Create an repo
      *
      * @param Repo $repo

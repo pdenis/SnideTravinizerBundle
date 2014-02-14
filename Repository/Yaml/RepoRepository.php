@@ -74,6 +74,22 @@ class RepoRepository implements RepoRepositoryInterface
     }
 
     /**
+     * Find All repos
+     * No criteria will be managed in this repository
+     * If you want specific findBy, please use doctrine/ORM repository
+     *
+     * @param array $criteria
+     * @param array $orderBy
+     * @param int $limit
+     * @param int $offset
+     * @return array
+     */
+    public function findBy(array $criteria = array(), array $orderBy = null, $limit = null, $offset = null)
+    {
+        return $this->findAll();
+    }
+
+    /**
      * Find repo by ID
      *
      * @param $id Repo id
