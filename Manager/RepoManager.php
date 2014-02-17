@@ -140,8 +140,13 @@ class RepoManager implements RepoManagerInterface
      */
     public function loadExtraInfos(Repo $repo)
     {
-        $this->scrutinizerLoader->load($repo);
-        $this->travisLoader->load($repo);
+        try {
+            $this->scrutinizerLoader->load($repo);
+            $this->travisLoader->load($repo);
+        } catch(\Exception $e) {
+            // We do not want to throw exception here!
+            // Travis or Scrutinizer may not be configured
+        }
     }
 
     /**
@@ -151,24 +156,27 @@ class RepoManager implements RepoManagerInterface
      */
     public function loadPackagistInfos(Repo $repo)
     {
-        $this->composerReader->load($repo->getSlug());
+        try {
+            $this->composerReader->load($repo->getSlug());
 
-        // Load package name
-        if ($this->composerReader->has('name')) {
-            $repo->setPackagistSlug($this->composerReader->get('name'));
-        }
+            // Load package name
+            if ($this->composerReader->has('name')) {
+                $repo->setPackagistSlug($this->composerReader->get('name'));
+            }
 
-        // Load authors
-        if ($this->composerReader->has('authors')) {
-           $repo->setAuthors($this->composerReader->get('authors'));
-        }
+            // Load authors
+            if ($this->composerReader->has('authors')) {
+               $repo->setAuthors($this->composerReader->get('authors'));
+            }
 
-        // Load dependencies
-        if($this->composerReader->has('require')) {
-            $repo->setDependencies($this->composerReader->get('require'));
+            // Load dependencies
+            if($this->composerReader->has('require')) {
+                $repo->setDependencies($this->composerReader->get('require'));
+            }
+        } catch(\Exception $e) {
+            // We do not want to throw exception here!
         }
     }
-
     /**
      * Update an repo
      *

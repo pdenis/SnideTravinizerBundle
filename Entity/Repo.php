@@ -46,21 +46,21 @@ class Repo extends BaseRepo
      *
      * @var string
      *
-     * @ORM\Column(type="string", length=50)
+     * @ORM\Column(type="string", length=50, nullable=true)
      */
     protected $qualityBadgeHash;
     /**
      * Scrutinizer coverage badge hash
      * @var string
      *
-     * @ORM\Column(type="string", length=50)
+     * @ORM\Column(type="string", length=50, nullable=true)
      */
     protected $coverageBadgeHash;
     /**
      * Sensiolabs Insight project hash
      * @var string
      *
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     protected $insightHash;
     /**

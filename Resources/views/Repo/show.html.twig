@@ -4,7 +4,9 @@
     {{ parent() }}
     <script src="{{ asset('/bundles/snidetravinizer/js/highcharts.js') }}"></script>
     <script src="{{ asset('/bundles/snidetravinizer/js/theme.js') }}"></script>
-    {% include 'SnideTravinizerBundle:Repo:partial.metrics.html.twig' with {'metrics': repository.metrics} %}
+    {% if repository.metrics %}
+        {% include 'SnideTravinizerBundle:Repo:partial.metrics.html.twig' with {'metrics': repository.metrics} %}
+    {% endif %}
     {% if repository.pdependMetrics %}
         {% include 'SnideTravinizerBundle:Repo:partial.pdepend_metrics.html.twig' with {'metrics': repository.pdependMetrics} %}
     {% endif %}
@@ -16,9 +18,19 @@
             <h2>
                 <a target="_blank" href="{{ snide_travinizer_github_url(repository) }}">{{ repository.slug }}</a>
                 <p class="pull-right">
-                    {{ repository.metrics.quality|number_format(2) }} / 10
+                    {% if repository.metrics %}
+                        {{ repository.metrics.quality|number_format(2) }} / 10
+                    {% else %}
+                        ? / 10
+                    {% endif %}
                     <br />
-                    <span class="pull-right more issues">Issues : {{ repository.metrics.issuesCount }}</span>
+                    <span class="pull-right more issues">Issues :
+                        {% if repository.metrics %}
+                            {{ repository.metrics.issuesCount }}
+                        {% else %}
+                            ?
+                        {% endif %}
+                    </span>
                 </p>
             </h2>
             <p class="desc">
@@ -69,16 +81,20 @@
 
                 </p>
             </h3>
-           <div class="span4">
-                <div id="class_metrics"></div>
-            </div>
+            {% if repository.metrics %}
+               <div class="span4">
+                    <div id="class_metrics"></div>
+                </div>
 
-            <div class="span4">
-                <div id="operation_metrics"></div>
-            </div>
-            <div class="span4">
-                <div id="operation_weight"></div>
-            </div>
+                <div class="span4">
+                    <div id="operation_metrics"></div>
+                </div>
+                <div class="span4">
+                    <div id="operation_weight"></div>
+                </div>
+            {% else %}
+                No metrics found
+            {% endif %}
         </div>
     </div>
     <div class="row">
