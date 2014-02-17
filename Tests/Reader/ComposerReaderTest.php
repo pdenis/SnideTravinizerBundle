@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Snide\Bundle\TravinizerBundle\Tests\Helper;
+namespace Snide\Bundle\TravinizerBundle\Tests\Reader;
 
 use Buzz\Browser;
 use Snide\Bundle\TravinizerBundle\Helper\GithubHelper;

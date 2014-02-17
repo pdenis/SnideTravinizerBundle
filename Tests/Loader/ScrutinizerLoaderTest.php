@@ -55,7 +55,7 @@ class ScrutinizerLoaderTest extends \PHPUnit_Framework_TestCase
         try {
             $this->object->load($repo);
         }catch(\Exception $e) {
-            $this->assertInstanceOf('\UnexpectedValueException', $e);
+
         }
         $this->assertNull($repo->getMetrics());
         $this->assertNull($repo->getPdependMetrics());
