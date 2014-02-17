@@ -48,7 +48,9 @@ class RepoConverter implements ParamConverterInterface
         $name = $configuration->getName();
         $repo = null;
 
-        if(null != $request->attributes->get('slug')) {
+        if(null != $request->attributes->get('id')) {
+            $repo = $this->findById($request);
+        } else if(null != $request->attributes->get('slug')) {
             $repo = $this->findBySlug($request);
         }
 
@@ -71,6 +73,16 @@ class RepoConverter implements ParamConverterInterface
     public function supports(ParamConverter $configuration)
     {
         return ($configuration->getClass() == 'Snide\Bundle\TravinizerBundle\Model\Repo');
+    }
+
+    /**
+     * Find Repo by ID
+     *
+     * @param Request $request
+     */
+    protected function findById(Request $request)
+    {
+        return $this->repoManager->find($request->attributes->get('id'));
     }
 
     /**
