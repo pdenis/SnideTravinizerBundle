@@ -119,7 +119,7 @@ class RepoController extends Controller
      * @return array|RedirectResponse|\Symfony\Component\HttpFoundation\Response
      *
      * @ParamConverter("repo", converter="snide_travinizer.repo_converter", class="Snide\Bundle\TravinizerBundle\Model\Repo")
-     * @Template("SnideTravinizerBundle:Repo:edit")
+     * @Template("SnideTravinizerBundle:Repo:edit.html.twig")
      */
     public function updateAction(Repo $repo)
     {

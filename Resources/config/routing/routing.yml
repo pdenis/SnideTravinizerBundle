@@ -13,11 +13,11 @@ snide_travinizer_repo_create:
         _method:  POST
 
 snide_travinizer_repo_update:
-    pattern:   /{slug}/update
+    pattern:   /{id}/update
     defaults:  { _controller: SnideTravinizerBundle:Repo:update }
     requirements:
         _method:  POST
-        slug: "[a-zA-Z0-9-_/]+"
+        id: "[0-9]+"
 
 snide_travinizer_repo_edit:
     pattern:   /{slug}/edit
