@@ -11,10 +11,12 @@
 
 namespace Snide\Bundle\TravinizerBundle\Controller;
 
+use Snide\Bundle\TravinizerBundle\Model\Repo;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 /**
  * Class RepoController
@@ -48,7 +50,6 @@ class RepoController extends Controller
 
             }
         }
-
         return array(
             'form' => $form->createView(),
             'errors' => $form->getErrors()
@@ -58,21 +59,21 @@ class RepoController extends Controller
     /**
      * Edit repository  action
      *
-     * @param $id application ID
+     * @param \Snide\Bundle\TravinizerBundle\Model\Repo $repo
      * @return array|RedirectResponse
      *
+     * @ParamConverter("repo", converter="snide_travinizer.repo_converter", class="Snide\Bundle\TravinizerBundle\Model\Repo")
      * @Template
      */
-    public function editAction($id)
+    public function editAction(Repo $repo = null)
     {
-        $repository = $this->getManager()->find($id);
-        if (!$repository) {
+        if (!$repo) {
             return new RedirectResponse($this->generateUrl('snide_travinizer_dashboard'));
         }
-        $form = $this->getForm($repository);
+        $form = $this->getForm($repo);
         return array(
             'form' => $form->createView(),
-            'id' => $id,
+            'repo' => $repo,
             'errors' => array()
         );
     }
@@ -80,19 +81,19 @@ class RepoController extends Controller
     /**
      * Show repository  action
      *
-     * @param $id application ID
+     * @param \Snide\Bundle\TravinizerBundle\Model\Repo $repo
      * @return array|RedirectResponse|\Symfony\Component\HttpFoundation\Response
      *
+     * @ParamConverter("repo", converter="snide_travinizer.repo_converter", class="Snide\Bundle\TravinizerBundle\Model\Repo")
      * @Template
      */
-    public function showAction($id)
+    public function showAction(Repo $repo = null)
     {
-        $repository = $this->getManager()->find($id);
-        if (!$repository) {
+        if (!$repo) {
             return new RedirectResponse($this->generateUrl('snide_travinizer_dashboard'));
         }
         return array(
-            'repository' => $repository
+            'repository' => $repo
         );
     }
 
@@ -117,28 +118,28 @@ class RepoController extends Controller
      * @param Request $request
      * @return array|RedirectResponse|\Symfony\Component\HttpFoundation\Response
      *
+     * @ParamConverter("repo", converter="snide_travinizer.repo_converter", class="Snide\Bundle\TravinizerBundle\Model\Repo")
      * @Template("SnideTravinizerBundle:Repo:edit")
      */
-    public function updateAction(Request $request)
+    public function updateAction(Repo $repo)
     {
-        $form = $this->getForm();
+        $form = $this->getForm($repo);
 
-        if ('POST' == $request->getMethod()) {
-            $form->handleRequest($request);
+        $form->handleRequest($this->get('request'));
 
-            if ($form->isValid()) {
-                // Save instance
-                $this->getManager()->update($form->getData());
-                $this->get('session')->getFlashBag()->add('success', 'Repository updated successfully');
+        if ($form->isValid()) {
+            // Save instance
+            $this->getManager()->update($form->getData());
+            $this->get('session')->getFlashBag()->add('success', 'Repository updated successfully');
 
-                return new RedirectResponse($this->generateUrl('snide_travinizer_dashboard'));
-            } else {
-                $this->get('session')->getFlashBag()->add('error', 'Some errors found');
-            }
+            return new RedirectResponse($this->generateUrl('snide_travinizer_dashboard'));
         }
+        $this->get('session')->getFlashBag()->add('error', 'Some errors found');
+
 
         return array(
-            'form' => $form->createView(),
+            'repo'   => $repo,
+            'form'   => $form->createView(),
             'errors' => $form->getErrors()
         );
     }
@@ -146,14 +147,15 @@ class RepoController extends Controller
     /**
      * Delete application action
      *
-     * @param $id
+     * @param \Snide\Bundle\TravinizerBundle\Model\Repo $repo
      * @return RedirectResponse
+     *
+     * @ParamConverter("repo", converter="snide_travinizer.repo_converter", class="Snide\Bundle\TravinizerBundle\Model\Repo")
      */
-    public function deleteAction($id)
+    public function deleteAction(Repo $repo)
     {
-        $repository = $this->getManager()->find($id);
-        if ($repository) {
-            $this->getManager()->delete($repository);
+        if ($repo) {
+            $this->getManager()->delete($repo);
             $this->get('session')->getFlashBag()->add('success', 'Repository has been deleted successfully');
         } else {
             $this->get('session')->getFlashBag()->add('error', 'This repository does not exist');

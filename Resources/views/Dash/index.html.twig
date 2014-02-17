@@ -9,7 +9,6 @@
                 <thead>
                 <tr>
                     <th>Slug</th>
-                    <th>Type</th>
                     <th>Badges</th>
                     <th>Action(s)</th>
                     <th>Links</th>
@@ -19,17 +18,16 @@
 
                 {% for repository in repositories %}
                     <tr>
-                        <td><a class="none" href="{{ path('snide_travinizer_repo_show', {'id': repository.id}) }}">{{ repository.slug }}</a></td>
-                        <td>{{ repository.fullType }}</td>
-                        <td>
+                        <td><a class="none" href="{{ path('snide_travinizer_repo_show', {'slug': repository.slug}) }}">{{ repository.slug }}</a></td>
+                        <td class="badges">
                             {{  snide_travinizer_travis_badge(repository) }}
                             {{  snide_travinizer_scrutinizer_quality_badge(repository) }}
                             {{  snide_travinizer_scrutinizer_coverage_badge(repository) }}
                             {{  snide_travinizer_poser_stable_badge(repository) }}
                             {{  snide_travinizer_insight_badge(repository) }}
                         </td>
-                        <td><a href="{{ path('snide_travinizer_repo_edit', {'id': repository.id}) }}">Edit</a>
-                            | <a href="{{ path('snide_travinizer_repo_delete', {'id': repository.id}) }}">Delete</a>
+                        <td><a href="{{ path('snide_travinizer_repo_edit', {'slug': repository.slug}) }}">Edit</a>
+                            | <a href="{{ path('snide_travinizer_repo_delete', {'slug': repository.slug}) }}">Delete</a>
 
                         </td>
                         <td>

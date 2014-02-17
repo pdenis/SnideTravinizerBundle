@@ -279,3 +279,7 @@ select {
     margin-top: 20px;
     border-top:none;
 }
+
+td.badges {
+    width: 360px;
+}

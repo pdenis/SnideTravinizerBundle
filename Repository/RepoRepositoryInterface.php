@@ -28,12 +28,20 @@ interface RepoRepositoryInterface
     public function findAll();
 
     /**
+     * Find repo by ID
+     *
+     * @param string $id Repo ID
+     * @return Repo|null
+     */
+    public function find($id);
+
+    /**
      * Find repo by Slug
      *
-     * @param $slug App Slug
-     * @return Repository|null
+     * @param string $slug Repo Slug
+     * @return Repo|null
      */
-    public function find($slug);
+    public function findBySlug($slug);
 
     /**
      * Find repos by criteria

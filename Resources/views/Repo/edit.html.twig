@@ -4,7 +4,7 @@
     <div class="row">
         <div id="content" class="span12">
             <h2>Update an application</h2>
-            <form action="{{ path('snide_travinizer_repo_update') }}" method="post" {{ form_enctype(form) }}>
+            <form action="{{ path('snide_travinizer_repo_update', {'slug': repo.slug}) }}" method="post" {{ form_enctype(form) }}>
 
                 {{ form_row(form.id) }}
                 {{ form_row(form._token) }}

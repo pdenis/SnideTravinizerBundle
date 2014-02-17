@@ -106,16 +106,20 @@ class RepoManager implements RepoManagerInterface
      */
     public function find($slug)
     {
-        $repo = $this->repository->find($slug);
-        if (null == $repo) {
-            return null;
-        }
-        $this->loadExtraInfos($repo);
-        $this->loadPackagistInfos($repo);
-
-
-        return $repo;
+        return $this->loadRepo($this->repository->find($slug));
     }
+
+    /**
+     * Find a repo by his slug
+     *
+     * @param string $slug Repo slug
+     * @return Repo
+     */
+    public function findBySlug($slug)
+    {
+        return $this->loadRepo($this->repository->findBySlug($slug));
+    }
+
 
     /**
      * Find all repos
@@ -207,5 +211,22 @@ class RepoManager implements RepoManagerInterface
     public function getRepository()
     {
         return $this->repository;
+    }
+
+    /**
+     * Load repo infos
+     *
+     * @param Repo $repo
+     * @return Repo
+     */
+    protected function loadRepo(Repo $repo = null)
+    {
+        if (null == $repo) {
+            return null;
+        }
+        $this->loadExtraInfos($repo);
+        $this->loadPackagistInfos($repo);
+
+        return $repo;
     }
 }

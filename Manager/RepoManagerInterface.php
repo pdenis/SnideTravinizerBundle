@@ -5,7 +5,7 @@
  *
  * (c) Pascal DENIS <pascal.denis.75@gmail.com>
  *
- * For the full copyright and license information, please view the LICENSE
+ * For the full copyright ad license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
@@ -14,47 +14,55 @@ namespace Snide\Bundle\TravinizerBundle\Manager;
 use Snide\Bundle\TravinizerBundle\Model\Repo;
 
 /**
- * Interface RepositoryManagerInterface
+ * Interface RepositoryMaagerInterface
  *
  * @author Pascal DENIS <pascal.denis.75@gmail.com>
  */
 interface RepoManagerInterface
 {
     /**
-     * Create and save an repo
+     * Create ad save a repo
      *
      * @param Repo $repo
      */
     public function create(Repo $repo);
 
     /**
-     * Delete an repo
+     * Delete a repo
      *
      * @param Repo $repo
      */
     public function delete(Repo $repo);
 
     /**
-     * Update an repo
+     * Update a repo
      *
      * @param Repo $repo
      */
     public function update(Repo $repo);
 
     /**
-     * Create an repo instance
+     * Create a repo instace
      *
      * @return Repo
      */
     public function createNew();
 
     /**
-     * Find an repo
+     * Find a repo
      *
      * @param string $id App ID
      * @return Repo
      */
     public function find($id);
+
+    /**
+     * Find a repo by his slug
+     *
+     * @param string $slug Repo slug
+     * @return Repo
+     */
+    public function findBySlug($slug);
 
     /**
      * Find all repos

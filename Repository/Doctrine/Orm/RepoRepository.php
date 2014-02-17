@@ -37,11 +37,22 @@ class RepoRepository extends EntityRepository implements RepoRepositoryInterface
      * Find repo by ID
      *
      * @param $id Repo id
-     * @return Repository|null
+     * @return Repo|null
      */
     public function find($id)
     {
         return parent::find($id);
+    }
+
+    /**
+     * Find repo by Slug
+     *
+     * @param string $slug Repo Slug
+     * @return Repo|null
+     */
+    public function findBySlug($slug)
+    {
+        return $this->findOneBy(array('slug' => $slug));
     }
 
     /**

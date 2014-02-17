@@ -1,31 +1,38 @@
 snide_travinizer_dashboard:
-    pattern:   /dashboard
+    pattern:   /
     defaults:  { _controller: SnideTravinizerBundle:Dash:index }
     
 snide_travinizer_repo_new:
-    pattern:   /repo/new
+    pattern:   /new
     defaults:  { _controller: SnideTravinizerBundle:Repo:new }
 
 snide_travinizer_repo_create:
-    pattern:   /repo/create
+    pattern:   /create
     defaults:  { _controller: SnideTravinizerBundle:Repo:create }
     requirements:
         _method:  POST
 
-snide_travinizer_repo_edit:
-    pattern:   /repo/edit/{id}
-    defaults:  { _controller: SnideTravinizerBundle:Repo:edit }
-
-snide_travinizer_repo_show:
-    pattern:   /repo/show/{id}
-    defaults:  { _controller: SnideTravinizerBundle:Repo:show }
-
 snide_travinizer_repo_update:
-    pattern:   /repo/update
+    pattern:   /{slug}/update
     defaults:  { _controller: SnideTravinizerBundle:Repo:update }
     requirements:
         _method:  POST
+        slug: "[a-zA-Z0-9-_/]+"
+
+snide_travinizer_repo_edit:
+    pattern:   /{slug}/edit
+    defaults:  { _controller: SnideTravinizerBundle:Repo:edit }
+    requirements:
+        slug: "[a-zA-Z0-9-_/]+"
+
+snide_travinizer_repo_show:
+    pattern:   /{slug}/detail
+    defaults:  { _controller: SnideTravinizerBundle:Repo:show }
+    requirements:
+        slug: "[a-zA-Z0-9-_/]+"
 
 snide_travinizer_repo_delete:
-    pattern:   /repo/delete/{id}
+    pattern:   /{slug}/delete
     defaults:  { _controller: SnideTravinizerBundle:Repo:delete }
+    requirements:
+        slug: "[a-zA-Z0-9-_/]+"

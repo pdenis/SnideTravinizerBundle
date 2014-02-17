@@ -107,6 +107,23 @@ class RepoRepository implements RepoRepositoryInterface
     }
 
     /**
+     * Find repo by Slug
+     *
+     * @param string $slug Repo Slug
+     * @return Repo|null
+     */
+    public function findBySlug($slug)
+    {
+        foreach ($this->findAll() as $repo) {
+            if ($slug == $repo->getSlug()) {
+                return $repo;
+            }
+        }
+
+        return null;
+    }
+
+    /**
      * Create an repo
      *
      * @param Repo $repo
