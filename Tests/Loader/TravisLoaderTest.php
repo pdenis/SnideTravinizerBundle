@@ -60,7 +60,6 @@ class TravisLoaderTest extends \PHPUnit_Framework_TestCase
 
         }
 
-        $this->assertTrue($repo->getBuilds()->count() == 0);
         $this->assertNull($repo->getDescription());
         $this->assertNull($repo->getLastBuildDuration());
         $this->assertNull($repo->getLastBuildId());
