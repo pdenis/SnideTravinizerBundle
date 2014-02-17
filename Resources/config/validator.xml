@@ -1,0 +1,24 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="snide_travinizer.unexisting_repo_constraint_validator.class">Snide\Bundle\TravinizerBundle\Validator\UnexistingRepoConstraintValidator</parameter>
+        <parameter key="snide_travinizer.unique_slug_constraint_validator.class">Snide\Bundle\TravinizerBundle\Validator\UniqueSlugConstraintValidator</parameter>
+    </parameters>
+
+    <services>
+        <service id="snide_travinizer.unexisting_repo_constraint_validator" class="%snide_travinizer.unexisting_repo_constraint_validator.class%">
+            <argument type="service" id="snide_travinizer.github_helper" />
+            <argument type="service" id="snide_travinizer.browser" />
+            <tag name="validator.constraint_validator" alias="snide_travinizer.unexisting_repo_constraint_validator" />
+        </service>
+
+        <service id="snide_travinizer.unique_slug_constraint_validator" class="%snide_travinizer.unique_slug_constraint_validator.class%">
+            <argument type="service" id="snide_travinizer.repo_manager" />
+            <tag name="validator.constraint_validator" alias="snide_travinizer.unique_slug_constraint_validator" />
+        </service>
+    </services>
+</container>
