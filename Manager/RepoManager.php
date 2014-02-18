@@ -229,4 +229,17 @@ class RepoManager implements RepoManagerInterface
 
         return $repo;
     }
+
+    /**
+     * Checks if slug exist
+     *
+     * @param Repo $repo
+     * @return boolean
+     */
+    public function isExists(Repo $repo)
+    {
+        $anotherRepo = $this->findBySlug($repo->getSlug());
+
+        return ($anotherRepo != null && $repo->getId() != $anotherRepo->getId());
+    }
 }

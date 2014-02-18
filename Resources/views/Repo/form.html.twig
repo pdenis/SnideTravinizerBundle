@@ -1,5 +1,8 @@
 {{ form_row(form.id) }}
-        {{ form_row(form._token) }}
+{{ form_row(form._token) }}
+<div class="alert alert-error">
+    {{ form_errors(form) }}
+</div>
 <div class="control-group">
     {{ form_errors(form.slug) }}
     {{ form_label(form.slug) }}

@@ -123,13 +123,14 @@ class RepoController extends Controller
      */
     public function updateAction(Repo $repo)
     {
-        $form = $this->getForm($repo);
+        $form = $this->getForm();
 
         $form->handleRequest($this->get('request'));
-
+        $repo = $form->getData();
         if ($form->isValid()) {
             // Save instance
-            $this->getManager()->update($form->getData());
+
+            $this->getManager()->update($repo);
             $this->get('session')->getFlashBag()->add('success', 'Repository updated successfully');
 
             return new RedirectResponse($this->generateUrl('snide_travinizer_dashboard'));

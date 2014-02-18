@@ -70,4 +70,12 @@ interface RepoManagerInterface
      * @return array
      */
     public function findAll();
+
+    /**
+     * Checks if slug exist
+     *
+     * @param Repo $repo
+     * @return boolean
+     */
+    public function isExists(Repo $repo);
 }

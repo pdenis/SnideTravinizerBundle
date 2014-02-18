@@ -57,9 +57,10 @@ a.accordion-toggle, .black {
     color: black !important;
 }
 
-.add_link a strong {
-    padding-left: 10px;
-    padding-right: 10px;
+form .alert-error ul {
+    list-style: none outside none;
+    margin: 0;
+    padding: 0;
 }
 
 .accordion-heading .accordion-toggle {

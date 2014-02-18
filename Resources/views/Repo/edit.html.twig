@@ -4,9 +4,9 @@
     <div class="row">
         <div id="content">
             <h2>Update a repository</h2>
-            <form action="{{ path('snide_travinizer_repo_update', {'id': repo.id}) }}" method="post" {{ form_enctype(form) }}>
+            <form action="{{ path('snide_travinizer_repo_update', {'slug': repo.slug}) }}" method="post" {{ form_enctype(form) }}>
                 {% include 'SnideTravinizerBundle:Repo:form.html.twig' with {'form': form} %}
             </form>
         </div>
-    </div>  
+    </div>
 {% endblock %}

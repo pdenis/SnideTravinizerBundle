@@ -52,7 +52,7 @@ class RepoType extends AbstractType
         $builder->add('coverageBadgeHash', 'text', array('required' => false, 'label' => 'Scrutinizer coverage badge hash'));
         $builder->add('insightHash', 'text', array('required' => false, 'label' => 'Sensiolabs insight project hash'));
         $builder->add('type', 'choice', array(
-            'choices' => array('g' => 'Github', 'b' => 'Bitbucket')
+            'choices' => array('g' => 'Github') // @TODO : include 'b' => 'Bitbucket')
         ));
     }
 

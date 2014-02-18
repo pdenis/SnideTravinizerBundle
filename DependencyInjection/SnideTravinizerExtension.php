@@ -45,6 +45,7 @@ class SnideTravinizerExtension extends Extension
         $loader->load('loader.xml');
         $loader->load('manager.xml');
         $loader->load('twig_extension.xml');
+        $loader->load('validator.xml');
 
         $this->loadRepository($loader, $container, $config);
         $this->loadManager($loader, $container, $config);
