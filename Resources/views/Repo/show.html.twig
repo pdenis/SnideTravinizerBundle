@@ -14,26 +14,29 @@
 
 {% block main %}
     <div class="row">
-        <div id="content" class="span12">
-            <h2>
-                <a target="_blank" href="{{ snide_travinizer_github_url(repository) }}">{{ repository.slug }}</a>
-                <p class="pull-right">
-                    {% if repository.metrics %}
-                        {{ repository.metrics.quality|number_format(2) }} / 10
-                    {% else %}
-                        ? / 10
-                    {% endif %}
-                    <br />
-                    <span class="pull-right more issues">Issues :
+        <div id="content">
+            <div class="title">
+                <h2>
+                    <a target="_blank" href="{{ snide_travinizer_github_url(repository) }}">{{ repository.slug }}</a>
+                    <p class="pull-right">
                         {% if repository.metrics %}
-                            {{ repository.metrics.issuesCount }}
+                            {{ repository.metrics.quality|number_format(2) }} / 10
                         {% else %}
-                            ?
+                            ? / 10
                         {% endif %}
-                    </span>
-                </p>
-            </h2>
+                        <br />
+
+                    </p>
+                </h2>
+            </div>
             <p class="desc">
+                <span class="pull-right more issues">Issues :
+                    {% if repository.metrics %}
+                        {{ repository.metrics.issuesCount }}
+                    {% else %}
+                        ?
+                    {% endif %}
+                        </span>
                 {{ repository.description }}
                 {% if repository.authors|length > 0 %} by
                     {% for author in repository.authors %}
@@ -73,7 +76,7 @@
     </div>
 
     <div class="row">
-        <div class="span12">
+        <div>
             <h3>
                 Code Metrics
                 <p class="pull-right more">
@@ -98,7 +101,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="span12">
+        <div>
             <h3>
                 Last builds
                 <p class="pull-right"><a target="_blank" class="more" href="{{ snide_travinizer_travis_url(repository) }}">See more</a></p>
@@ -139,7 +142,7 @@
     </div>
     {% if repository.pdependMetrics %}
         <div class="row">
-            <div class="span12">
+            <div>
                 <h3>Pdepend statistics</h3>
 
                 <div id="pdepend_metrics"></div>

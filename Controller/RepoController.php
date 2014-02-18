@@ -124,7 +124,7 @@ class RepoController extends Controller
     public function updateAction(Repo $repo)
     {
         $form = $this->getForm();
-
+        $slug = $repo->getSlug();
         $form->handleRequest($this->get('request'));
         $repo = $form->getData();
         if ($form->isValid()) {
@@ -141,7 +141,8 @@ class RepoController extends Controller
         return array(
             'repo'   => $repo,
             'form'   => $form->createView(),
-            'errors' => $form->getErrors()
+            'errors' => $form->getErrors(),
+            'slug'   => $slug
         );
     }
 

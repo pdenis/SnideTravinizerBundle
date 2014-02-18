@@ -3,7 +3,9 @@
 {% block main %}
     <div class="row">
         <div id="content">
-            <h2>Add a repository</h2>
+            <div class="title">
+                <h2>Add a repository</h2>
+            </div>
             <form action="{{ path('snide_travinizer_repo_create') }}" method="post" {{ form_enctype(form) }}>
 
                 {% include 'SnideTravinizerBundle:Repo:form.html.twig' with {'form': form} %}

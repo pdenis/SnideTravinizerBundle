@@ -34,6 +34,7 @@ a.underline {
     clear: both;
 }
 
+
 .row.message {
     -moz-box-sizing: content-box;
     background: none repeat !important;
@@ -136,12 +137,10 @@ h1, h2, h3 {
     padding-top: 10px;
 }
 .span4 {
-    margin-left: 10px;
+    margin-left: 5px;
+    margin-right: 5px;
 }
 
-.issues {
-    padding-top: 20px;
-}
 .no-margin {
     margin:0;
 }
