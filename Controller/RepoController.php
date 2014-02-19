@@ -74,6 +74,7 @@ class RepoController extends Controller
         return array(
             'form' => $form->createView(),
             'repo' => $repo,
+            'slug' => $repo->getSlug(),
             'errors' => array()
         );
     }
