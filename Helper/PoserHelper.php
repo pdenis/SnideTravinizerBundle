@@ -71,4 +71,15 @@ class PoserHelper
     {
         return sprintf('%s/%s/d/daily.png', $this->host, $slug);
     }
+
+    /**
+     * Get license badge Url
+     *
+     * @param string $slug Packagist slug
+     * @return string
+     */
+    public function getLicenseBadgeUrl($slug)
+    {
+        return sprintf('%s/%s/license.png', $this->host, $slug);
+    }
 }

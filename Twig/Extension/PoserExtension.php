@@ -63,6 +63,11 @@ class PoserExtension extends \Twig_Extension
                 $this,
                 'getDailyDownloadBadge',
                 array('is_safe'=> array('html'))
+            ),
+            'snide_travinizer_poser_license_badge'   => new \Twig_Function_Method(
+                $this,
+                'getLicenseBadge',
+                array('is_safe'=> array('html'))
             )
         );
     }
@@ -77,6 +82,21 @@ class PoserExtension extends \Twig_Extension
     {
         if ($repo->getPackagistSlug()) {
             return sprintf('<img src="%s" />', $this->helper->getStableVersionBadgeUrl($repo->getPackagistSlug()));
+        }
+
+        return '';
+    }
+
+    /**
+     * Get license badge image
+     *
+     * @param Repo $repo
+     * @return string
+     */
+    public function getLicenseBadge(Repo $repo)
+    {
+        if ($repo->getPackagistSlug()) {
+            return sprintf('<img src="%s" />', $this->helper->getLicenseBadgeUrl($repo->getPackagistSlug()));
         }
 
         return '';

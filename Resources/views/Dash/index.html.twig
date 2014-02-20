@@ -6,46 +6,52 @@
             <div class="title">
                 <h2>Repositories</h2>
             </div>
-            <table class="table table-striped">
-                <thead>
-                <tr>
-                    <th>Slug</th>
-                    <th>Badges</th>
-                    <th>Action(s)</th>
-                    <th>Links</th>
-                </tr>
-                </thead>
-                <tbody>
 
-                {% for repository in repositories %}
-                    <tr>
-                        <td><a class="none" href="{{ path('snide_travinizer_repo_show', {'slug': repository.slug}) }}">{{ repository.slug }}</a></td>
-                        <td class="badges">
-                            {{  snide_travinizer_travis_badge(repository) }}
-                            {{  snide_travinizer_scrutinizer_quality_badge(repository) }}
-                            {{  snide_travinizer_scrutinizer_coverage_badge(repository) }}
-                            {{  snide_travinizer_poser_stable_badge(repository) }}
-                            {{  snide_travinizer_insight_badge(repository) }}
-                        </td>
-                        <td><a href="{{ path('snide_travinizer_repo_edit', {'slug': repository.slug}) }}">Edit</a>
-                            | <a href="{{ path('snide_travinizer_repo_delete', {'slug': repository.slug}) }}">Delete</a>
 
-                        </td>
-                        <td>
-                            <a target="_blank" href="{{ snide_travinizer_github_url(repository) }}">Github</a>
-                            | <a target="_blank" href="{{ snide_travinizer_travis_url(repository) }}">Travis</a>
-                            | <a target="_blank" href="{{ snide_travinizer_scrutinizer_url(repository) }}">Scrutinizer</a>
-                            {% if repository.packagistSlug %}
-                                | <a target="_blank" href="{{ snide_travinizer_packagist_url(repository) }}">Packagist</a>
-                            {% endif %}
-                            {% if repository.insightHash %}
-                                | <a target="_blank" href="{{ snide_travinizer_insight_url(repository) }}">Insight</a>
-                            {% endif %}
-                        </td>
-                    </tr>
-                {% endfor %}
+                {% if repositories %}
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>Slug</th>
+                            <th>Badges</th>
+                            <th>Action(s)</th>
+                            <th>Links</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for repository in repositories %}
+                            <tr>
+                                <td><a class="none" href="{{ path('snide_travinizer_repo_show', {'slug': repository.slug}) }}">{{ repository.slug }}</a></td>
+                                <td class="badges">
+                                    {{  snide_travinizer_travis_badge(repository) }}
+                                    {{  snide_travinizer_scrutinizer_quality_badge(repository) }}
+                                    {{  snide_travinizer_scrutinizer_coverage_badge(repository) }}
+                                    {{  snide_travinizer_poser_stable_badge(repository) }}
+                                    {{  snide_travinizer_insight_badge(repository) }}
+                                </td>
+                                <td><a href="{{ path('snide_travinizer_repo_edit', {'slug': repository.slug}) }}">Edit</a>
+                                    | <a href="{{ path('snide_travinizer_repo_delete', {'slug': repository.slug}) }}">Delete</a>
+
+                                </td>
+                                <td>
+                                    <a target="_blank" href="{{ snide_travinizer_github_url(repository) }}">Github</a>
+                                    | <a target="_blank" href="{{ snide_travinizer_travis_url(repository) }}">Travis</a>
+                                    | <a target="_blank" href="{{ snide_travinizer_scrutinizer_url(repository) }}">Scrutinizer</a>
+                                    {% if repository.packagistSlug %}
+                                        | <a target="_blank" href="{{ snide_travinizer_packagist_url(repository) }}">Packagist</a>
+                                    {% endif %}
+                                    {% if repository.insightHash %}
+                                        | <a target="_blank" href="{{ snide_travinizer_insight_url(repository) }}">Insight</a>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+                {% else %}
+                    You have no repositories<br /><br />
+                {% endif %}
                 </tbody>
-            </table>
+
             <p>To add a repository, <a href="{{ path('snide_travinizer_repo_new') }}">click here</a></p>
         </div>
     </div>

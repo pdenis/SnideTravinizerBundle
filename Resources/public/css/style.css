@@ -35,6 +35,10 @@ a.underline {
 }
 
 
+h3 {
+    clear:both;
+}
+
 .row.message {
     -moz-box-sizing: content-box;
     background: none repeat !important;
