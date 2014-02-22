@@ -79,6 +79,10 @@ class SnideTravinizerExtension extends Extension
         } else {
             throw new InvalidConfigurationException('You must define repository type parameter');
         }
+
+        if(isset($config['repository']['class'])) {
+            $container->setParameter('snide_travinizer.repo_repository.class', $config['repository']['class']);
+        }
     }
 
     /**
