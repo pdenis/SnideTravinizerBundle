@@ -108,7 +108,8 @@ class PoserExtensionTest extends \PHPUnit_Framework_TestCase
                 'snide_travinizer_poser_unstable_badge',
                 'snide_travinizer_poser_download_badge',
                 'snide_travinizer_poser_monthly_download_badge',
-                'snide_travinizer_poser_daily_download_badge'
+                'snide_travinizer_poser_daily_download_badge',
+                'snide_travinizer_poser_license_badge'
             ), array_keys($this->object->getFunctions()));
     }
 
