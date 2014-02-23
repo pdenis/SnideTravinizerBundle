@@ -38,6 +38,11 @@ class TravisLoader implements TravisLoaderInterface
      */
     public function load(Repo $repo)
     {
-        return $this->client->fetchRepository($repo);
+        // Travis own its ID
+        $id = $repo->getId();
+        $this->client->fetchRepository($repo);
+        $repo->setId($id);
+
+        return $repo;
     }
 }

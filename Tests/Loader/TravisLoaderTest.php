@@ -50,7 +50,7 @@ class TravisLoaderTest extends \PHPUnit_Framework_TestCase
         $this->assertNotNull($repo->getDescription());
         $this->assertNotNull($repo->getLastBuildDuration());
         $this->assertNotNull($repo->getLastBuildId());
-     
+
         $repo = new Repo();
         $repo->setSlug('pdenis/unknown');
         try {
