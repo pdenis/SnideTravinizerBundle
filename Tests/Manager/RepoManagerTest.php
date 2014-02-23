@@ -19,7 +19,7 @@ use Snide\Bundle\TravinizerBundle\Manager\RepoManager;
 use Snide\Bundle\TravinizerBundle\Model\Repo;
 use Snide\Bundle\TravinizerBundle\Reader\ComposerReader;
 use Snide\Bundle\TravinizerBundle\Repository\Yaml\RepoRepository;
-use Travis\Client as TravisClient;
+use Snide\Travis\Client as TravisClient;
 use Snide\Scrutinizer\Client as ScClient;
 
 /**

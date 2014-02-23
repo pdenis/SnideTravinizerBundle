@@ -98,8 +98,7 @@ class RepoTest extends \PHPUnit_Framework_TestCase
      */
     public function testBuilds()
     {
-        $this->assertNull($this->object->getBuilds());
-        $builds = new \Travis\Client\Entity\BuildCollection();
+        $builds = array('build');
         $this->object->setBuilds($builds);
         $this->assertEquals($builds, $this->object->getBuilds());
     }

@@ -12,7 +12,7 @@
 namespace Snide\Bundle\TravinizerBundle\Model;
 
 use Snide\Scrutinizer\Model\Metrics;
-use Travis\Client\Entity\Repository;
+use Snide\Travis\Model\Repository;
 use Snide\Scrutinizer\Model\Pdepend\Metrics as PdependMetrics;
 use Snide\Scrutinizer\Model\Coverage\Metrics as CoverageMetrics;
 /**

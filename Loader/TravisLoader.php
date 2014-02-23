@@ -12,7 +12,7 @@
 namespace Snide\Bundle\TravinizerBundle\Loader;
 
 use Snide\Bundle\TravinizerBundle\Model\Repo;
-use Travis\Client;
+use Snide\Travis\Client;
 
 /**
  * Class TravisLoader
@@ -34,20 +34,10 @@ class TravisLoader implements TravisLoaderInterface
     /**
      * Load travis infos for repository
      * @param Repo $repo
-     * @return mixed
+     * @return Repo
      */
     public function load(Repo $repo)
     {
-        $travisRepo = $this->client->fetchRepository($repo->getSlug());
-
-        if ($travisRepo) {
-            // Inject travis data into repository
-            $repo->setBuilds($travisRepo->getBuilds());
-            $repo->setDescription($travisRepo->getDescription());
-            $repo->setLastBuildDuration($travisRepo->getLastBuildDuration());
-            $repo->setLastBuildId($travisRepo->getLastBuildId());
-            $repo->setLastBuildNumber($travisRepo->getLastBuildNumber());
-            $repo->setLastBuildStatus($travisRepo->getLastBuildStatus());
-        }
+        return $this->client->fetchRepository($repo);
     }
 }

@@ -13,7 +13,7 @@ namespace Snide\Bundle\TravinizerBundle\Tests\Loader;
 
 use Snide\Bundle\TravinizerBundle\Loader\TravisLoader;
 use Snide\Bundle\TravinizerBundle\Model\Repo;
-use Travis\Client;
+use Snide\Travis\Client;
 
 /**
  * Class TravisLoaderTest
@@ -46,12 +46,11 @@ class TravisLoaderTest extends \PHPUnit_Framework_TestCase
         $repo = new Repo();
         $repo->setSlug('pdenis/monitoring');
         $this->object->load($repo);
-        $this->assertTrue($repo->getBuilds()->count() > 0);
+        $this->assertTrue(count($repo->getBuilds()) > 0);
         $this->assertNotNull($repo->getDescription());
         $this->assertNotNull($repo->getLastBuildDuration());
         $this->assertNotNull($repo->getLastBuildId());
-        $this->assertNotNull($repo->getLastBuildStatus());
-
+     
         $repo = new Repo();
         $repo->setSlug('pdenis/unknown');
         try {
@@ -63,7 +62,7 @@ class TravisLoaderTest extends \PHPUnit_Framework_TestCase
         $this->assertNull($repo->getDescription());
         $this->assertNull($repo->getLastBuildDuration());
         $this->assertNull($repo->getLastBuildId());
-        $this->assertNull($repo->getLastBuildStatus());
+        $this->assertNull($repo->getLastBuildState());
     }
 
 }
