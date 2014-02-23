@@ -5,28 +5,28 @@
                 categories = ['LinesCount of code', 'LinesCount of comments', 'LinesCount of logical', 'LinesCount of executable', 'Cyclomatic complexity'],
                 name = 'Pdepend report',
                 data = [{
-                    y: {{ metrics.codeLinesCount }},
+                    y: {{ metrics.linesOfCode }},
                     color: colors[0],
                     drilldown: {
                         name: 'Code',
                         color: colors[0]
                     }
                 }, {
-                    y: {{ metrics.commentCodeLinesCount }},
+                    y: {{ metrics.commentLinesOfCode }},
                     color: colors[1],
                     drilldown: {
                         name: 'Comments',
                         color: colors[1]
                     }
                 }, {
-                    y: {{ metrics.logicalCodeLinesCount }},
+                    y: {{ metrics.logicalLinesOfCode }},
                     color: colors[2],
                     drilldown: {
                         name: 'Logical code',
                         color: colors[2]
                     }
                 }, {
-                    y: {{ metrics.executableCodeLinesCount }},
+                    y: {{ metrics.executableLinesOfCode }},
                     color: colors[3],
                     drilldown: {
                         name: 'Executable code',

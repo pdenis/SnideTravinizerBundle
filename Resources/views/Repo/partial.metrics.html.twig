@@ -13,7 +13,7 @@
                     backgroundColor:'rgba(255, 255, 255, 0.1)'
                 },
                 title: {
-                    text: 'Classes quality ({{ metrics.classesCount }} classes)'
+                    text: 'Classes quality ({{ metrics.nbClasses }} classes)'
                 },
                 tooltip: {
                     pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
@@ -32,11 +32,11 @@
                     type: 'pie',
                     name: 'Classes Quality',
                     data: [
-                        ['Very Good',  {{ metrics.veryGoodClassesCount }}],
-                        ['Good',       {{ metrics.goodClassesCount }}],
-                        ['Pass',    {{ metrics.passClassesCount }}],
-                        ['Satisfactory',     {{ metrics.satisfactoryClassesCount }}],
-                        ['Critical',   {{ metrics.criticalClassesCount }}]
+                        ['Very Good',  {{ metrics.nbClassesVeryGood }}],
+                        ['Good',       {{ metrics.nbClassesGood }}],
+                        ['Pass',    {{ metrics.nbClassesPass }}],
+                        ['Satisfactory',     {{ metrics.nbClassesSatisfactory }}],
+                        ['Critical',   {{ metrics.nbClassesCritical }}]
                     ]
                 }]
             });
@@ -60,7 +60,7 @@
                     backgroundColor:'rgba(255, 255, 255, 0.1)'
                 },
                 title: {
-                    text: 'Operations quality ({{ metrics.operationsCount }} operations)'
+                    text: 'Operations quality ({{ metrics.nbOperations }} operations)'
                 },
                 tooltip: {
                     pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
@@ -79,11 +79,11 @@
                     type: 'pie',
                     name: 'Operations Quality',
                     data: [
-                        ['Very Good',    {{ metrics.veryGoodOperationsCount }}],
-                        ['Good',         {{ metrics.goodOperationsCount }}],
-                        ['Pass',         {{ metrics.passOperationsCount }}],
-                        ['Satisfactory', {{ metrics.satisfactoryOperationsCount }}],
-                        ['Critical',     {{ metrics.criticalOperationsCount }}]
+                        ['Very Good',    {{ metrics.nbOperationsVeryGood }}],
+                        ['Good',         {{ metrics.nbOperationsGood }}],
+                        ['Pass',         {{ metrics.nbOperationsPass }}],
+                        ['Satisfactory', {{ metrics.nbOperationsSatisfactory }}],
+                        ['Critical',     {{ metrics.nbOperationsCritical }}]
                     ]
                 }]
             });
@@ -108,7 +108,7 @@
                     backgroundColor:'rgba(255, 255, 255, 0.1)'
                 },
                 title: {
-                    text: 'Operations weight ({{ metrics.operationsCount }} operations)'
+                    text: 'Operations weight ({{ metrics.nbOperations }} operations)'
                 },
                 tooltip: {
                     pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
@@ -127,11 +127,11 @@
                     type: 'pie',
                     name: 'Operations Quality Rating',
                     data: [
-                        ['Very Good',    {{ metrics.veryGoodOperationsWeight }}],
-                        ['Good',         {{ metrics.goodOperationsWeight }}],
-                        ['Pass',         {{ metrics.passOperationsWeight }}],
-                        ['Satisfactory', {{ metrics.satisfactoryOperationsWeight }}],
-                        ['Critical',     {{ metrics.criticalOperationsWeight }}]
+                        ['Very Good',    {{ metrics.operationsWeightVeryGood }}],
+                        ['Good',         {{ metrics.operationsWeightGood }}],
+                        ['Pass',         {{ metrics.operationsWeightPass }}],
+                        ['Satisfactory', {{ metrics.operationsWeightSatisfactory }}],
+                        ['Critical',     {{ metrics.operationsWeightCritical }}]
                     ]
                 }]
             });
