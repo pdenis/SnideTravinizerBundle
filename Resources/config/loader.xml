@@ -9,17 +9,14 @@
         <parameter key="snide_travinizer.scrutinizer_loader.class">Snide\Bundle\TravinizerBundle\Loader\ScrutinizerLoader</parameter>
         <parameter key="snide_travinizer.travis_client.class">Snide\Travis\Client</parameter>
         <parameter key="snide_travinizer.scrutinizer_client.class">Snide\Scrutinizer\Client</parameter>
-        <parameter key="snide_travinizer.browser.class">Buzz\Browser</parameter>
 
     </parameters>
 
     <services>
-        <service id="snide_travinizer.browser" class="%snide_travinizer.browser.class%" public="true" />
         <service id="snide_travinizer.travis_client" class="%snide_travinizer.travis_client.class%" public="true" />
 
-        <service id="snide_travinizer.scrutinizer_client" class="%snide_travinizer.scrutinizer_client.class%" public="true">
-            <argument type="service" id="snide_travinizer.browser"/>
-        </service>
+        <service id="snide_travinizer.scrutinizer_client" class="%snide_travinizer.scrutinizer_client.class%" public="true" />
+
         <service id="snide_travinizer.travis_loader" class="%snide_travinizer.travis_loader.class%" public="true">
             <argument type="service" id="snide_travinizer.travis_client"/>
         </service>
