@@ -44,6 +44,7 @@ class ScrutinizerLoaderTest extends \PHPUnit_Framework_TestCase
     {
         $this->object = new ScrutinizerLoader(new Client());
         $repo = new Repo();
+        $repo->setType('g');
         $repo->setSlug('pdenis/monitoring');
         $this->object->load($repo);
 
@@ -51,6 +52,7 @@ class ScrutinizerLoaderTest extends \PHPUnit_Framework_TestCase
         $this->assertNotNull($repo->getPdependMetrics());
 
         $repo = new Repo();
+        $repo->setType('g');
         $repo->setSlug('pdenis/unknown');
         try {
             $this->object->load($repo);

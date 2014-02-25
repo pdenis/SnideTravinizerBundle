@@ -19,6 +19,7 @@
         "twig/twig": "1.*",
         "snide/php-travis-client": "dev-master",
         "snide/php-scrutinizer-client": "dev-master",
+        "kriswallsmith/buzz": "0.5",
         "php": ">=5.3.3"
     },
     "autoload": {

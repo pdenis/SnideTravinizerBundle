@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "748f624e8753b2bfe1955d5490633d7f",
+    "hash": "7086be1246c0dbcd98f8c55e3a22d182",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -306,16 +306,16 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/pdenis/scrutinizer-client.git",
-                "reference": "4ad15cacb65371ec2355362330752715cab5c79f"
+                "reference": "e4531428b89186f87ae72b311899d60a7f7949bf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pdenis/scrutinizer-client/zipball/4ad15cacb65371ec2355362330752715cab5c79f",
-                "reference": "4ad15cacb65371ec2355362330752715cab5c79f",
+                "url": "https://api.github.com/repos/pdenis/scrutinizer-client/zipball/e4531428b89186f87ae72b311899d60a7f7949bf",
+                "reference": "e4531428b89186f87ae72b311899d60a7f7949bf",
                 "shasum": ""
             },
             "require": {
-                "kriswallsmith/buzz": "v0.5",
+                "guzzle/guzzle": "3.7",
                 "php": ">=5.3.3"
             },
             "require-dev": {
@@ -333,18 +333,18 @@
             ],
             "authors": [
                 {
-                    "name": "Pascal Denis",
+                    "name": "Pascal DENIS",
                     "email": "pascal.denis.75@gmail.com"
                 }
             ],
             "description": "PHP Scrutinizer Client",
-            "homepage": "http://github.com/pdenis/monitoring",
+            "homepage": "http://github.com/pdenis/scrutinizer-client",
             "keywords": [
                 "library",
                 "scrutinizer",
                 "snide"
             ],
-            "time": "2014-02-23 10:29:58"
+            "time": "2014-02-25 10:57:24"
         },
         {
             "name": "snide/php-travis-client",
@@ -352,12 +352,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/pdenis/travis-client.git",
-                "reference": "60e7f13e06f05f5689bce9df4cb27afc1489437a"
+                "reference": "6925427ac2650a52a03bd23e4809cc9186bb63cd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pdenis/travis-client/zipball/60e7f13e06f05f5689bce9df4cb27afc1489437a",
-                "reference": "60e7f13e06f05f5689bce9df4cb27afc1489437a",
+                "url": "https://api.github.com/repos/pdenis/travis-client/zipball/6925427ac2650a52a03bd23e4809cc9186bb63cd",
+                "reference": "6925427ac2650a52a03bd23e4809cc9186bb63cd",
                 "shasum": ""
             },
             "require": {
@@ -384,14 +384,14 @@
                 }
             ],
             "description": "PHP Travis Client",
-            "homepage": "http://github.com/pdenis/monitoring",
+            "homepage": "http://github.com/pdenis/travis-client",
             "keywords": [
                 "client",
                 "library",
                 "snide",
                 "travis"
             ],
-            "time": "2014-02-23 14:59:55"
+            "time": "2014-02-25 10:57:12"
         },
         {
             "name": "symfony/config",
