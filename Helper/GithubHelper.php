@@ -71,4 +71,14 @@ class GithubHelper
             $path
         );
     }
+
+    /**
+     * Get github raw host
+     *
+     * @return string
+     */
+    public function getRawHost()
+    {
+        return $this->rawHost;
+    }
 }

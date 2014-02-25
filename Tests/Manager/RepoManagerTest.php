@@ -52,7 +52,7 @@ class RepoManagerTest extends \PHPUnit_Framework_TestCase
         $this->repository = new RepoRepository($this->class, $this->filename);
         $this->travisLoader = new TravisLoader(new TravisClient());
         $this->scrutinizerLoader = new ScrutinizerLoader(new ScClient());
-        $this->composerReader = new ComposerReader(new Browser(), new GithubHelper());
+        $this->composerReader = new ComposerReader(new GithubHelper());
         $this->object = new RepoManager($this->repository, $this->class, $this->travisLoader, $this->scrutinizerLoader, $this->composerReader);
     }
 

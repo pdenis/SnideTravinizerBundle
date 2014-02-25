@@ -43,8 +43,7 @@ class ComposerReaderTest extends \PHPUnit_Framework_TestCase
     protected function setUp()
     {
         $this->helper = new GithubHelper();
-        $this->browser = new Browser();
-        $this->object = new ComposerReader($this->browser, $this->helper);
+        $this->object = new ComposerReader($this->helper);
     }
 
     /**
@@ -76,8 +75,9 @@ class ComposerReaderTest extends \PHPUnit_Framework_TestCase
             $this->object->load($repo->getSlug());
             $this->fail('Repository is unknown');
         }catch(\Exception $e) {
+
             $this->assertFalse($this->object->has('name'));
-            $this->assertInstanceOf('\UnexpectedValueException', $e);
+            $this->assertInstanceOf('Guzzle\Http\Exception\ClientErrorResponseException', $e);
         }
     }
 
@@ -90,16 +90,5 @@ class ComposerReaderTest extends \PHPUnit_Framework_TestCase
         $helper = new GithubHelper();
         $this->object->setHelper($helper);
         $this->assertEquals($helper, $this->object->getHelper());
-    }
-
-    /**
-     * Test browser
-     */
-    public function testBrowser()
-    {
-        $this->assertEquals($this->browser, $this->object->getBrowser());
-        $helper = new Browser();
-        $this->object->setBrowser($helper);
-        $this->assertEquals($helper, $this->object->getBrowser());
     }
 }

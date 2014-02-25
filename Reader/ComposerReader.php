@@ -3,7 +3,9 @@
 namespace Snide\Bundle\TravinizerBundle\Reader;
 
 use Buzz\Browser;
+use Guzzle\Http\Client;
 use Snide\Bundle\TravinizerBundle\Helper\GithubHelper;
+use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 /**
  * Class ComposerReader
@@ -18,12 +20,13 @@ class ComposerReader implements ComposerReaderInterface
      * @var \Snide\Bundle\TravinizerBundle\Helper\GithubHelper
      */
     protected $helper;
+
     /**
-     * Client browser
+     * Guzzle client
      *
-     * @var \Buzz\Browser
+     * @var Client
      */
-    protected $browser;
+    protected $httpClient;
     /**
      * Array of data
      *
@@ -34,13 +37,12 @@ class ComposerReader implements ComposerReaderInterface
     /**
      * Constructor
      *
-     * @param Browser $browser
      * @param GithubHelper $helper
      */
-    public function __construct(Browser $browser, GithubHelper $helper)
+    public function __construct(GithubHelper $helper)
     {
         $this->helper = $helper;
-        $this->browser = $browser;
+        $this->httpClient = new Client();
     }
 
     /**
@@ -52,12 +54,10 @@ class ComposerReader implements ComposerReaderInterface
      */
     public function load($slug, $branch = 'master')
     {
-        $url = $this->helper->getRawFileUrl($slug, $branch, 'composer.json');
-        $this->data = json_decode($this->browser->get($url)->getContent(), true);
+        $this->data = array();
+        $this->httpClient->setBaseUrl($this->helper->getRawFileUrl($slug, $branch, ''));
 
-        if (!isset($this->data['name'])) {
-            throw new \UnexpectedValueException(sprintf('Response is empty for url %s', $url));
-        }
+        $this->data = $this->getResponse('composer.json');
     }
 
     /**
@@ -88,26 +88,6 @@ class ComposerReader implements ComposerReaderInterface
     }
 
     /**
-     * Setter browser
-     *
-     * @param \Buzz\Browser $browser
-     */
-    public function setBrowser(Browser $browser)
-    {
-        $this->browser = $browser;
-    }
-
-    /**
-     * Getter browser
-     *
-     * @return \Buzz\Browser
-     */
-    public function getBrowser()
-    {
-        return $this->browser;
-    }
-
-    /**
      * Setter helper
      *
      * @param \Snide\Bundle\TravinizerBundle\Helper\GithubHelper $helper
@@ -126,4 +106,24 @@ class ComposerReader implements ComposerReaderInterface
     {
         return $this->helper;
     }
+
+    public function addSubscriber(EventSubscriberInterface $subscriber)
+    {
+
+    }
+
+    /**
+     * Get composer json
+     *
+     * @param $uri
+     * @return array|bool|float|int|string
+     */
+    protected function getResponse($uri)
+    {
+        $request = $this->httpClient->get($uri);
+
+        return $request->send()->json();
+    }
+
+
 }
