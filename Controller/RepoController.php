@@ -31,7 +31,7 @@ class RepoController extends Controller
      * @param \Symfony\Component\HttpFoundation\Request $request
      * @return array|RedirectResponse
      *
-     * @Template("SnideTravinizerBundle:Repo:new")
+     * @Template("SnideTravinizerBundle:Repo:new.html.twig")
      */
     public function createAction(Request $request)
     {
