@@ -19,12 +19,12 @@ Symfony 2 bundle - Travis CI &amp; Scrutinizer CI overview for your OS projects
 
 ### Installation by Composer
 
-If you use composer, add MonitorBundle bundle as a dependency to the composer.json of your application
+If you use composer, add SnideTravinizerBundle bundle as a dependency to the composer.json of your application
 
 ```php
     "require": {
         ...
-        "snide/travinizer-bundle": "1.*"
+        "snide/travinizer-bundle": "dev-master"
         ...
     },
 
