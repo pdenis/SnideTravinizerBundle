@@ -92,50 +92,98 @@
     });
 </script>
 
+{% if metrics.operationsWeightVeryGood %}
+    <script type="text/javascript">
+        $(function () {
+            var chart;
 
-<script type="text/javascript">
-    $(function () {
-        var chart;
+            $(document).ready(function () {
 
-        $(document).ready(function () {
-
-            // Build the chart
-            $('#operation_weight').highcharts({
-                chart: {
-                    plotBackgroundColor: null,
-                    plotBorderWidth: null,
-                    plotShadow: false,
-                    backgroundColor:'rgba(255, 255, 255, 0.1)'
-                },
-                title: {
-                    text: 'Operations weight ({{ metrics.nbOperations }} operations)'
-                },
-                tooltip: {
-                    pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-                },
-                plotOptions: {
-                    pie: {
-                        allowPointSelect: true,
-                        cursor: 'pointer',
-                        dataLabels: {
-                            enabled: false
-                        },
-                        showInLegend: true
-                    }
-                },
-                series: [{
-                    type: 'pie',
-                    name: 'Operations Quality Rating',
-                    data: [
-                        ['Very Good',    {{ metrics.operationsWeightVeryGood }}],
-                        ['Good',         {{ metrics.operationsWeightGood }}],
-                        ['Pass',         {{ metrics.operationsWeightPass }}],
-                        ['Satisfactory', {{ metrics.operationsWeightSatisfactory }}],
-                        ['Critical',     {{ metrics.operationsWeightCritical }}]
-                    ]
-                }]
+                // Build the chart
+                $('#operation_weight').highcharts({
+                    chart: {
+                        plotBackgroundColor: null,
+                        plotBorderWidth: null,
+                        plotShadow: false,
+                        backgroundColor:'rgba(255, 255, 255, 0.1)'
+                    },
+                    title: {
+                        text: 'Operations weight ({{ metrics.nbOperations }} operations)'
+                    },
+                    tooltip: {
+                        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                    },
+                    plotOptions: {
+                        pie: {
+                            allowPointSelect: true,
+                            cursor: 'pointer',
+                            dataLabels: {
+                                enabled: false
+                            },
+                            showInLegend: true
+                        }
+                    },
+                    series: [{
+                        type: 'pie',
+                        name: 'Operations Quality Rating',
+                        data: [
+                            ['Very Good',    {{ metrics.operationsWeightVeryGood }}],
+                            ['Good',         {{ metrics.operationsWeightGood }}],
+                            ['Pass',         {{ metrics.operationsWeightPass }}],
+                            ['Satisfactory', {{ metrics.operationsWeightSatisfactory }}],
+                            ['Critical',     {{ metrics.operationsWeightCritical }}]
+                        ]
+                    }]
+                });
             });
-        });
 
-    });
-</script>
+        });
+    </script>
+{% else %}
+    <script type="text/javascript">
+        $(function () {
+            var chart;
+
+            $(document).ready(function () {
+
+                // Build the chart
+                $('#operation_weight').highcharts({
+                    chart: {
+                        plotBackgroundColor: null,
+                        plotBorderWidth: null,
+                        plotShadow: false,
+                        backgroundColor:'rgba(255, 255, 255, 0.1)'
+                    },
+                    title: {
+                        text: 'Weight quality ({{ metrics.nbOperations }} operations)'
+                    },
+                    tooltip: {
+                        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                    },
+                    plotOptions: {
+                        pie: {
+                            allowPointSelect: true,
+                            cursor: 'pointer',
+                            dataLabels: {
+                                enabled: false
+                            },
+                            showInLegend: true
+                        }
+                    },
+                    series: [{
+                        type: 'pie',
+                        name: 'Weight quality',
+                        data: [
+                            ['Very Good',    {{ metrics.weightVeryGood }}],
+                            ['Good',         {{ metrics.weightGood }}],
+                            ['Pass',         {{ metrics.weightPass }}],
+                            ['Satisfactory', {{ metrics.weightSatisfactory }}],
+                            ['Critical',     {{ metrics.weightCritical }}]
+                        ]
+                    }]
+                });
+            });
+
+        });
+    </script>
+{% endif %}
