@@ -5,6 +5,7 @@ namespace Snide\Bundle\TravinizerBundle\Reader;
 use Buzz\Browser;
 use Guzzle\Http\Client;
 use Snide\Bundle\TravinizerBundle\Helper\GithubHelper;
+use Snide\Bundle\TravinizerBundle\Manager\CacheManagerInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 /**
@@ -35,13 +36,22 @@ class ComposerReader implements ComposerReaderInterface
     protected $data;
 
     /**
+     * Cache manager
+     *
+     * @var \Snide\Bundle\TravinizerBundle\Manager\CacheManagerInterface
+     */
+    protected $cacheManager;
+
+    /**
      * Constructor
      *
+     * @param \Snide\Bundle\TravinizerBundle\Manager\CacheManagerInterface $cacheManager
      * @param GithubHelper $helper
      */
-    public function __construct(GithubHelper $helper)
+    public function __construct(CacheManagerInterface $cacheManager, GithubHelper $helper)
     {
         $this->helper = $helper;
+        $this->cacheManager = $cacheManager;
         $this->httpClient = new Client();
     }
 
@@ -107,9 +117,32 @@ class ComposerReader implements ComposerReaderInterface
         return $this->helper;
     }
 
-    public function addSubscriber(EventSubscriberInterface $subscriber)
+    /**
+     * Get cache manager
+     *
+     * @return CacheManagerInterface
+     */
+    public function getCacheManager()
     {
+        return $this->cacheManager;
+    }
 
+    /**
+     * Set cache manager
+     *
+     * @param CacheManagerInterface $cacheManager
+     */
+    public function setCacheManager(CacheManagerInterface $cacheManager)
+    {
+        $this->cacheManager = $cacheManager;
+    }
+
+    /**
+     * Load cache
+     */
+    protected function loadCache()
+    {
+        $this->httpClient->addSubscriber($this->cacheManager->createCachePlugin());
     }
 
     /**

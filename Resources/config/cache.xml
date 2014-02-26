@@ -1,0 +1,17 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="snide_travinizer.cache.class">Doctrine\Common\Cache\FilesystemCache</parameter>
+        <parameter key="snide_travinizer.cache_path">%kernel.cache_dir%/travinizer</parameter>
+    </parameters>
+
+    <services>
+        <service id="snide_travinizer.cache" class="%snide_travinizer.cache.class%">
+            <argument>%snide_travinizer.cache_path%</argument>
+        </service>
+    </services>
+</container>

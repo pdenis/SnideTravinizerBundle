@@ -76,4 +76,6 @@ The bundle needs to copy the resources necessary to the web folder. You can use 
             repo:
                 filename: /path/to/your/yaml/save/file.yml
                 class: Your\Specific\Repo
+        # optional
+        filesystem_cache_path: %kernel_dir%/travinizer
 ```

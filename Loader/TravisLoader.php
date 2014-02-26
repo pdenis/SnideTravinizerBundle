@@ -11,6 +11,7 @@
 
 namespace Snide\Bundle\TravinizerBundle\Loader;
 
+use Snide\Bundle\TravinizerBundle\Manager\CacheManagerInterface;
 use Snide\Bundle\TravinizerBundle\Model\Repo;
 use Snide\Travis\Client;
 
@@ -19,20 +20,24 @@ use Snide\Travis\Client;
  *
  * @author Pascal DENIS <pascal.denis.75@gmail.com>
  */
-class TravisLoader implements TravisLoaderInterface
+class TravisLoader extends AbstractLoader implements TravisLoaderInterface
 {
     /**
      * Travis client
      *
      * @param Client $client
+     * @param \Snide\Bundle\TravinizerBundle\Manager\CacheManagerInterface $cacheManager
      */
-    public function __construct(Client $client)
+    public function __construct(Client $client, CacheManagerInterface $cacheManager)
     {
         $this->client = $client;
+
+        parent::__construct($cacheManager);
     }
 
     /**
      * Load travis infos for repository
+     *
      * @param Repo $repo
      * @return Repo
      */
@@ -44,5 +49,15 @@ class TravisLoader implements TravisLoaderInterface
         $repo->setId($id);
 
         return $repo;
+    }
+
+    /**
+     * Load cache
+     *
+     * @return void
+     */
+    public function loadCache()
+    {
+        $this->client->addSubscriber($this->cacheManager->createCachePlugin());
     }
 }

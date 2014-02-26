@@ -22,8 +22,9 @@ interface ScrutinizerLoaderInterface
 {
     /**
      * Load scruinitzer infos for repository
+     *
      * @param Repo $repo
-     * @return mixed
+     * @return Repo
      */
     public function load(Repo $repo);
 }

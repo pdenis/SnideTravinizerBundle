@@ -46,10 +46,27 @@ class SnideTravinizerExtension extends Extension
         $loader->load('manager.xml');
         $loader->load('twig_extension.xml');
         $loader->load('validator.xml');
+        $loader->load('cache.xml');
 
         $this->loadRepository($loader, $container, $config);
         $this->loadManager($loader, $container, $config);
         $this->loadRepoClass($loader, $container, $config);
+        $this->loadCachePath($loader, $container, $config);
+    }
+
+    /**
+     * Load cache
+     *
+     * @param XmlFileLoader $loader
+     * @param ContainerBuilder $container
+     * @param array $config
+     * @throws \Exception
+     */
+    protected function loadCachePath($loader, ContainerBuilder $container, array $config)
+    {
+        if(isset($config['filesystem_cache_path'])) {
+            $container->setParameter('snide_travinizer.cache_path', $config['filesystem_cache_path']);
+        }
     }
 
     /**

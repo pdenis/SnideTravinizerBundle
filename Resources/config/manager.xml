@@ -6,9 +6,13 @@
 
     <parameters>
         <parameter key="snide_travinizer.repo_manager.class">Snide\Bundle\TravinizerBundle\Manager\RepoManager</parameter>
+        <parameter key="snide_travinizer.cache_manager.class">Snide\Bundle\TravinizerBundle\Manager\CacheManager</parameter>
     </parameters>
 
     <services>
+        <service id="snide_travinizer.cache_manager" class="%snide_travinizer.cache_manager.class%" public="true">
+            <argument type="service" id="snide_travinizer.cache" />
+        </service>
         <service id="snide_travinizer.repo_manager" class="%snide_travinizer.repo_manager.class%" public="true">
             <argument type="service" id="snide_travinizer.repo_repository"/>
             <argument>%snide_travinizer.model.repo.class%</argument>

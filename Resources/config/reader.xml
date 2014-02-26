@@ -10,6 +10,7 @@
 
     <services>
         <service id="snide_travinizer.composer_reader" class="%snide_travinizer.composer_reader.class%" public="true">
+            <argument type="service" id="snide_travinizer.cache_manager"/>
             <argument type="service" id="snide_travinizer.github_helper"/>
         </service>
     </services>
