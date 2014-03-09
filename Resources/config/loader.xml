@@ -6,11 +6,15 @@
 
     <parameters>
         <parameter key="snide_travinizer.travis_loader.class">Snide\Bundle\TravinizerBundle\Loader\TravisLoader</parameter>
+        <parameter key="snide_travinizer.version_eye_loader.class">Snide\Bundle\TravinizerBundle\Loader\VersionEyeLoader</parameter>
+        <parameter key="snide_travinizer.composer_loader.class">Snide\Bundle\TravinizerBundle\Loader\ComposerLoader</parameter>
         <parameter key="snide_travinizer.scrutinizer_loader.class">Snide\Bundle\TravinizerBundle\Loader\ScrutinizerLoader</parameter>
         <parameter key="snide_travinizer.travis_client.class">Snide\Travis\Client</parameter>
         <parameter key="snide_travinizer.scrutinizer_client.class">Snide\Scrutinizer\Client</parameter>
         <parameter key="snide_travinizer.browser.class">Buzz\Browser</parameter>
-
+        <parameter key="snide_travinizer.version_eye_client.class">Snide\VersionEye\Client</parameter>
+        <parameter key="snide_travinizer.browser.class">Buzz\Browser</parameter>
+        <parameter key="snide_travinizer.version_eye_client.key">undefined</parameter>
     </parameters>
 
     <services>
@@ -25,6 +29,17 @@
         <service id="snide_travinizer.scrutinizer_loader" class="%snide_travinizer.scrutinizer_loader.class%" public="true">
             <argument type="service" id="snide_travinizer.scrutinizer_client"/>
             <argument type="service" id="snide_travinizer.cache_manager"/>
+        </service>
+
+        <service id="snide_travinizer.composer_loader" class="%snide_travinizer.composer_loader.class%" public="true">
+            <argument type="service" id="snide_travinizer.github_helper"/>
+        </service>
+
+        <service id="snide_travinizer.version_eye_client" class="%snide_travinizer.version_eye_client.class%" public="true">
+            <argument>%snide_travinizer.version_eye_client.key%</argument>
+        </service>
+        <service id="snide_travinizer.version_eye_loader" class="%snide_travinizer.version_eye_loader.class%" public="true">
+            <argument type="service" id="snide_travinizer.composer_loader"/>
         </service>
     </services>
 </container>
