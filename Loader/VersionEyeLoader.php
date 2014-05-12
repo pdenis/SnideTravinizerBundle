@@ -46,7 +46,8 @@ class VersionEyeLoader implements VersionEyeLoaderInterface
      */
     public function load(Repo $repo)
     {
-        $project = $this->client->updateProject(new Project(),$this->composerLoader->getFile($repo));
+        $project = $this->client->createProject($this->composerLoader->getFile($repo));
+
         $repo->setDependencies($project->getDependencies());
 
         return $repo;

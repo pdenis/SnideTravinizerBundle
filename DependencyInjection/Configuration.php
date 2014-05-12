@@ -30,6 +30,7 @@ class Configuration implements ConfigurationInterface
         $treeBuilder->root('snide_travinizer')
             ->children()
                 ->scalarNode('filesystem_cache_path')->end()
+                ->scalarNode('version_eye_key')->end()
                 ->arrayNode('manager')
                     ->children()
                         ->scalarNode('class')->isRequired()->end()

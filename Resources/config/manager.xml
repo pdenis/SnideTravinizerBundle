@@ -19,6 +19,7 @@
             <argument type="service" id="snide_travinizer.travis_loader"/>
             <argument type="service" id="snide_travinizer.scrutinizer_loader"/>
             <argument type="service" id="snide_travinizer.composer_reader"/>
+            <argument type="service" id="snide_travinizer.version_eye_loader" />
         </service>
     </services>
 </container>

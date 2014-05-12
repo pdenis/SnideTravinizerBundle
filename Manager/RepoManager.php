@@ -13,6 +13,7 @@ namespace Snide\Bundle\TravinizerBundle\Manager;
 
 use Snide\Bundle\TravinizerBundle\Loader\ScrutinizerLoaderInterface;
 use Snide\Bundle\TravinizerBundle\Loader\TravisLoaderInterface;
+use Snide\Bundle\TravinizerBundle\Loader\VersionEyeLoaderInterface;
 use Snide\Bundle\TravinizerBundle\Model\Repo;
 use Snide\Bundle\TravinizerBundle\Reader\ComposerReaderInterface;
 use Snide\Bundle\TravinizerBundle\Repository\RepoRepositoryInterface;
@@ -56,6 +57,13 @@ class RepoManager implements RepoManagerInterface
     protected $composerReader;
 
     /**
+     * Version Eye loader
+     *
+     * @var VersionEyeLoaderInterface
+     */
+    protected $versionEyeLoader;
+
+    /**
      * Constructor
      *
      * @param RepoRepositoryInterface $repository Repo repository
@@ -69,12 +77,14 @@ class RepoManager implements RepoManagerInterface
         $class,
         TravisLoaderInterface $travisLoader,
         ScrutinizerLoaderInterface $scrutinizerLoader,
-        ComposerReaderInterface $composerReader
+        ComposerReaderInterface $composerReader,
+        VersionEyeLoaderInterface $versionEyeLoader
     ) {
         $this->repository        = $repository;
         $this->travisLoader      = $travisLoader;
         $this->scrutinizerLoader = $scrutinizerLoader;
         $this->composerReader    = $composerReader;
+        $this->versionEyeLoader  = $versionEyeLoader;
         $this->class             = $class;
     }
 
@@ -147,7 +157,10 @@ class RepoManager implements RepoManagerInterface
         try {
             $this->scrutinizerLoader->load($repo);
             $this->travisLoader->load($repo);
+            $this->versionEyeLoader->load($repo);
+
         } catch(\Exception $e) {
+            print_r($e->getMessage());
             // We do not want to throw exception here!
             // Travis or Scrutinizer may not be configured
         }

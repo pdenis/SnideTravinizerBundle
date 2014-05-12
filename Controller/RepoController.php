@@ -116,7 +116,7 @@ class RepoController extends Controller
     /**
      * Update application action
      *
-     * @param Request $request
+     * @param Repo $repo
      * @return array|RedirectResponse|\Symfony\Component\HttpFoundation\Response
      *
      * @ParamConverter("repo", converter="snide_travinizer.repo_converter", class="Snide\Bundle\TravinizerBundle\Model\Repo")
