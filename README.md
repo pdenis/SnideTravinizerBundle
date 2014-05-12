@@ -5,8 +5,8 @@ Symfony 2 bundle - Travis CI &amp; Scrutinizer CI overview for your OS projects
 
 [![Latest Stable Version](https://poser.pugx.org/snide/travinizer-bundle/v/stable.png)](https://packagist.org/packages/snide/travinizer-bundle)
 [![Build Status](https://travis-ci.org/pdenis/SnideTravinizerBundle.png?branch=master)](https://travis-ci.org/pdenis/SnideTravinizerBundle)
-[![Scrutinizer Quality Score](https://scrutinizer-ci.com/g/pdenis/TravinizerBundle/badges/quality-score.png?s=6e2c048bdf5fe15a16fb9af8c36c71398c6772d0)](https://scrutinizer-ci.com/g/pdenis/TravinizerBundle/)
-[![Code Coverage](https://scrutinizer-ci.com/g/pdenis/TravinizerBundle/badges/coverage.png?s=78e6ba4355429d14ae89ef388ac720322cba6230)](https://scrutinizer-ci.com/g/pdenis/TravinizerBundle/)
+[![Scrutinizer Quality Score](https://scrutinizer-ci.com/g/pdenis/SnideTravinizerBundle/badges/quality-score.png?s=6e2c048bdf5fe15a16fb9af8c36c71398c6772d0)](https://scrutinizer-ci.com/g/pdenis/SnideTravinizerBundle/)
+[![Code Coverage](https://scrutinizer-ci.com/g/pdenis/SnideTravinizerBundle/badges/coverage.png?s=78e6ba4355429d14ae89ef388ac720322cba6230)](https://scrutinizer-ci.com/g/pdenis/SnideTravinizerBundle/)
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/pdenis/travinizerbundle/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 
 ## features
