@@ -68,10 +68,6 @@ class RepoTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($authors, $this->object->getAuthors());
     }
 
-    /**
-     * @cover Snide\Bundle\TravinizerBundle\Model\Repo::getQualityBadgeHash
-     * @cover Snide\Bundle\TravinizerBundle\Model\Repo::setQualityBadgeHash
-     */
     public function testQualityBadgeHash()
     {
         $this->assertNull($this->object->getQualityBadgeHash());
@@ -80,10 +76,6 @@ class RepoTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($hash, $this->object->getQualityBadgeHash());
     }
 
-    /**
-     * @cover Snide\Bundle\TravinizerBundle\Model\Repo::getCoverageBadgeHash
-     * @cover Snide\Bundle\TravinizerBundle\Model\Repo::setCoverageBadgeHash
-     */
     public function testCoverageBadgeHash()
     {
         $this->assertNull($this->object->getCoverageBadgeHash());
@@ -92,10 +84,14 @@ class RepoTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($hash, $this->object->getCoverageBadgeHash());
     }
 
-    /**
-     * @cover Snide\Bundle\TravinizerBundle\Model\Repo::getBuilds
-     * @cover Snide\Bundle\TravinizerBundle\Model\Repo::setBuilds
-     */
+    public function testInsightBadgeHash()
+    {
+        $this->assertNull($this->object->getInsightHash());
+        $hash = "571f31ce1079abf2d200c2fffb4320b244be8533";
+        $this->object->setInsightHash($hash);
+        $this->assertEquals($hash, $this->object->getInsightHash());
+    }
+
     public function testBuilds()
     {
         $builds = array('build');
@@ -103,11 +99,6 @@ class RepoTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($builds, $this->object->getBuilds());
     }
 
-    /**
-     * @cover Snide\Bundle\TravinizerBundle\Model\Repo::getType
-     * @cover Snide\Bundle\TravinizerBundle\Model\Repo::setType
-     * @cover Snide\Bundle\TravinizerBundle\Model\Repo::getFullType
-     */
     public function testType()
     {
         $this->assertNull($this->object->getType());
@@ -119,10 +110,6 @@ class RepoTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('Bitbucket', $this->object->getFullType());
     }
 
-    /**
-     * @cover Snide\Bundle\TravinizerBundle\Model\Repo::getMetrics
-     * @cover Snide\Bundle\TravinizerBundle\Model\Repo::setMetrics
-     */
     public function testMetrics()
     {
         $this->assertNull($this->object->getMetrics());
@@ -131,10 +118,6 @@ class RepoTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($metrics, $this->object->getMetrics());
     }
 
-    /**
-     * @cover Snide\Bundle\TravinizerBundle\Model\Repo::getPdependMetrics
-     * @cover Snide\Bundle\TravinizerBundle\Model\Repo::setPdependMetrics
-     */
     public function testPdependMetrics()
     {
         $this->assertNull($this->object->getPdependMetrics());
@@ -143,15 +126,19 @@ class RepoTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($metrics, $this->object->getPdependMetrics());
     }
 
-    /**
-     * @cover Snide\Bundle\TravinizerBundle\Model\Repo::getCoverageMetrics
-     * @cover Snide\Bundle\TravinizerBundle\Model\Repo::setCoverageMetrics
-     */
     public function testCoverageMetrics()
     {
         $this->assertNull($this->object->getCoverageMetrics());
         $metrics = new \Snide\Scrutinizer\Model\Coverage\Metrics();
         $this->object->setCoverageMetrics($metrics);
         $this->assertEquals($metrics, $this->object->getCoverageMetrics());
+    }
+
+    public function testDependencies()
+    {
+        $this->assertEquals(array(), $this->object->getDependencies());
+        $deps = array('php 5.3');
+        $this->object->setDependencies($deps);
+        $this->assertEquals($deps, $this->object->getDependencies());
     }
 }
