@@ -89,6 +89,12 @@ class PoserExtensionTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('', $this->object->getDailyDownloadBadge($this->repo));
 
     }
+
+    public function testLicenceBadge()
+    {
+        $this->assertEquals('<img src="https://poser.pugx.org/snide/monitoring/license.png" />', $this->object->getLicenseBadge($this->repo));
+    }
+
     /**
      * @cover Snide\Bundle\TravinizerBundle\Twig\Extension\ScrutinizerExtension::getName
      */

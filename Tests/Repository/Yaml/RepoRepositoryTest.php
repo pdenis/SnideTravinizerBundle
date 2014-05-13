@@ -76,10 +76,7 @@ class RepoRepositoryTest extends \PHPUnit_Framework_TestCase
 
     }
 
-    /**
-     * @covers Snide\Bundle\TravinizerBundle\Repository\Yaml\RepoRepository::findAll
-     * @covers Snide\Bundle\TravinizerBundle\Repository\Yaml\RepoRepository::getRows
-     */
+
     public function testFindAll()
     {
         $this->assertEquals(array(), $this->object->findAll());
@@ -96,9 +93,11 @@ class RepoRepositoryTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(array($repo, $repoTwo), $this->object->findAll());
     }
 
-    /**
-     * @covers Snide\Bundle\TravinizerBundle\Repository\Yaml\RepoRepository::find
-     */
+    public function testFindBy()
+    {
+        $this->assertEquals($this->object->findAll(), $this->object->findBy());
+    }
+
     public function testFind()
     {
         $repo = $this->object->createNew();
@@ -118,9 +117,26 @@ class RepoRepositoryTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($repos[1], $this->object->find($repos[1]->getId()));
     }
 
-    /**
-     * @covers Snide\Bundle\TravinizerBundle\Repository\Yaml\RepoRepository::create
-     */
+    public function testFindBySlug()
+    {
+        $repo = $this->object->createNew();
+        $repo->setSlug('pdenis/monitoring');
+        $repo->setType('g');
+        $this->object->create($repo);
+        $repo->setId(1);
+        $repoTwo = $this->object->createNew();
+        $repoTwo->setSlug('pdenis/scrutinizer-client');
+        $repoTwo->setType('g');
+        $this->object->create($repoTwo);
+        $repoTwo->setId(2);
+
+        $this->assertNull($this->object->findBySlug('unknown'));
+        $repos = $this->object->findAll();
+
+        $this->assertEquals($repos[1], $this->object->findBySlug($repos[1]->getSlug()));
+        $this->assertEquals($repos[0], $this->object->findBySlug($repos[0]->getSlug()));
+    }
+
     public function testCreate()
     {
         $repo = $this->object->createNew();

@@ -52,4 +52,8 @@ class GithubHelperTest extends \PHPUnit_Framework_TestCase
         );
     }
 
+    public function testRawHost()
+    {
+        $this->assertEquals('https://raw.github.com', $this->object->getRawHost());
+    }
 }
