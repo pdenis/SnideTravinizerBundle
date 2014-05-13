@@ -43,6 +43,7 @@ class VersionEyeLoader implements VersionEyeLoaderInterface
      * Load dependencies info
      *
      * @param Repo $repo
+     * @return Repo $repo
      */
     public function load(Repo $repo)
     {

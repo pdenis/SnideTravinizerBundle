@@ -107,6 +107,7 @@ class SnideTravinizerExtensionTest extends \PHPUnit_Framework_TestCase
         $this->configuration = new ContainerBuilder();
         $loader = new SnideTravinizerExtension();
         $config = $this->getConfig();
+        $this->configuration->setParameter('kernel.cache_dir', '/tmp');
         $loader->load(array($config), $this->configuration);
     }
     /**

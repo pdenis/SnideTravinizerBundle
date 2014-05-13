@@ -11,7 +11,9 @@
 
 namespace Snide\Bundle\TravinizerBundle\Tests\Loader;
 
+use Doctrine\Common\Cache\ArrayCache;
 use Snide\Bundle\TravinizerBundle\Loader\TravisLoader;
+use Snide\Bundle\TravinizerBundle\Manager\CacheManager;
 use Snide\Bundle\TravinizerBundle\Model\Repo;
 use Snide\Travis\Client;
 
@@ -42,7 +44,7 @@ class TravisLoaderTest extends \PHPUnit_Framework_TestCase
      */
     public function testLoad()
     {
-        $this->object = new TravisLoader(new Client());
+        $this->object = new TravisLoader(new Client(), new CacheManager(new ArrayCache()));
         $repo = new Repo();
         $repo->setSlug('pdenis/monitoring');
         $this->object->load($repo);

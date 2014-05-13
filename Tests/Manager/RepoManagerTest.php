@@ -12,9 +12,13 @@
 namespace Snide\Bundle\TravinizerBundle\Tests\Manager;
 
 use Buzz\Browser;
+use Doctrine\Common\Cache\ArrayCache;
+use Snide\Bundle\TravinizerBundle\Loader\ComposerLoader;
 use Snide\Bundle\TravinizerBundle\Helper\GithubHelper;
 use Snide\Bundle\TravinizerBundle\Loader\ScrutinizerLoader;
 use Snide\Bundle\TravinizerBundle\Loader\TravisLoader;
+use Snide\Bundle\TravinizerBundle\Loader\VersionEyeLoader;
+use Snide\Bundle\TravinizerBundle\Manager\CacheManager;
 use Snide\Bundle\TravinizerBundle\Manager\RepoManager;
 use Snide\Bundle\TravinizerBundle\Model\Repo;
 use Snide\Bundle\TravinizerBundle\Reader\ComposerReader;
@@ -40,6 +44,7 @@ class RepoManagerTest extends \PHPUnit_Framework_TestCase
     protected $filename;
     protected $scrutinizerLoader;
     protected $composerReader;
+    protected $versionEyeLoader;
 
     /**
      * Sets up the fixture, for example, opens a network connection.
@@ -50,10 +55,11 @@ class RepoManagerTest extends \PHPUnit_Framework_TestCase
         $this->filename = '/tmp/filename.yml';
         $this->class = 'Snide\\Bundle\\TravinizerBundle\\Model\\Repo';
         $this->repository = new RepoRepository($this->class, $this->filename);
-        $this->travisLoader = new TravisLoader(new TravisClient());
-        $this->scrutinizerLoader = new ScrutinizerLoader(new ScClient());
-        $this->composerReader = new ComposerReader(new GithubHelper());
-        $this->object = new RepoManager($this->repository, $this->class, $this->travisLoader, $this->scrutinizerLoader, $this->composerReader);
+        $this->travisLoader = new TravisLoader(new TravisClient(), new CacheManager(new ArrayCache()));
+        $this->scrutinizerLoader = new ScrutinizerLoader(new ScClient(), new CacheManager(new ArrayCache()));
+        $this->composerReader = new ComposerReader(new CacheManager(new ArrayCache()), new GithubHelper());
+        $this->versionEyeLoader = new VersionEyeLoader(new ComposerLoader(new GithubHelper()), new \Snide\VersionEye\Client());
+        $this->object = new RepoManager($this->repository, $this->class, $this->travisLoader, $this->scrutinizerLoader, $this->composerReader, $this->versionEyeLoader);
     }
 
     /**
@@ -75,7 +81,7 @@ class RepoManagerTest extends \PHPUnit_Framework_TestCase
      */
     public function testConstruct()
     {
-        $this->object = new RepoManager($this->repository, $this->class, $this->travisLoader, $this->scrutinizerLoader, $this->composerReader);
+        $this->object = new RepoManager($this->repository, $this->class, $this->travisLoader, $this->scrutinizerLoader, $this->composerReader, $this->versionEyeLoader);
         $this->assertEquals($this->repository, $this->object->getRepository());
         $this->assertInstanceOf($this->class, $this->object->createNew());
 

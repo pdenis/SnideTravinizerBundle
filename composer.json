@@ -21,6 +21,7 @@
         "snide/php-versioneye-client": "dev-master",
         "snide/php-scrutinizer-client": "dev-master",
         "kriswallsmith/buzz": "0.5",
+        "doctrine/common": "2.3.0",
         "php": ">=5.3.3"
     },
     "autoload": {

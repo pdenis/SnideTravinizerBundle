@@ -12,7 +12,9 @@
 namespace Snide\Bundle\TravinizerBundle\Tests\Reader;
 
 use Buzz\Browser;
+use Doctrine\Common\Cache\ArrayCache;
 use Snide\Bundle\TravinizerBundle\Helper\GithubHelper;
+use Snide\Bundle\TravinizerBundle\Manager\CacheManager;
 use Snide\Bundle\TravinizerBundle\Model\Repo;
 use Snide\Bundle\TravinizerBundle\Reader\ComposerReader;
 
@@ -43,7 +45,7 @@ class ComposerReaderTest extends \PHPUnit_Framework_TestCase
     protected function setUp()
     {
         $this->helper = new GithubHelper();
-        $this->object = new ComposerReader($this->helper);
+        $this->object = new ComposerReader(new CacheManager(new ArrayCache()), $this->helper);
     }
 
     /**
