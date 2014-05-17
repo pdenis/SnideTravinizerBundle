@@ -94,6 +94,18 @@ class SnideTravinizerExtensionTest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf('Snide\Bundle\TravinizerBundle\Manager\RepoManagerInterface', $this->configuration->get('snide_travinizer.repo_manager'));
     }
 
+    public function testLoadCachePath()
+    {
+        $this->loadConfiguration();
+        $this->assertEquals('/tmp/cache', $this->configuration->getParameter('snide_travinizer.cache_path'));
+    }
+
+    public function testLoadVersionEyeKey()
+    {
+        $this->loadConfiguration();
+        $this->assertEquals('my_key', $this->configuration->getParameter('snide_travinizer.version_eye_client.key'));
+    }
+
     /**
      * @param string $id
      */
@@ -118,10 +130,13 @@ class SnideTravinizerExtensionTest extends \PHPUnit_Framework_TestCase
     protected function getConfig()
     {
         $yaml = <<<EOF
+filesystem_cache_path: /tmp/cache
+version_eye_key: my_key
 repository:
     type: yaml
     repo:
         filename: /var/tmp/applications.yml
+
 EOF;
         $parser = new Parser();
 

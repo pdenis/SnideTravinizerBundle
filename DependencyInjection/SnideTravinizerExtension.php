@@ -51,19 +51,18 @@ class SnideTravinizerExtension extends Extension
         $this->loadRepository($loader, $container, $config);
         $this->loadManager($loader, $container, $config);
         $this->loadRepoClass($loader, $container, $config);
-        $this->loadCachePath($loader, $container, $config);
-        $this->loadVersionEyeKey($loader, $container, $config);
+        $this->loadCachePath($container, $config);
+        $this->loadVersionEyeKey($container, $config);
     }
 
     /**
      * Load cache
      *
-     * @param XmlFileLoader $loader
      * @param ContainerBuilder $container
      * @param array $config
      * @throws \Exception
      */
-    protected function loadCachePath($loader, ContainerBuilder $container, array $config)
+    protected function loadCachePath(ContainerBuilder $container, array $config)
     {
         if(isset($config['filesystem_cache_path'])) {
             $container->setParameter('snide_travinizer.cache_path', $config['filesystem_cache_path']);
@@ -73,12 +72,11 @@ class SnideTravinizerExtension extends Extension
     /**
      * Load version eye key
      *
-     * @param XmlFileLoader $loader
      * @param ContainerBuilder $container
      * @param array $config
      * @throws \Exception
      */
-    protected function loadVersionEyeKey($loader, ContainerBuilder $container, array $config)
+    protected function loadVersionEyeKey(ContainerBuilder $container, array $config)
     {
         if(isset($config['version_eye_key'])) {
             $container->setParameter('snide_travinizer.version_eye_client.key', $config['version_eye_key']);
