@@ -45,7 +45,7 @@ class VersionEyeLoaderTest extends \PHPUnit_Framework_TestCase
         try {
             $this->object->load('snide/memetor');
             $this->fail('Version eye must fail because no key provided');
-        } catch(\Exception $e) {
+        } catch (\Exception $e) {
 
         }
     }

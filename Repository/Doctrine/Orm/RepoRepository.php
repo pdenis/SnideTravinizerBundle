@@ -11,8 +11,8 @@
 
 namespace Snide\Bundle\TravinizerBundle\Repository\Doctrine\Orm;
 
-use Snide\Bundle\TravinizerBundle\Model\Repo;
 use Doctrine\ORM\EntityRepository;
+use Snide\Bundle\TravinizerBundle\Model\Repo;
 use Snide\Bundle\TravinizerBundle\Repository\RepoRepositoryInterface;
 
 /**
@@ -31,6 +31,20 @@ class RepoRepository extends EntityRepository implements RepoRepositoryInterface
     public function findAll()
     {
         return $this->findBy(array());
+    }
+
+    /**
+     * Find repos by criteria
+     *
+     * @param array $criteria
+     * @param array $orderBy
+     * @param int $limit
+     * @param int $offset
+     * @return array
+     */
+    public function findBy(array $criteria = array(), array $orderBy = null, $limit = null, $offset = null)
+    {
+        return parent::findBy($criteria, $orderBy, $limit, $offset);
     }
 
     /**
@@ -53,20 +67,6 @@ class RepoRepository extends EntityRepository implements RepoRepositoryInterface
     public function findBySlug($slug)
     {
         return $this->findOneBy(array('slug' => $slug));
-    }
-
-    /**
-     * Find repos by criteria
-     *
-     * @param array $criteria
-     * @param array $orderBy
-     * @param int $limit
-     * @param int $offset
-     * @return array
-     */
-    public function findBy(array $criteria = array(), array $orderBy = null, $limit = null, $offset = null)
-    {
-        return parent::findBy($criteria, $orderBy, $limit, $offset);
     }
 
     /**

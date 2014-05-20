@@ -48,12 +48,24 @@ class RepoType extends AbstractType
     {
         $builder->add('id', 'hidden');
         $builder->add('slug', 'text');
-        $builder->add('qualityBadgeHash', 'text', array('required' => false, 'label' => 'Scrutinizer quality badge hash'));
-        $builder->add('coverageBadgeHash', 'text', array('required' => false, 'label' => 'Scrutinizer coverage badge hash'));
+        $builder->add(
+            'qualityBadgeHash',
+            'text',
+            array('required' => false, 'label' => 'Scrutinizer quality badge hash')
+        );
+        $builder->add(
+            'coverageBadgeHash',
+            'text',
+            array('required' => false, 'label' => 'Scrutinizer coverage badge hash')
+        );
         $builder->add('insightHash', 'text', array('required' => false, 'label' => 'Sensiolabs insight project hash'));
-        $builder->add('type', 'choice', array(
-            'choices' => array('g' => 'Github') // @TODO : include 'b' => 'Bitbucket')
-        ));
+        $builder->add(
+            'type',
+            'choice',
+            array(
+                'choices' => array('g' => 'Github') // @TODO : include 'b' => 'Bitbucket')
+            )
+        );
     }
 
     /**

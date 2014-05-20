@@ -35,6 +35,7 @@ class TravisExtensionTest extends \PHPUnit_Framework_TestCase
      * @var TravisHelper
      */
     protected $helper;
+
     /**
      * Sets up the fixture, for example, opens a network connection.
      * This method is called before a test is executed.
@@ -61,7 +62,10 @@ class TravisExtensionTest extends \PHPUnit_Framework_TestCase
     public function testBadge()
     {
 
-        $this->assertEquals('<img src="https://travis-ci.org/pdenis/monitoring.png?branch=master" />', $this->object->getBadge($this->repo));
+        $this->assertEquals(
+            '<img src="https://travis-ci.org/pdenis/monitoring.png?branch=master" />',
+            $this->object->getBadge($this->repo)
+        );
     }
 
 
@@ -76,7 +80,10 @@ class TravisExtensionTest extends \PHPUnit_Framework_TestCase
 
     public function testFunctions()
     {
-        $this->assertEquals(array('snide_travinizer_travis_url', 'snide_travinizer_travis_badge'), array_keys($this->object->getFunctions()));
+        $this->assertEquals(
+            array('snide_travinizer_travis_url', 'snide_travinizer_travis_badge'),
+            array_keys($this->object->getFunctions())
+        );
     }
 
     /**

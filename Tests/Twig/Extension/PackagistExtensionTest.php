@@ -12,7 +12,6 @@
 namespace Snide\Bundle\TravinizerBundle\Tests\Twig\Extension;
 
 use Snide\Bundle\TravinizerBundle\Helper\PackagistHelper;
-use Snide\Bundle\TravinizerBundle\Helper\TravisHelper;
 use Snide\Bundle\TravinizerBundle\Model\Repo;
 
 /**
@@ -36,6 +35,7 @@ class PackagistExtensionTest extends \PHPUnit_Framework_TestCase
      * @var PackagistHelper
      */
     protected $helper;
+
     /**
      * Sets up the fixture, for example, opens a network connection.
      * This method is called before a test is executed.

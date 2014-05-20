@@ -34,6 +34,7 @@ class PoserExtensionTest extends \PHPUnit_Framework_TestCase
      * @var PoserHelper
      */
     protected $helper;
+
     /**
      * Sets up the fixture, for example, opens a network connection.
      * This method is called before a test is executed.
@@ -52,7 +53,10 @@ class PoserExtensionTest extends \PHPUnit_Framework_TestCase
 
     public function testStableBadge()
     {
-        $this->assertEquals('<img src="https://poser.pugx.org/snide/monitoring/v/stable.png" />', $this->object->getStableBadge($this->repo));
+        $this->assertEquals(
+            '<img src="https://poser.pugx.org/snide/monitoring/v/stable.png" />',
+            $this->object->getStableBadge($this->repo)
+        );
         $this->repo->setPackagistSlug(null);
         $this->assertEquals('', $this->object->getStableBadge($this->repo));
 
@@ -60,7 +64,10 @@ class PoserExtensionTest extends \PHPUnit_Framework_TestCase
 
     public function testUnstableBadge()
     {
-        $this->assertEquals('<img src="https://poser.pugx.org/snide/monitoring/v/unstable.png" />', $this->object->getUnstableBadge($this->repo));
+        $this->assertEquals(
+            '<img src="https://poser.pugx.org/snide/monitoring/v/unstable.png" />',
+            $this->object->getUnstableBadge($this->repo)
+        );
         $this->repo->setPackagistSlug(null);
         $this->assertEquals('', $this->object->getUnstableBadge($this->repo));
 
@@ -68,7 +75,10 @@ class PoserExtensionTest extends \PHPUnit_Framework_TestCase
 
     public function testDownloadBadge()
     {
-        $this->assertEquals('<img src="https://poser.pugx.org/snide/monitoring/downloads.png" />', $this->object->getDownloadBadge($this->repo));
+        $this->assertEquals(
+            '<img src="https://poser.pugx.org/snide/monitoring/downloads.png" />',
+            $this->object->getDownloadBadge($this->repo)
+        );
         $this->repo->setPackagistSlug(null);
         $this->assertEquals('', $this->object->getDownloadBadge($this->repo));
 
@@ -76,7 +86,10 @@ class PoserExtensionTest extends \PHPUnit_Framework_TestCase
 
     public function testMonthlyDownloadBadge()
     {
-        $this->assertEquals('<img src="https://poser.pugx.org/snide/monitoring/d/monthly.png" />', $this->object->getMonthlyDownloadBadge($this->repo));
+        $this->assertEquals(
+            '<img src="https://poser.pugx.org/snide/monitoring/d/monthly.png" />',
+            $this->object->getMonthlyDownloadBadge($this->repo)
+        );
         $this->repo->setPackagistSlug(null);
         $this->assertEquals('', $this->object->getMonthlyDownloadBadge($this->repo));
 
@@ -84,7 +97,10 @@ class PoserExtensionTest extends \PHPUnit_Framework_TestCase
 
     public function testDailyDownloadBadge()
     {
-        $this->assertEquals('<img src="https://poser.pugx.org/snide/monitoring/d/daily.png" />', $this->object->getDailyDownloadBadge($this->repo));
+        $this->assertEquals(
+            '<img src="https://poser.pugx.org/snide/monitoring/d/daily.png" />',
+            $this->object->getDailyDownloadBadge($this->repo)
+        );
         $this->repo->setPackagistSlug(null);
         $this->assertEquals('', $this->object->getDailyDownloadBadge($this->repo));
 
@@ -92,7 +108,12 @@ class PoserExtensionTest extends \PHPUnit_Framework_TestCase
 
     public function testLicenceBadge()
     {
-        $this->assertEquals('<img src="https://poser.pugx.org/snide/monitoring/license.png" />', $this->object->getLicenseBadge($this->repo));
+        $this->assertEquals(
+            '<img src="https://poser.pugx.org/snide/monitoring/license.png" />',
+            $this->object->getLicenseBadge($this->repo)
+        );
+        $this->repo->setPackagistSlug(null);
+        $this->assertEquals('', $this->object->getLicenseBadge($this->repo));
     }
 
     /**
@@ -116,7 +137,9 @@ class PoserExtensionTest extends \PHPUnit_Framework_TestCase
                 'snide_travinizer_poser_monthly_download_badge',
                 'snide_travinizer_poser_daily_download_badge',
                 'snide_travinizer_poser_license_badge'
-            ), array_keys($this->object->getFunctions()));
+            ),
+            array_keys($this->object->getFunctions())
+        );
     }
 
     /**

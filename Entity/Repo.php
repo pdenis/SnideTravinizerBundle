@@ -11,8 +11,8 @@
 
 namespace Snide\Bundle\TravinizerBundle\Entity;
 
-use Snide\Bundle\TravinizerBundle\Model\Repo as BaseRepo;
 use Doctrine\ORM\Mapping as ORM;
+use Snide\Bundle\TravinizerBundle\Model\Repo as BaseRepo;
 
 /**
  * Class Repo

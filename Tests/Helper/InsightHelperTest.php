@@ -12,7 +12,6 @@
 namespace Snide\Bundle\TravinizerBundle\Tests\Helper;
 
 use Snide\Bundle\TravinizerBundle\Helper\InsightHelper;
-use Snide\Bundle\TravinizerBundle\Model\Repo;
 
 /**
  * Class TravisLoaderTest

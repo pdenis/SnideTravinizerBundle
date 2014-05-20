@@ -11,9 +11,9 @@
 
 namespace Snide\Bundle\TravinizerBundle\DependencyInjection;
 
+use Symfony\Component\Config\Definition\Exception\InvalidConfigurationException;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Component\Config\Definition\Exception\InvalidConfigurationException;
 use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 
@@ -56,35 +56,6 @@ class SnideTravinizerExtension extends Extension
     }
 
     /**
-     * Load cache
-     *
-     * @param ContainerBuilder $container
-     * @param array $config
-     * @throws \Exception
-     */
-    protected function loadCachePath(ContainerBuilder $container, array $config)
-    {
-        if(isset($config['filesystem_cache_path'])) {
-            $container->setParameter('snide_travinizer.cache_path', $config['filesystem_cache_path']);
-        }
-    }
-
-    /**
-     * Load version eye key
-     *
-     * @param ContainerBuilder $container
-     * @param array $config
-     * @throws \Exception
-     */
-    protected function loadVersionEyeKey(ContainerBuilder $container, array $config)
-    {
-        if(isset($config['version_eye_key'])) {
-            $container->setParameter('snide_travinizer.version_eye_client.key', $config['version_eye_key']);
-        }
-    }
-
-
-    /**
      * Load repository
      *
      * @param XmlFileLoader $loader
@@ -112,8 +83,23 @@ class SnideTravinizerExtension extends Extension
             throw new InvalidConfigurationException('You must define repository type parameter');
         }
 
-        if(isset($config['repository']['class'])) {
+        if (isset($config['repository']['class'])) {
             $container->setParameter('snide_travinizer.repo_repository.class', $config['repository']['class']);
+        }
+    }
+
+    /**
+     * Load manager
+     *
+     * @param XmlFileLoader $loader
+     * @param ContainerBuilder $container
+     * @param array $config
+     * @throws \Exception
+     */
+    protected function loadManager($loader, ContainerBuilder $container, array $config)
+    {
+        if (isset($config['manager']['class'])) {
+            $container->setParameter('snide_travinizer.repo_manager.class', $config['manager']['class']);
         }
     }
 
@@ -134,17 +120,30 @@ class SnideTravinizerExtension extends Extension
     }
 
     /**
-     * Load manager
+     * Load cache
      *
-     * @param XmlFileLoader $loader
      * @param ContainerBuilder $container
      * @param array $config
      * @throws \Exception
      */
-    protected function loadManager($loader, ContainerBuilder $container, array $config)
+    protected function loadCachePath(ContainerBuilder $container, array $config)
     {
-        if (isset($config['manager']['class'])) {
-            $container->setParameter('snide_travinizer.repo_manager.class', $config['manager']['class']);
+        if (isset($config['filesystem_cache_path'])) {
+            $container->setParameter('snide_travinizer.cache_path', $config['filesystem_cache_path']);
+        }
+    }
+
+    /**
+     * Load version eye key
+     *
+     * @param ContainerBuilder $container
+     * @param array $config
+     * @throws \Exception
+     */
+    protected function loadVersionEyeKey(ContainerBuilder $container, array $config)
+    {
+        if (isset($config['version_eye_key'])) {
+            $container->setParameter('snide_travinizer.version_eye_client.key', $config['version_eye_key']);
         }
     }
 }

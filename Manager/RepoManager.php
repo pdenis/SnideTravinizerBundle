@@ -80,12 +80,12 @@ class RepoManager implements RepoManagerInterface
         ComposerReaderInterface $composerReader,
         VersionEyeLoaderInterface $versionEyeLoader
     ) {
-        $this->repository        = $repository;
-        $this->travisLoader      = $travisLoader;
+        $this->repository = $repository;
+        $this->travisLoader = $travisLoader;
         $this->scrutinizerLoader = $scrutinizerLoader;
-        $this->composerReader    = $composerReader;
-        $this->versionEyeLoader  = $versionEyeLoader;
-        $this->class             = $class;
+        $this->composerReader = $composerReader;
+        $this->versionEyeLoader = $versionEyeLoader;
+        $this->class = $class;
     }
 
     /**
@@ -139,7 +139,7 @@ class RepoManager implements RepoManagerInterface
     public function findAll()
     {
         $repos = array();
-        foreach($this->repository->findAll() as $repo) {
+        foreach ($this->repository->findAll() as $repo) {
             $this->loadPackagistInfos($repo);
             $repos[] = $repo;
         }
@@ -159,7 +159,7 @@ class RepoManager implements RepoManagerInterface
             $this->travisLoader->load($repo);
             $this->versionEyeLoader->load($repo);
 
-        } catch(\Exception $e) {
+        } catch (\Exception $e) {
             print_r($e->getMessage());
             // We do not want to throw exception here!
             // Travis or Scrutinizer may not be configured
@@ -183,17 +183,18 @@ class RepoManager implements RepoManagerInterface
 
             // Load authors
             if ($this->composerReader->has('authors')) {
-               $repo->setAuthors($this->composerReader->get('authors'));
+                $repo->setAuthors($this->composerReader->get('authors'));
             }
 
             // Load dependencies
-            if($this->composerReader->has('require')) {
+            if ($this->composerReader->has('require')) {
                 $repo->setDependencies($this->composerReader->get('require'));
             }
-        } catch(\Exception $e) {
+        } catch (\Exception $e) {
             // We do not want to throw exception here!
         }
     }
+
     /**
      * Update an repo
      *

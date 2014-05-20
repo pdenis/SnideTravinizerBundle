@@ -14,7 +14,6 @@ namespace Snide\Bundle\TravinizerBundle\Tests\Loader;
 use Doctrine\Common\Cache\ArrayCache;
 use Snide\Bundle\TravinizerBundle\Helper\GithubHelper;
 use Snide\Bundle\TravinizerBundle\Loader\ComposerLoader;
-use Snide\Bundle\TravinizerBundle\Manager\CacheManager;
 use Snide\Bundle\TravinizerBundle\Model\Repo;
 
 /**

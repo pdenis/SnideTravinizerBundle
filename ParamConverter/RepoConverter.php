@@ -7,7 +7,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ConfigurationInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Request\ParamConverter\ParamConverterInterface;
 use Snide\Bundle\TravinizerBundle\Manager\RepoManagerInterface;
-use Snide\Bundle\TravinizerBundle\Model\Repo;
 use Symfony\Component\HttpFoundation\Request;
 
 
@@ -35,6 +34,7 @@ class RepoConverter implements ParamConverterInterface
         $this->repoManager = $repoManager;
 
     }
+
     /**
      * Stores the object in the request.
      *
@@ -48,13 +48,15 @@ class RepoConverter implements ParamConverterInterface
         $name = $configuration->getName();
         $repo = null;
 
-        if(null != $request->attributes->get('id')) {
+        if (null != $request->attributes->get('id')) {
             $repo = $this->findById($request);
-        } else if(null != $request->attributes->get('slug')) {
-            $repo = $this->findBySlug($request);
+        } else {
+            if (null != $request->attributes->get('slug')) {
+                $repo = $this->findBySlug($request);
+            }
         }
 
-        if($repo) {
+        if ($repo) {
             $request->attributes->set($name, $repo);
 
             return true;

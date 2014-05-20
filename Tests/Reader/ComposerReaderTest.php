@@ -67,7 +67,7 @@ class ComposerReaderTest extends \PHPUnit_Framework_TestCase
         try {
             $this->object->get('unknown');
             $this->fail('Unknown key');
-        }catch(\Exception $e) {
+        } catch (\Exception $e) {
 
         }
 
@@ -76,7 +76,7 @@ class ComposerReaderTest extends \PHPUnit_Framework_TestCase
         try {
             $this->object->load($repo->getSlug());
             $this->fail('Repository is unknown');
-        }catch(\Exception $e) {
+        } catch (\Exception $e) {
 
             $this->assertFalse($this->object->has('name'));
             $this->assertInstanceOf('Guzzle\Http\Exception\ClientErrorResponseException', $e);

@@ -16,8 +16,8 @@ use Doctrine\Common\Cache\ArrayCache;
 use Doctrine\Common\Cache\Cache;
 use Doctrine\Common\Cache\PhpFileCache;
 use Snide\Bundle\TravinizerBundle\Manager\CacheManager;
-use Snide\Travis\Client as TravisClient;
 use Snide\Scrutinizer\Client as ScClient;
+use Snide\Travis\Client as TravisClient;
 
 /**
  * Class CacheManagerTest
@@ -35,6 +35,7 @@ class CacheManagerTest extends \PHPUnit_Framework_TestCase
      * @var Cache
      */
     protected $cache;
+
     /**
      * Sets up the fixture, for example, opens a network connection.
      * This method is called before a test is executed.

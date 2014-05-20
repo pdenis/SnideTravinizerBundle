@@ -69,29 +69,64 @@ class SnideTravinizerExtensionTest extends \PHPUnit_Framework_TestCase
         $this->loadConfiguration();
         $this->assertHasDefinition('snide_travinizer.travis_loader');
         $this->assertHasDefinition('snide_travinizer.scrutinizer_loader');
-        $this->assertInstanceOf('Snide\Bundle\TravinizerBundle\Loader\TravisLoaderInterface', $this->configuration->get('snide_travinizer.travis_loader'));
-        $this->assertInstanceOf('Snide\Bundle\TravinizerBundle\Loader\ScrutinizerLoaderInterface', $this->configuration->get('snide_travinizer.scrutinizer_loader'));
+        $this->assertInstanceOf(
+            'Snide\Bundle\TravinizerBundle\Loader\TravisLoaderInterface',
+            $this->configuration->get('snide_travinizer.travis_loader')
+        );
+        $this->assertInstanceOf(
+            'Snide\Bundle\TravinizerBundle\Loader\ScrutinizerLoaderInterface',
+            $this->configuration->get('snide_travinizer.scrutinizer_loader')
+        );
     }
 
     public function testLoadModel()
     {
         $this->loadConfiguration();
         $this->assertHasDefinition('snide_travinizer.model.repo');
-        $this->assertInstanceOf('Snide\Bundle\TravinizerBundle\Model\Repo', $this->configuration->get('snide_travinizer.model.repo'));
+        $this->assertInstanceOf(
+            'Snide\Bundle\TravinizerBundle\Model\Repo',
+            $this->configuration->get('snide_travinizer.model.repo')
+        );
     }
 
     public function testLoadRepository()
     {
         $this->loadConfiguration();
         $this->assertHasDefinition('snide_travinizer.repo_repository');
-        $this->assertInstanceOf('Snide\Bundle\TravinizerBundle\Repository\RepoRepositoryInterface', $this->configuration->get('snide_travinizer.repo_repository'));
+        $this->assertInstanceOf(
+            'Snide\Bundle\TravinizerBundle\Repository\RepoRepositoryInterface',
+            $this->configuration->get('snide_travinizer.repo_repository')
+        );
     }
 
     public function testLoadManager()
     {
         $this->loadConfiguration();
         $this->assertHasDefinition('snide_travinizer.repo_manager');
-        $this->assertInstanceOf('Snide\Bundle\TravinizerBundle\Manager\RepoManagerInterface', $this->configuration->get('snide_travinizer.repo_manager'));
+        $this->assertInstanceOf(
+            'Snide\Bundle\TravinizerBundle\Manager\RepoManagerInterface',
+            $this->configuration->get('snide_travinizer.repo_manager')
+        );
+    }
+
+    public function testLoadRepoClass()
+    {
+        $this->loadConfiguration();
+        $this->assertHasDefinition('snide_travinizer.model.repo');
+        $this->assertInstanceOf(
+            'Snide\Bundle\TravinizerBundle\Entity\Repo',
+            $this->configuration->get('snide_travinizer.model.repo')
+        );
+    }
+
+    public function testLoadRepositoryClass()
+    {
+        $this->loadConfiguration();
+        $this->assertHasDefinition('snide_travinizer.repo_repository');
+        $this->assertInstanceOf(
+            'Snide\Bundle\TravinizerBundle\Repository\Yaml\RepoRepository',
+            $this->configuration->get('snide_travinizer.repo_repository')
+        );
     }
 
     public function testLoadCachePath()
@@ -111,7 +146,7 @@ class SnideTravinizerExtensionTest extends \PHPUnit_Framework_TestCase
      */
     private function assertHasDefinition($id)
     {
-        $this->assertTrue(($this->configuration->hasDefinition($id) ?: $this->configuration->hasAlias($id)));
+        $this->assertTrue(($this->configuration->hasDefinition($id) ? : $this->configuration->hasAlias($id)));
     }
 
     protected function loadConfiguration()
@@ -122,6 +157,7 @@ class SnideTravinizerExtensionTest extends \PHPUnit_Framework_TestCase
         $this->configuration->setParameter('kernel.cache_dir', '/tmp');
         $loader->load(array($config), $this->configuration);
     }
+
     /**
      * getConfig
      *
@@ -133,8 +169,10 @@ class SnideTravinizerExtensionTest extends \PHPUnit_Framework_TestCase
 filesystem_cache_path: /tmp/cache
 version_eye_key: my_key
 repository:
+    class: Snide\Bundle\TravinizerBundle\Repository\Yaml\RepoRepository
     type: yaml
     repo:
+        class: Snide\Bundle\TravinizerBundle\Entity\Repo
         filename: /var/tmp/applications.yml
 
 EOF;

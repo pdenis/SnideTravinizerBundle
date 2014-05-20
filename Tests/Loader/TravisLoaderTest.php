@@ -57,7 +57,7 @@ class TravisLoaderTest extends \PHPUnit_Framework_TestCase
         $repo->setSlug('pdenis/unknown');
         try {
             $this->object->load($repo);
-        }catch(\Exception $e) {
+        } catch (\Exception $e) {
 
         }
 

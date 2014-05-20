@@ -22,6 +22,7 @@
         "snide/php-scrutinizer-client": "dev-master",
         "kriswallsmith/buzz": "0.5",
         "doctrine/common": "2.3.0",
+        "doctrine/orm": ">=2.3,<2.4-dev",
         "php": ">=5.3.3"
     },
     "autoload": {

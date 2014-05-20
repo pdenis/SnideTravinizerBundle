@@ -11,10 +11,11 @@
 
 namespace Snide\Bundle\TravinizerBundle\Model;
 
-use Snide\Scrutinizer\Model\Metrics;
-use Snide\Travis\Model\Repository;
-use Snide\Scrutinizer\Model\Pdepend\Metrics as PdependMetrics;
 use Snide\Scrutinizer\Model\Coverage\Metrics as CoverageMetrics;
+use Snide\Scrutinizer\Model\Metrics;
+use Snide\Scrutinizer\Model\Pdepend\Metrics as PdependMetrics;
+use Snide\Travis\Model\Repository;
+
 /**
  * Class Repository
  *
@@ -88,7 +89,7 @@ class Repo extends Repository
      */
     public function getDependencies()
     {
-        if(!is_array($this->dependencies)) {
+        if (!is_array($this->dependencies)) {
             $this->dependencies = array();
         }
         return $this->dependencies;
@@ -207,8 +208,9 @@ class Repo extends Repository
 
     public function getFullType()
     {
-        return ($this->type == 'g')? 'Github' : 'Bitbucket';
+        return ($this->type == 'g') ? 'Github' : 'Bitbucket';
     }
+
     /**
      * Getter type
      *
@@ -281,7 +283,7 @@ class Repo extends Repository
 
     /**
      * Setter insight badge hash
-     * 
+     *
      * @param $insightHash
      */
     public function setInsightHash($insightHash)

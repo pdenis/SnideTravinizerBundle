@@ -20,6 +20,7 @@ class ComposerLoader implements ComposerLoaderInterface
      * @var GithubHelper
      */
     protected $helper;
+
     /**
      * Constructor
      *

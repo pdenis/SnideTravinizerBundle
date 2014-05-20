@@ -34,6 +34,7 @@ class ScrutinizerExtensionTest extends \PHPUnit_Framework_TestCase
      * @var ScrutinizerHelper
      */
     protected $helper;
+
     /**
      * Sets up the fixture, for example, opens a network connection.
      * This method is called before a test is executed.
@@ -63,7 +64,10 @@ class ScrutinizerExtensionTest extends \PHPUnit_Framework_TestCase
     public function testQualityBadge()
     {
 
-        $this->assertEquals('<img src="https://scrutinizer-ci.com/g/pdenis/monitoring/badges/quality-score.png?s=571f31ce1079abf2d200c2fffb4320b244be8533" />', $this->object->getQualityBadge($this->repo));
+        $this->assertEquals(
+            '<img src="https://scrutinizer-ci.com/g/pdenis/monitoring/badges/quality-score.png?s=571f31ce1079abf2d200c2fffb4320b244be8533" />',
+            $this->object->getQualityBadge($this->repo)
+        );
         $this->repo->setQualityBadgeHash(null);
         $this->assertEquals('', $this->object->getQualityBadge($this->repo));
 
@@ -75,7 +79,10 @@ class ScrutinizerExtensionTest extends \PHPUnit_Framework_TestCase
     public function testCoverageBadge()
     {
 
-        $this->assertEquals('<img src="https://scrutinizer-ci.com/g/pdenis/monitoring/badges/coverage.png?s=48847d533c0c42fc3c288d54d946a58951360ca7" />', $this->object->getCoverageBadge($this->repo));
+        $this->assertEquals(
+            '<img src="https://scrutinizer-ci.com/g/pdenis/monitoring/badges/coverage.png?s=48847d533c0c42fc3c288d54d946a58951360ca7" />',
+            $this->object->getCoverageBadge($this->repo)
+        );
 
         $this->repo->setCoverageBadgeHash(null);
         $this->assertEquals('', $this->object->getCoverageBadge($this->repo));
@@ -94,7 +101,14 @@ class ScrutinizerExtensionTest extends \PHPUnit_Framework_TestCase
      */
     public function testFunctions()
     {
-        $this->assertEquals(array('snide_travinizer_scrutinizer_url', 'snide_travinizer_scrutinizer_quality_badge', 'snide_travinizer_scrutinizer_coverage_badge'), array_keys($this->object->getFunctions()));
+        $this->assertEquals(
+            array(
+                'snide_travinizer_scrutinizer_url',
+                'snide_travinizer_scrutinizer_quality_badge',
+                'snide_travinizer_scrutinizer_coverage_badge'
+            ),
+            array_keys($this->object->getFunctions())
+        );
     }
 
     /**

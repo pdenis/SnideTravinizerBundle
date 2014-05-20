@@ -135,11 +135,11 @@ class RepoRepository implements RepoRepositoryInterface
         $id = sizeof($rows) + 1;
 
         $rows[] = array(
-            'id'     => $id,
-            'slug'   => $repo->getSlug(),
-            'type'   => $repo->getType(),
-            'qualityBadgeHash'   => $repo->getQualityBadgeHash(),
-            'coverageBadgeHash'  => $repo->getCoverageBadgeHash(),
+            'id' => $id,
+            'slug' => $repo->getSlug(),
+            'type' => $repo->getType(),
+            'qualityBadgeHash' => $repo->getQualityBadgeHash(),
+            'coverageBadgeHash' => $repo->getCoverageBadgeHash(),
         );
 
         file_put_contents($this->filename, Yaml::dump($rows));
@@ -178,11 +178,11 @@ class RepoRepository implements RepoRepositoryInterface
         foreach ($this->getRows() as $row) {
             if ($row['id'] == $repo->getId()) {
                 $row = array(
-                    'slug'   => $repo->getSlug(),
-                    'qualityBadgeHash'   => $repo->getQualityBadgeHash(),
-                    'coverageBadgeHash'  => $repo->getCoverageBadgeHash(),
-                    'type'   => $repo->getType(),
-                    'id'     => $repo->getId()
+                    'slug' => $repo->getSlug(),
+                    'qualityBadgeHash' => $repo->getQualityBadgeHash(),
+                    'coverageBadgeHash' => $repo->getCoverageBadgeHash(),
+                    'type' => $repo->getType(),
+                    'id' => $repo->getId()
                 );
             }
             $rows[] = $row;

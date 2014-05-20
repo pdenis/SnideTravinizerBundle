@@ -30,7 +30,6 @@ class RepoTest extends \PHPUnit_Framework_TestCase
         $this->object = new \Snide\Bundle\TravinizerBundle\Model\Repo();
     }
 
-  
 
     /**
      * @cover Snide\Bundle\TravinizerBundle\Model\Repo::getSlug

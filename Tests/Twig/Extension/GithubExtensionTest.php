@@ -34,6 +34,7 @@ class GithubExtensionTest extends \PHPUnit_Framework_TestCase
      * @var GithubHelper
      */
     protected $helper;
+
     /**
      * Sets up the fixture, for example, opens a network connection.
      * This method is called before a test is executed.
@@ -60,7 +61,10 @@ class GithubExtensionTest extends \PHPUnit_Framework_TestCase
     public function testCommitUrl()
     {
 
-        $this->assertEquals('https://github.com/pdenis/monitoring/commit/afe67014751025113ed1257c48e49346f184783b', $this->object->getCommitUrl($this->repo, 'afe67014751025113ed1257c48e49346f184783b'));
+        $this->assertEquals(
+            'https://github.com/pdenis/monitoring/commit/afe67014751025113ed1257c48e49346f184783b',
+            $this->object->getCommitUrl($this->repo, 'afe67014751025113ed1257c48e49346f184783b')
+        );
     }
 
     /**
@@ -76,7 +80,10 @@ class GithubExtensionTest extends \PHPUnit_Framework_TestCase
      */
     public function testFunctions()
     {
-        $this->assertEquals(array('snide_travinizer_github_url', 'snide_travinizer_github_commit_url'), array_keys($this->object->getFunctions()));
+        $this->assertEquals(
+            array('snide_travinizer_github_url', 'snide_travinizer_github_commit_url'),
+            array_keys($this->object->getFunctions())
+        );
     }
 
     /**
