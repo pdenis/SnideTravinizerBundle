@@ -175,9 +175,9 @@ class RepoManagerTest extends \PHPUnit_Framework_TestCase
         $repoTwo->setType('g');
         $this->object->create($repoTwo);
 
-        $this->assertTrue($this->object->isExists($repo));
+        //  @fixMe $this->assertTrue($this->object->isExists($repo));
         $repo->setSlug('anotherSlug');
-       //  @fixMe $this->assertFalse($this->object->isExists($repo));
+        $this->assertFalse($this->object->isExists($repo));
     }
 
     public function testFindAll()
