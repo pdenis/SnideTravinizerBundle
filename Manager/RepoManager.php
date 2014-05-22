@@ -254,6 +254,6 @@ class RepoManager implements RepoManagerInterface
     {
         $anotherRepo = $this->findBySlug($repo->getSlug());
 
-        return ($anotherRepo != null && $repo->getId() == $anotherRepo->getId());
+        return ($anotherRepo != null && $repo->getId() != $anotherRepo->getId());
     }
 }

@@ -174,6 +174,7 @@ class RepoManagerTest extends \PHPUnit_Framework_TestCase
         $repoTwo->setSlug('pdenis/scrutinizer-client');
         $repoTwo->setType('g');
         $this->object->create($repoTwo);
+        $repo->setId(10);
         $this->assertTrue($this->object->isExists($repo));
         $repo->setSlug('anotherSlug');
         $this->assertFalse($this->object->isExists($repo));
