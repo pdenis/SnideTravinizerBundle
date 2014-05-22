@@ -14,6 +14,7 @@ namespace Snide\Bundle\TravinizerBundle\Tests\Loader;
 use Doctrine\Common\Cache\ArrayCache;
 use Snide\Bundle\TravinizerBundle\Helper\GithubHelper;
 use Snide\Bundle\TravinizerBundle\Loader\ComposerLoader;
+use Snide\Bundle\TravinizerBundle\Manager\CacheManager;
 use Snide\Bundle\TravinizerBundle\Model\Repo;
 
 /**
@@ -59,5 +60,4 @@ class ComposerLoaderTest extends \PHPUnit_Framework_TestCase
         $data = json_decode(file_get_contents($this->file), true);
         $this->assertEquals('snide/memetor', $data['name']);
     }
-
 }

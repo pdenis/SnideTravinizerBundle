@@ -93,4 +93,11 @@ class ComposerReaderTest extends \PHPUnit_Framework_TestCase
         $this->object->setHelper($helper);
         $this->assertEquals($helper, $this->object->getHelper());
     }
+
+    public function testCacheManager()
+    {
+        $cacheManager = new CacheManager(new ArrayCache());
+        $this->object->setCacheManager($cacheManager);
+        $this->assertEquals($cacheManager, $this->object->getCacheManager());
+    }
 }

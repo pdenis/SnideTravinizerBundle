@@ -35,7 +35,7 @@ class ScrutinizerLoaderTest extends \PHPUnit_Framework_TestCase
      */
     protected function setUp()
     {
-
+        $this->object = new ScrutinizerLoader(new Client(), new CacheManager(new ArrayCache()));
     }
 
     /**
@@ -44,7 +44,7 @@ class ScrutinizerLoaderTest extends \PHPUnit_Framework_TestCase
      */
     public function testLoad()
     {
-        $this->object = new ScrutinizerLoader(new Client(), new CacheManager(new ArrayCache()));
+
         $repo = new Repo();
         $repo->setType('g');
         $repo->setSlug('pdenis/monitoring');
@@ -65,4 +65,10 @@ class ScrutinizerLoaderTest extends \PHPUnit_Framework_TestCase
         $this->assertNull($repo->getPdependMetrics());
     }
 
+    public function testCacheManager()
+    {
+        $cacheManager = new CacheManager(new ArrayCache());
+        $this->object->setCacheManager($cacheManager);
+        $this->assertEquals($cacheManager, $this->object->getCacheManager());
+    }
 }

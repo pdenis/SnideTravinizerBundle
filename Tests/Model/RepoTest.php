@@ -30,11 +30,6 @@ class RepoTest extends \PHPUnit_Framework_TestCase
         $this->object = new \Snide\Bundle\TravinizerBundle\Model\Repo();
     }
 
-
-    /**
-     * @cover Snide\Bundle\TravinizerBundle\Model\Repo::getSlug
-     * @cover Snide\Bundle\TravinizerBundle\Model\Repo::setSlug
-     */
     public function testSlug()
     {
         $this->assertNull($this->object->getSlug());
@@ -43,10 +38,6 @@ class RepoTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($slug, $this->object->getSlug());
     }
 
-    /**
-     * @cover Snide\Bundle\TravinizerBundle\Model\Repo::getDescription
-     * @cover Snide\Bundle\TravinizerBundle\Model\Repo::setDescription
-     */
     public function testDescription()
     {
         $this->assertNull($this->object->getDescription());
@@ -55,10 +46,6 @@ class RepoTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($description, $this->object->getDescription());
     }
 
-    /**
-     * @cover Snide\Bundle\TravinizerBundle\Model\Repo::getAuthors
-     * @cover Snide\Bundle\TravinizerBundle\Model\Repo::setAuthors
-     */
     public function testAuthors()
     {
         $this->assertNull($this->object->getAuthors());

@@ -16,10 +16,12 @@
     },
     "require": {
         "symfony/framework-bundle": "~2.3",
+        "symfony/http-foundation": "~2.3",
         "twig/twig": "1.*",
         "snide/php-travis-client": "dev-master",
         "snide/php-versioneye-client": "dev-master",
         "snide/php-scrutinizer-client": "dev-master",
+        "sensio/framework-extra-bundle": "3.0.*@dev",
         "kriswallsmith/buzz": "0.5",
         "doctrine/common": "2.3.0",
         "doctrine/orm": ">=2.3,<2.4-dev",

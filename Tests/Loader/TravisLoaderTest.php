@@ -35,16 +35,12 @@ class TravisLoaderTest extends \PHPUnit_Framework_TestCase
      */
     protected function setUp()
     {
-
+        $this->object = new TravisLoader(new Client(), new CacheManager(new ArrayCache()));
     }
 
-    /**
-     * @covers Snide\Bundle\TravinizerBundle\Loader\TravisLoader::__construct
-     * @covers Snide\Bundle\TravinizerBundle\Loader\TravisLoader::load
-     */
     public function testLoad()
     {
-        $this->object = new TravisLoader(new Client(), new CacheManager(new ArrayCache()));
+
         $repo = new Repo();
         $repo->setSlug('pdenis/monitoring');
         $this->object->load($repo);
@@ -67,4 +63,10 @@ class TravisLoaderTest extends \PHPUnit_Framework_TestCase
         $this->assertNull($repo->getLastBuildState());
     }
 
+    public function testCacheManager()
+    {
+        $cacheManager = new CacheManager(new ArrayCache());
+        $this->object->setCacheManager($cacheManager);
+        $this->assertEquals($cacheManager, $this->object->getCacheManager());
+    }
 }

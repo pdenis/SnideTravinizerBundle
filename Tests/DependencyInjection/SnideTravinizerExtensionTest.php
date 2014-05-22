@@ -109,6 +109,15 @@ class SnideTravinizerExtensionTest extends \PHPUnit_Framework_TestCase
         );
     }
 
+    public function testLoadManagerClass()
+    {
+        $this->loadConfiguration();
+        $this->assertInstanceOf(
+            'Snide\Bundle\TravinizerBundle\Manager\RepoManager',
+            $this->configuration->get('snide_travinizer.repo_manager')
+        );
+    }
+
     public function testLoadRepoClass()
     {
         $this->loadConfiguration();
@@ -168,6 +177,8 @@ class SnideTravinizerExtensionTest extends \PHPUnit_Framework_TestCase
         $yaml = <<<EOF
 filesystem_cache_path: /tmp/cache
 version_eye_key: my_key
+manager:
+    class: Snide\Bundle\TravinizerBundle\Manager\RepoManager
 repository:
     class: Snide\Bundle\TravinizerBundle\Repository\Yaml\RepoRepository
     type: yaml

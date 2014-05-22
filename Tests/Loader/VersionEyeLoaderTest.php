@@ -15,6 +15,7 @@ use Snide\Bundle\TravinizerBundle\Entity\Repo;
 use Snide\Bundle\TravinizerBundle\Helper\GithubHelper;
 use Snide\Bundle\TravinizerBundle\Loader\ComposerLoader;
 use Snide\Bundle\TravinizerBundle\Loader\VersionEyeLoader;
+use Snide\Bundle\TravinizerBundle\Manager\CacheManager;
 use Snide\VersionEye\Client;
 
 /**
@@ -49,5 +50,4 @@ class VersionEyeLoaderTest extends \PHPUnit_Framework_TestCase
 
         }
     }
-
 }

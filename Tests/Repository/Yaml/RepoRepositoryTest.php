@@ -64,11 +64,6 @@ class RepoRepositoryTest extends \PHPUnit_Framework_TestCase
         }
     }
 
-
-    /**
-     * @covers Snide\Bundle\TravinizerBundle\Repository\Yaml\RepoRepository::__construct
-     * @covers Snide\Bundle\TravinizerBundle\Repository\Yaml\RepoRepository::createNew
-     */
     public function testConstruct()
     {
         $this->assertTrue(file_exists($this->filename));
@@ -152,9 +147,6 @@ class RepoRepositoryTest extends \PHPUnit_Framework_TestCase
 
     }
 
-    /**
-     * @covers Snide\Bundle\TravinizerBundle\Repository\Yaml\RepoRepository::delete
-     */
     public function testDelete()
     {
         $repo = $this->object->createNew();
@@ -175,9 +167,6 @@ class RepoRepositoryTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(array_values($repos), $this->object->findAll());
     }
 
-    /**
-     * @covers Snide\Bundle\TravinizerBundle\Repository\Yaml\RepoRepository::update
-     */
     public function testUpdate()
     {
         $repo = $this->object->createNew();
